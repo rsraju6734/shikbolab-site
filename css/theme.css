@@ -1,0 +1,102 @@
+/* ShikboLab চ্যাপ্টার থিম: সব অধ্যায়ে নতুন অ্যানিমেটেড লুক (css/theme.css) */
+html[data-sub=chemistry]{--th:#2a9d8f;--th2:#1f7a8c;--soft:rgba(42,157,143,.13)}
+html[data-sub=physics]{--th:#3f6fd1;--th2:#2a4a9e;--soft:rgba(63,111,209,.13);--teal:#3f6fd1}
+html[data-sub=math]{--th:#e76f51;--th2:#c9503a;--soft:rgba(231,111,81,.13);--teal:#e76f51}
+html[data-sub=biology]{--th:#d9902a;--th2:#b9711a;--soft:rgba(233,162,59,.16);--teal:#d9902a}
+html{--ez:cubic-bezier(.2,.8,.2,1);scroll-behavior:smooth}
+body{background:linear-gradient(180deg,#f3f8fc,#fbf8f1) fixed!important;-webkit-font-smoothing:antialiased}
+/* পেছনের ভাসমান রং */
+.th-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.th-bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;animation:thdrift 22s ease-in-out infinite alternate}
+.th-bg i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:-14vw;background:var(--th)}
+.th-bg i:nth-child(2){width:38vw;height:38vw;right:-10vw;top:25vh;background:#ffd9b8;animation-delay:-7s}
+.th-bg i:nth-child(3){width:36vw;height:36vw;left:30vw;bottom:-18vw;background:#cfdcff;animation-delay:-13s}
+@keyframes thdrift{to{transform:translate(6vw,4vw) scale(1.12)}}
+/* পড়ার অগ্রগতি বার */
+.th-prog{position:fixed;left:0;top:0;height:4px;width:100%;z-index:200;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--th),#e9a23b,#e76f51)}
+/* হেডার */
+header.site{background:rgba(255,255,255,.78)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--navy)!important;border-bottom:1px solid rgba(31,58,95,.08);padding:10px clamp(14px,4vw,40px)!important}
+header.site .brand{color:var(--navy)!important}header.site .brand span{color:#e76f51!important}
+header.site a.back{background:#fff!important;color:var(--navy)!important;border:2px solid var(--line);transition:transform .3s var(--ez),border-color .3s}
+header.site a.back:hover{transform:translateX(-4px);border-color:var(--navy)}
+/* হিরো ব্যানার */
+.th-hero{position:relative;overflow:hidden;border-radius:28px;padding:clamp(20px,3.4vw,38px);margin:6px 0 16px;color:#fff;background:linear-gradient(135deg,var(--th),var(--th2));box-shadow:0 22px 46px -18px var(--th);animation:thin .8s var(--ez) both}
+.th-hero .crumb{color:rgba(255,255,255,.88)!important;font-weight:600;position:relative;z-index:1}
+.th-hero .title{color:#fff!important;margin:6px 0 4px!important;position:relative;z-index:1;font-size:clamp(28px,4.8vw,46px)!important;letter-spacing:-.01em;animation:thup .9s .15s var(--ez) both}
+.th-hero i.o{position:absolute;border-radius:50%;background:rgba(255,255,255,.14);animation:thdrift 12s ease-in-out infinite alternate;pointer-events:none}
+.th-hero i.o1{width:280px;height:280px;right:-70px;top:-100px}.th-hero i.o2{width:170px;height:170px;right:150px;bottom:-90px;animation-delay:-5s}.th-hero i.o3{width:90px;height:90px;left:46%;top:-30px;animation-delay:-9s}
+.th-hero .ico{position:absolute;right:clamp(16px,4vw,44px);top:50%;transform:translateY(-50%);font-size:clamp(60px,10vw,120px);opacity:.28;animation:thbob 5s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.2))}
+@keyframes thin{from{opacity:0;transform:translateY(18px) scale(.98)}}
+@keyframes thup{from{opacity:0;transform:translateY(24px)}}
+@keyframes thbob{50%{transform:translateY(-58%) rotate(5deg)}}
+/* ট্যাব */
+.tabs{position:sticky!important;top:8px!important;z-index:60!important;background:rgba(255,255,255,.82)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(31,58,95,.08);border-radius:999px;padding:7px 8px!important;box-shadow:0 8px 24px rgba(31,58,95,.1);overflow-x:auto;flex-wrap:nowrap!important;gap:6px!important;scrollbar-width:none;margin-bottom:18px!important}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;border:0!important;background:transparent!important;color:var(--navy)!important;padding:7px 16px!important;border-radius:999px!important;font-size:15px;transition:background .25s,color .25s,transform .25s var(--ez)}
+.tabs a:hover{background:var(--soft)!important;transform:translateY(-2px)}
+.tabs a.on{background:linear-gradient(135deg,var(--th),var(--th2))!important;color:#fff!important;box-shadow:0 6px 14px -4px var(--th)}
+/* প্যানেল */
+.panel{position:relative;border-radius:24px!important;border:1px solid rgba(31,58,95,.07);box-shadow:0 10px 30px rgba(31,58,95,.07)!important;padding:clamp(16px,2.6vw,28px)!important;scroll-margin-top:84px;background:rgba(255,255,255,.94)!important}
+.panel>h2:first-child{display:flex;align-items:center;gap:10px;font-size:clamp(21px,2.6vw,27px)!important;padding-bottom:10px;margin-bottom:14px!important;border-bottom:2px solid var(--soft)}
+.panel>h2:first-child::after{content:"";flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--th),transparent);opacity:.35}
+.panel h3{color:var(--th2)!important}
+html.th-on .th-rv{opacity:0;transform:translateY(34px)}
+html.th-on .th-rv.th-in{opacity:1;transform:none;transition:opacity .8s var(--ez),transform .8s var(--ez)}
+.th-live{position:absolute;right:18px;top:18px;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--th2);background:var(--soft);padding:3px 12px;border-radius:99px}
+.th-live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--th);animation:thpulse 1.8s infinite}
+@keyframes thpulse{0%{box-shadow:0 0 0 0 var(--th)}100%{box-shadow:0 0 0 9px transparent}}
+@media(max-width:560px){.th-live{display:none}}
+/* বক্স ও নোট */
+.key,.star,.warn,.say{border-radius:16px!important;border-left-width:6px!important;box-shadow:0 4px 14px rgba(31,58,95,.05)}
+.key{background:linear-gradient(120deg,var(--soft),#fff)!important;border-left-color:var(--th)!important}
+.key,.star,.warn{animation:thslide .7s var(--ez) both}
+@keyframes thslide{from{opacity:0;transform:translateX(-14px)}}
+.say{background:linear-gradient(120deg,#fff4dc,#fffaf0)!important}
+.box{border-radius:18px!important;background:rgba(246,249,251,.9)!important}
+table.t{border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+table.t th{background:linear-gradient(135deg,var(--th2),var(--th))!important}
+table.t tr:nth-child(even) td{background:#f7fafc}
+table.t tr{transition:background .2s}table.t tr:hover td{background:var(--soft)}
+.eq{border-radius:14px!important;background:linear-gradient(120deg,var(--soft),#fff)!important}
+/* ক্যানভাস */
+canvas{border-radius:18px!important;box-shadow:0 10px 26px rgba(31,58,95,.1);border:1px solid rgba(31,58,95,.08)!important;transition:box-shadow .4s,transform .4s var(--ez)}
+canvas:hover{box-shadow:0 16px 36px rgba(31,58,95,.16)}
+/* বাটন */
+.btn,.opt{position:relative;overflow:hidden}
+.btn{background:linear-gradient(135deg,var(--th),var(--th2))!important;color:#fff!important;border:0!important;border-radius:999px!important;padding:9px 18px!important;box-shadow:0 6px 14px -6px var(--th);transition:transform .3s var(--ez),box-shadow .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 22px -8px var(--th)}.btn:active{transform:translateY(0) scale(.97)}
+.btn.alt{background:#fff!important;color:var(--navy)!important;border:2px solid var(--navy)!important;box-shadow:none}
+select{border-radius:12px!important;transition:border-color .2s,box-shadow .2s}select:focus{outline:none;border-color:var(--th)!important;box-shadow:0 0 0 4px var(--soft)}
+input[type=range]{accent-color:var(--th)!important}
+.pills button,.cls button,.stepper span{transition:transform .25s var(--ez),background .25s}
+.pills button:hover{transform:translateY(-2px)}
+.th-rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:thrip .6s linear;pointer-events:none}
+@keyframes thrip{to{transform:scale(4);opacity:0}}
+/* কুইজ */
+.q{border-radius:18px!important;border:1px solid rgba(31,58,95,.09)!important;background:#fff;transition:box-shadow .3s,transform .3s var(--ez)}
+.q:hover{box-shadow:0 12px 26px rgba(31,58,95,.1)}
+.opt{border-radius:14px!important;transition:transform .25s var(--ez),border-color .2s,background .3s}
+.opt:hover{transform:translateX(5px);border-color:var(--th)!important}
+.opt.ok{animation:thpop .5s var(--ez)}.opt.no{animation:thshake .45s}
+@keyframes thpop{40%{transform:scale(1.03)}}
+@keyframes thshake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.exp{border-radius:12px!important;border-left:4px solid var(--th)}
+.exp[style*="block"]{animation:thslide .5s var(--ez)}
+.score{font-size:24px!important;background:linear-gradient(135deg,var(--th),#e76f51);-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:thpop .8s var(--ez)}
+.ans.open{animation:thslide .5s var(--ez)}
+/* নিচের আগের/পরের অধ্যায় */
+.th-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:10px 0 24px}
+.th-nav a{display:block;padding:18px 20px;border-radius:22px;background:#fff;border:2px solid var(--line);text-decoration:none;color:var(--navy);transition:transform .35s var(--ez),box-shadow .35s,border-color .35s;position:relative;overflow:hidden}
+.th-nav a:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(31,58,95,.14);border-color:var(--th)}
+.th-nav a small{display:block;color:var(--muted);font-weight:600;font-size:13.5px}
+.th-nav a b{display:block;font-size:18px;line-height:1.4;margin-top:2px}
+.th-nav a.nx{text-align:right;background:linear-gradient(135deg,var(--th),var(--th2));color:#fff;border-color:transparent}
+.th-nav a.nx small{color:rgba(255,255,255,.85)}
+.th-nav a.only{grid-column:1/-1}
+@media(max-width:560px){.th-nav{grid-template-columns:1fr}}
+/* উপরে ফেরার বাটন */
+.th-top{position:fixed;right:18px;bottom:18px;z-index:90;width:48px;height:48px;border-radius:50%;border:0;cursor:pointer;color:#fff;font-size:22px;background:linear-gradient(135deg,var(--th),var(--th2));box-shadow:0 10px 22px -6px var(--th);opacity:0;transform:translateY(20px) scale(.8);pointer-events:none;transition:all .4s var(--ez)}
+.th-top.show{opacity:1;transform:none;pointer-events:auto}.th-top:hover{transform:translateY(-4px)}
+.th-conf{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:300}
+footer.site{color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html.th-on .th-rv{opacity:1;transform:none}}

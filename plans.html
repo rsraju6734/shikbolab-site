@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>প্ল্যান ও দাম — ShikboLab</title>
+<meta name="description" content="ShikboLab এর সাবস্ক্রিপশন প্ল্যান ও দাম।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="js/chapters.js"></script>
+<script src="js/prices.js"></script>
+<script src="js/content.js"></script>
+<script src="js/demo-saas.js?v=5"></script>
+</head>
+<body class="sl-page">
+<header class="sl-top"><a class="brand" href="index.html">Shikbo<span>Lab</span></a><nav><a href="index.html">হোম</a><a class="on" href="plans.html">প্ল্যান</a><a href="account.html">অ্যাকাউন্ট</a></nav></header>
+<main class="sl-wrap">
+ <div class="sl-hero">
+  <span class="sl-chip" id="chip"></span>
+  <h1>তোমার জন্য সঠিক প্ল্যান বেছে নাও 🎯</h1>
+  <p>একা পড়ো, পরিবারের সবাই মিলে পড়ো, বা পুরো স্কুলকে ShikboLab দাও। <b>তোমার ক্লাস বেছে নাও, দাম ক্লাস অনুযায়ী।</b></p>
+  <div class="sl-tog" id="tog"><button data-p="month" class="on">মাসিক</button><button data-p="week">সাপ্তাহিক</button></div>
+ </div>
+ <div class="sl-note">⚠️ <b>ডেমো মোড:</b> এখানে দাম নমুনা। অ্যাকাউন্ট ও পেমেন্ট শুধু এই ব্রাউজারে থাকে, আসল টাকা কাটে না।</div>
+ <div class="sl-grid" id="grid"></div>
+ <section class="sl-box"><h2>🎓 ক্লাস অনুযায়ী দাম</h2>
+  <p style="color:#5b6b78;margin-top:0">৯ ও ১০ একসাথে, ১১ ও ১২ একসাথে। ৬, ৭, ৮ আলাদা আলাদা ক্লাস।</p>
+  <h3 style="margin:10px 0 6px;color:#1f3a5f">🎒 স্টুডেন্ট প্ল্যান (একটা ক্লাস)</h3><div class="sl-scroll"><table class="sl-tbl" id="ctab"></table></div>
+  <p id="fam" style="margin:10px 0 0"></p>
+  <h3 style="margin:18px 0 6px;color:#1f3a5f">🏫 স্কুল প্ল্যান (ক্লাসের সীমা অনুযায়ী, মাসিক)</h3><div class="sl-scroll"><table class="sl-tbl" id="stab"></table></div>
+ </section>
+ <section class="sl-box"><h2>📊 প্ল্যান তুলনা</h2><div class="sl-scroll"><table class="sl-tbl" id="cmp"></table></div></section>
+ <section class="sl-box"><h2>🆓 সবার জন্য ফ্রি অধ্যায়</h2><p style="color:#5b6b78;margin-top:0">অ্যাকাউন্ট ছাড়াই এগুলো দেখা যায়:</p><div id="free" style="display:flex;flex-wrap:wrap;gap:8px"></div></section>
+ <section class="sl-box"><h2>❓ সাধারণ প্রশ্ন</h2>
+  <details class="sl-q"><summary>ফ্রি অ্যাকাউন্টে কী কী পাব?</summary><p>ফ্রি অধ্যায়গুলো (নিচে দেখো) সবার জন্য খোলা, অ্যাকাউন্ট ছাড়াও। বাকি সব অধ্যায় ও ল্যাব খুলতে ক্লাস অনুযায়ী প্ল্যান নিতে হয়। কার্ড বা টাকা লাগে না ফ্রি অংশের জন্য।</p></details>
+  <details class="sl-q"><summary>ফ্যামিলি প্ল্যানে কাকে যোগ করা যায়?</summary><p>অভিভাবক অ্যাকাউন্ট খুলে ৪ জন পর্যন্ত শিক্ষার্থী যোগ করতে পারেন। প্রত্যেকের আলাদা অগ্রগতি দেখা যায়। ভাইবোন আলাদা ক্লাসে পড়লে একাধিক ক্লাস নেওয়া যায় (যেমন ৮ম ও ৯–১০), প্রতিটি বাড়তি ক্লাসের জন্য সামান্য বাড়তি দাম।</p></details>
+  <details class="sl-q"><summary>স্কুল প্ল্যানে কী বাড়তি আছে?</summary><p>স্কুলের নাম ও লোগো সব পেজের উপরে দেখায়। শিক্ষার্থী ও শিক্ষক যোগ করা যায়, আর শিক্ষার্থীদের অগ্রগতির রিপোর্ট দেখা যায়। স্কুল নিজের ক্লাসের সীমা বেছে নেয় (যেমন ৬–১০, ৬–১২ বা শুধু ১১–১২), আর দাম সেই সীমা অনুযায়ী হয়।</p></details>
+  <details class="sl-q"><summary>পেমেন্ট কীভাবে করব?</summary><p>বিকাশ বা নগদে টাকা পাঠিয়ে TrxID দিলেই প্ল্যান চালু হবে। (এটা ডেমো, আসল সিস্টেমে অ্যাডমিন যাচাই করে চালু করবেন।)</p></details>
+  <details class="sl-q"><summary>ডিভাইস লিমিট কী?</summary><p>একই অ্যাকাউন্ট একসাথে সর্বোচ্চ কয়টা ফোন/কম্পিউটারে লগইন থাকতে পারবে তার সীমা (প্ল্যানের কার্ডে লেখা আছে)। সীমা পূর্ণ হলে নতুন ডিভাইসে ঢুকতে আগের একটা ডিভাইস সরাতে হয়। লগআউট করলে জায়গা খালি হয়, আর ৩০ দিন ব্যবহার না করলে ডিভাইস নিজে থেকে বাদ যায়।</p></details>
+ </section>
+</main>
+<div class="sl-foot">&copy; ShikboLab · বাংলায় ইন্টারঅ্যাকটিভ বিজ্ঞান ল্যাব</div>
+<script>
+(function(){
+ var C=SL.cfg,bn=SL.bn,per='month',g=document.getElementById('grid');
+ var TR=C.TRIAL_CH&&C.TRIAL_CH.length;document.getElementById('chip').textContent=TR?'🎁 '+bn(C.TRIAL_DAYS)+' দিনের ফ্রি ট্রায়াল':'🆓 কিছু অধ্যায় সম্পূর্ণ ফ্রি, বাকিগুলো প্ল্যান নিলে খুলবে';
+ function dv(k){return (C.PLANS[k]||{}).devices||1;}
+ var FEAT={
+  student:[['নিজের ক্লাসের সব অধ্যায় ও ল্যাব',1],['একটা ক্লাস বেছে নাও',1],[bn(1)+' জন শিক্ষার্থী',1],['সর্বোচ্চ '+bn(dv('student'))+'টি ডিভাইসে লগইন',1],['কুইজের অগ্রগতি সেভ',1],['শিক্ষক/স্কুল ড্যাশবোর্ড',0]],
+  family:[['একাধিক ক্লাস নেওয়া যায় (সর্বোচ্চ '+bn(C.FAMILY_MAX_CLASSES)+'টি)',1],[bn(4)+' জন শিক্ষার্থী পর্যন্ত',1],['সর্বোচ্চ '+bn(dv('family'))+'টি ডিভাইসে লগইন',1],['প্রত্যেকের আলাদা অগ্রগতি',1],['অভিভাবক ড্যাশবোর্ড',1],['স্কুলের নাম ও লোগো',0]],
+  school:[['নিজের ক্লাসের সীমা বেছে নাও (যেমন ৬–১০)',1],[bn(100)+' শিক্ষার্থী + '+bn(5)+' শিক্ষক',1],['সর্বোচ্চ '+bn(dv('school'))+'টি ডিভাইসে লগইন',1],['স্কুলের নাম ও লোগো সব পেজে',1],['শিক্ষার্থীদের অগ্রগতি রিপোর্ট',1],['অগ্রাধিকার সাপোর্ট',1]],
+  custom:[['একটা ক্লাস বেছে নাও',1],['১–৩০ জন, যত খুশি',1],['সর্বোচ্চ '+bn(dv('custom'))+'টি ডিভাইসে লগইন',1],['রসায়ন, পদার্থ, গণিত, জীববিজ্ঞান থেকে বেছে নাও',1],['শুধু নির্বাচিত বিষয় খোলা',1],['প্রত্যেকের আলাদা অগ্রগতি',1],['স্কুলের নাম ও লোগো',0]],
+  school300:[['নিজের ক্লাসের সীমা বেছে নাও (যেমন ৬–১০)',1],[bn(300)+' শিক্ষার্থী + '+bn(15)+' শিক্ষক',1],['সর্বোচ্চ '+bn(dv('school300'))+'টি ডিভাইসে লগইন',1],['স্কুলের নাম ও লোগো সব পেজে',1],['শিক্ষার্থীদের অগ্রগতি রিপোর্ট',1],['অগ্রাধিকার সাপোর্ট',1]],
+  school500:[['নিজের ক্লাসের সীমা বেছে নাও (যেমন ৬–১০)',1],[bn(500)+' শিক্ষার্থী + '+bn(25)+' শিক্ষক',1],['সর্বোচ্চ '+bn(dv('school500'))+'টি ডিভাইসে লগইন',1],['স্কুলের নাম ও লোগো সব পেজে',1],['শিক্ষার্থীদের অগ্রগতি রিপোর্ট',1],['অগ্রাধিকার সাপোর্ট',1]],
+  school1000:[['নিজের ক্লাসের সীমা বেছে নাও (যেমন ৬–১০)',1],[bn(1000)+' শিক্ষার্থী + '+bn(50)+' শিক্ষক',1],['সর্বোচ্চ '+bn(dv('school1000'))+'টি ডিভাইসে লগইন',1],['স্কুলের নাম ও লোগো সব পেজে',1],['শিক্ষার্থীদের অগ্রগতি রিপোর্ট',1],['অগ্রাধিকার সাপোর্ট',1]]
+ };
+ function draw(){
+  g.innerHTML=Object.keys(C.PLANS).filter(function(k){return !C.PLANS[k].off;}).map(function(k){var p=C.PLANS[k],cheap=SL.CLASSES.slice().sort(function(a,b){return a.price[per]-b.price[per];})[0].id,pr=SL.quote(k,per,{bands:(k==='student'||k==='family')?[cheap]:k==='custom'?[]:['c6','c7','c8','c910'],seats:1,subs:[1]}),note=k==='student'?'ক্লাস অনুযায়ী দাম (নিচের তালিকা দেখো)':k==='family'?'১ম ক্লাসসহ ৪ জন। প্রতি বাড়তি ক্লাস +৳'+bn(C.FAMILY_EXTRA[per]):p.isSchool?'৬–১০ শ্রেণির দাম। ক্লাস কম/বেশি হলে দাম বদলায':'';
+   return '<div class="sl-plan'+(k==='family'?' hot':'')+'" style="--c:'+p.color+'">'+(k==='family'?'<span class="tag">জনপ্রিয়</span>':'')
+   +'<span class="em">'+p.emoji+'</span><h3>'+p.name+'</h3><p class="ds">'+p.desc+'</p>'
+   +(pr.disc?'<span class="sl-off">🔥 '+bn(pr.disc)+'% ছাড়'+(pr.label?' · '+SL.esc(pr.label):'')+'</span>':'')
+   +'<div class="pr">'+(k==='student'?'<small>থেকে </small>':'')+(pr.disc?'<span class="sl-old">৳'+bn(pr.base)+'</span>':'')+'৳'+bn(pr.eff)+' <small>/ '+(p.custom?'জন / বিষয় / ':'')+(per==='month'?'মাস':'সপ্তাহ')+'</small></div>'+(note?'<p style="margin:2px 0 8px;font-size:14.5px;color:#5b6b78">'+note+'</p>':'')+(pr.until?'<span class="sl-until">অফার শেষ: '+new Date(pr.until).toLocaleDateString('bn-BD',{day:'numeric',month:'long'})+'</span>':'')
+   +'<ul>'+(p.features&&p.features.length?p.features.map(function(f){return [f,1];}):(FEAT[k]||[])).map(function(f){return '<li'+(f[1]?'':' class="no"')+'>'+f[0]+'</li>';}).join('')+'</ul>'
+   +'<a class="slb '+(k==='family'?'o':'p')+'" href="account.html?plan='+k+'#signup">'+(TR?'🎁 ফ্রি ট্রায়াল শুরু করো':'🆓 ফ্রি অ্যাকাউন্ট খোলো')+'</a></div>';
+  }).join('');
+ }
+ function tables(){
+  var w=per==='week'?'সাপ্তাহিক':'মাসিক';
+  document.getElementById('ctab').innerHTML='<tr><th>ক্লাস</th><th>'+w+' দাম</th></tr>'+SL.CLASSES.map(function(c){var r=SL.quote('student',per,{bands:[c.id]});return '<tr><td>'+SL.bandsLabel([c.id])+'</td><td>'+(r.disc?'<s style="color:#98a4ae">৳'+bn(r.base)+'</s> ':'')+'<b>৳'+bn(r.eff)+'</b></td></tr>';}).join('');
+  var f1=SL.quote('family',per,{bands:['c910']}),f2=SL.quote('family',per,{bands:['c8','c910']});
+  document.getElementById('fam').innerHTML='👨‍👩‍👧‍👦 <b>ফ্যামিলি প্ল্যান:</b> ১টি ক্লাসে ৪ জন পর্যন্ত ৳'+bn(f1.eff)+'। ২টি ক্লাস নিলে (যেমন ৮ম ও ৯–১০) ৳'+bn(f2.eff)+'। প্রতি বাড়তি ক্লাসে +৳'+bn(C.FAMILY_EXTRA[per])+', সর্বোচ্চ '+bn(C.FAMILY_MAX_CLASSES)+'টি ক্লাস।';
+  var RG=[['৬–৮',['c6','c7','c8']],['৬–১০',['c6','c7','c8','c910']],['৬–১২',['c6','c7','c8','c910','c1112']],['৯–১০',['c910']],['৯–১২',['c910','c1112']],['১১–১২',['c1112']]],ks=Object.keys(C.PLANS).filter(function(k){return C.PLANS[k].isSchool&&!C.PLANS[k].off;});
+  document.getElementById('stab').innerHTML='<tr><th>ক্লাসের সীমা</th>'+ks.map(function(k){return '<th>'+bn(C.PLANS[k].students)+' জন</th>';}).join('')+'</tr>'+RG.map(function(r){return '<tr><td><b>'+r[0]+' শ্রেণি</b></td>'+ks.map(function(k){var q=SL.quote(k,per,{bands:r[1]});return '<td>৳'+bn(q.eff)+'</td>';}).join('')+'</tr>';}).join('');
+ }
+ document.getElementById('tog').onclick=function(e){var b=e.target.closest('button');if(!b)return;per=b.dataset.p;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b);});draw();tables();};
+ draw();tables();
+ var rows=[['সর্বোচ্চ শিক্ষার্থী',function(p){return p.custom?'১–৩০ (নিজে বেছে)':bn(p.students)+' জন';}],['শিক্ষক অ্যাকাউন্ট',function(p){return p.teachers?bn(p.teachers)+' জন':'—';}],['ক্লাস',function(p){return p.isSchool?'পরপর সীমা (যেমন ৬–১০)':p.key==='family'?'১–'+bn(C.FAMILY_MAX_CLASSES)+'টি':'১টি';}],['সর্বোচ্চ ডিভাইস (একসাথে লগইন)',function(p){return bn(p.devices)+'টি';}],['মাসিক',function(p){var r=SL.price(p.key,'month');return (r.disc?'<s style="color:#98a4ae">৳'+bn(r.base)+'</s> ':'')+'৳'+bn(r.eff);}],['সাপ্তাহিক',function(p){var r=SL.price(p.key,'week');return (r.disc?'<s style="color:#98a4ae">৳'+bn(r.base)+'</s> ':'')+'৳'+bn(r.eff);}],['স্কুলের লোগো ও নাম',function(p){return p.isSchool?'✅':'—';}],['অগ্রগতি রিপোর্ট',function(p){return p===C.PLANS.student?'নিজের':'সবার';}]];
+ var ks=Object.keys(C.PLANS).filter(function(k){return !C.PLANS[k].off;});
+ document.getElementById('cmp').innerHTML='<tr><th></th>'+ks.map(function(k){return '<th>'+C.PLANS[k].emoji+' '+C.PLANS[k].name.replace(' প্ল্যান','')+'</th>';}).join('')+'</tr>'
+  +rows.map(function(r){return '<tr><td>'+r[0]+'</td>'+ks.map(function(k){return '<td>'+r[1](C.PLANS[k])+'</td>';}).join('')+'</tr>';}).join('');
+ var fr=document.getElementById('free'),L=window.CHAPTERS||[];
+ fr.innerHTML=L.filter(function(c){return SL.isFree(c.file.split('/').pop().replace('.html',''));}).map(function(c){return '<a class="slb s" style="padding:7px 16px;font-size:15px" href="'+c.file+'">'+SL.esc(c.title)+'</a>';}).join('')||'—';
+})();
+</script>
+<script src="js/site-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>সুপার অ্যাডমিন — ShikboLab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="js/content.js"></script>
+<script src="js/chapters.js"></script>
+<script src="js/demo-saas.js?v=5"></script>
+<script src="js/lesson-view.js"></script>
+<script src="js/quiz-view.js"></script>
+<script src="js/admin-content.js"></script>
+<script src="js/admin-people.js"></script>
+<script src="js/pay-provider.js"></script>
+<script src="js/admin-billing.js"></script>
+<script src="js/admin-ops.js"></script>
+<script src="js/backend-config.js"></script>
+<script src="js/backend-adapter.js"></script>
+<style>
+.ad-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 16px}
+.ad-tabs button{padding:10px 18px;border-radius:999px;border:2px solid #e3eaf0;background:#fff;font:700 15.5px 'Hind Siliguri',sans-serif;cursor:pointer;color:#1f3a5f;transition:all .25s}
+.ad-tabs button.on{background:linear-gradient(135deg,#1f3a5f,#3f6fd1);color:#fff;border-color:transparent;box-shadow:0 8px 18px -8px #3f6fd1}
+.ad-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px dashed #dbe4ea}
+.ad-row .nm{flex:1;min-width:170px;font-weight:700;color:#1f3a5f}.ad-row .nm small{display:block;color:#5b6b78;font-weight:500;word-break:break-all}
+.bdg{display:inline-block;padding:2px 12px;border-radius:999px;font-size:13px;font-weight:700;background:#e1f5ee;color:#16705f}
+.bdg.t{background:#fff1d6;color:#9a6a12}.bdg.x{background:#fde7e1;color:#b5391f}.bdg.s{background:#e8eaf1;color:#444}
+.ad-panel{background:#f7fafc;border:1px solid #e3eaf0;border-radius:18px;padding:16px;margin:8px 0 12px;display:grid;gap:14px}
+.ad-panel h4{margin:0 0 6px;color:#1f3a5f}
+.ad-inl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ad-inl input,.ad-inl select,.ad-f input,.ad-f select,.ad-f textarea{padding:9px 12px;border:2px solid #e3eaf0;border-radius:12px;font:500 15.5px 'Hind Siliguri',sans-serif;background:#fff;min-width:0}
+.ad-inl input[type=number]{width:100px}
+.ad-sm{padding:7px 14px!important;font-size:14px!important}
+.ad-f{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.ad-f label{display:block;font-weight:700;color:#1f3a5f;font-size:14.5px;margin-bottom:4px}.ad-f input,.ad-f select{width:100%}
+.ad-out{background:#e1f5ee;border-radius:16px;padding:14px;margin-top:14px;display:none}.ad-out textarea{width:100%;border:2px solid #bfe3d8;border-radius:12px;padding:10px;font:14.5px 'Hind Siliguri',sans-serif;margin:6px 0}
+.ad-big{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.ad-big div{background:#fff;border:1px solid #e3eaf0;border-radius:20px;padding:16px;box-shadow:0 8px 20px rgba(31,58,95,.06)}
+.ad-big small{color:#5b6b78;font-weight:600;display:block}.ad-big b{font-size:30px;color:#1f3a5f;line-height:1.2}
+.ad-lock{max-width:440px;margin:40px auto}
+/* ===== Phase 2: নতুন অ্যাডমিন শেল ===== */
+body.sl-page>.sl-top,body.sl-page>.sl-foot{display:none}
+#app.sl-wrap{max-width:none;padding:0}
+.ad-shell{--bg:#f3f6fa;--card:#fff;--ink:#1f3a5f;--mut:#5b6b78;--line:#e3eaf0;--side:#14233a;--sideink:#cfdcec;--acc:#3f6fd1;display:flex;min-height:100vh;background:var(--bg);color:#22303c}
+.ad-side{width:268px;flex:none;background:var(--side);color:var(--sideink);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;transition:width .25s;z-index:60}
+.ad-side .bd{display:flex;align-items:center;gap:10px;padding:16px 18px;font-weight:700;font-size:22px;color:#fff;text-decoration:none}.ad-side .bd span{color:#ff8e6e}
+.ad-nav{flex:1;overflow-y:auto;padding:4px 10px 16px}
+.ad-nav .gp{font-size:12px;letter-spacing:.06em;color:#7d92ad;padding:14px 10px 4px;font-weight:700}
+.ad-nav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 12px;margin:1px 0;border:0;border-radius:12px;background:transparent;color:var(--sideink);font:600 15px 'Hind Siliguri',sans-serif;cursor:pointer}
+.ad-nav button:hover{background:rgba(255,255,255,.07)}.ad-nav button.on{background:var(--acc);color:#fff}
+.ad-nav .ic{width:22px;text-align:center;flex:none}.ad-nav .tg{margin-left:auto;font-size:11px;padding:1px 8px;border-radius:999px;background:rgba(255,255,255,.12);color:#cfdcec}
+.ad-shell.col .ad-side{width:68px}.ad-shell.col .ad-nav .lb,.ad-shell.col .ad-nav .tg,.ad-shell.col .ad-nav .gp,.ad-shell.col .ad-side .bd .tx{display:none}.ad-shell.col .ad-nav button{justify-content:center}
+.ad-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.ad-topbar{display:flex;align-items:center;gap:10px;padding:12px clamp(12px,2.4vw,28px);background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.ad-topbar button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 12px;font:700 15px 'Hind Siliguri',sans-serif;cursor:pointer}
+.ad-gs{position:relative;flex:1;max-width:520px}.ad-gs input{width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:14px;font:500 15.5px 'Hind Siliguri',sans-serif;background:var(--bg);color:inherit}
+.ad-gres{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.18);max-height:60vh;overflow:auto;display:none;z-index:80}
+.ad-gres div{padding:9px 14px;cursor:pointer;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}.ad-gres div:hover{background:var(--bg)}.ad-gres small{color:var(--mut);display:block;font-weight:500}
+.ad-demo{background:#fff4dc;color:#8a5a00;border-radius:999px;padding:4px 12px;font-weight:700;font-size:13px;white-space:nowrap}
+.ad-page{padding:clamp(12px,2.4vw,28px);max-width:1240px;width:100%}
+.ad-page h1{margin:0 0 14px;font-size:clamp(24px,3.4vw,34px);color:var(--ink)}.ad-page .sub{color:var(--mut);margin:0 0 14px}
+.ad-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:6px}
+.ad-cards div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 8px 20px rgba(31,58,95,.06)}
+.ad-cards small{color:var(--mut);font-weight:600;display:block}.ad-cards b{font-size:30px;color:var(--ink);line-height:1.2}.ad-cards em{display:block;font-style:normal;font-size:12.5px;color:var(--mut);margin-top:2px}
+.ad-cards .off{opacity:.62;border-style:dashed}.ad-cards .off b{font-size:20px}
+.ad-bars{display:grid;gap:9px}.ad-bars .r{display:grid;grid-template-columns:120px 1fr 44px;align-items:center;gap:10px;font-weight:600;color:var(--ink)}
+.ad-bars .tr{background:var(--bg);border-radius:999px;height:14px;overflow:hidden}.ad-bars .tr i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#3f6fd1,#2a9d8f)}
+.ad-soon{text-align:center;padding:34px 18px}.ad-soon .big{font-size:54px}.ad-soon ul{display:inline-block;text-align:left;color:var(--mut);line-height:1.8}
+.ad-fil{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.ad-fil input,.ad-fil select{padding:9px 12px;border:2px solid var(--line);border-radius:12px;font:500 15px 'Hind Siliguri',sans-serif;background:var(--card);color:inherit}
+.ad-ov{display:none}
+@media(max-width:900px){.ad-side{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .25s;width:280px!important}.ad-shell.open .ad-side{transform:none}.ad-shell.open .ad-ov{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:55}.ad-shell.col .ad-nav .lb,.ad-shell.col .ad-nav .tg,.ad-shell.col .ad-nav .gp{display:initial}.ad-shell.col .ad-nav button{justify-content:flex-start}.ad-bars .r{grid-template-columns:88px 1fr 38px}}
+.ad-shell.dk{--bg:#0f1a26;--card:#17232f;--ink:#e6eef7;--mut:#9fb0bd;--line:#2a3a4a;--side:#0a121c;color:#d7e2ec}
+.ad-shell.dk .sl-box,.ad-shell.dk .ad-big div,.ad-shell.dk .ad-panel,.ad-shell.dk .ad-tabs button{background:var(--card);border-color:var(--line);color:var(--ink)}
+.ad-shell.dk .sl-box h2,.ad-shell.dk .ad-row .nm,.ad-shell.dk .ad-big b,.ad-shell.dk .ad-panel h4,.ad-shell.dk .ad-f label,.ad-shell.dk .sl-f label{color:var(--ink)}
+.ad-shell.dk [style*="5b6b78"],.ad-shell.dk .ad-big small,.ad-shell.dk .ad-row .nm small{color:var(--mut)!important}
+.ad-shell.dk input,.ad-shell.dk select,.ad-shell.dk textarea{background:#0f1a26!important;color:#e6eef7!important;border-color:var(--line)!important}
+.ad-shell.dk .sl-note{background:#2b2616;color:#f0dca8}.ad-shell.dk .ad-demo{background:#3a2f12;color:#ffd98a}
+.ad-shell.dk .sl-tbl td{color:#d7e2ec;border-color:var(--line)}.ad-shell.dk .ad-row{border-color:var(--line)}
+</style>
+</head>
+<body class="sl-page" data-nobar>
+<header class="sl-top"><a class="brand" href="index.html">Shikbo<span>Lab</span></a><nav><a href="index.html">হোম</a><a href="plans.html">প্ল্যান</a><a class="on" href="admin.html">👑 অ্যাডমিন</a></nav></header>
+<main class="sl-wrap" id="app"></main>
+<div class="sl-foot">ডেমো মোড · ডাটা এই ব্রাউজারে থাকে, তাই নিয়মিত ব্যাকআপ নাও</div>
+<script>
+(function(){
+ if(!window.SL||typeof SL.isAdmin!=='function'||typeof SL.price!=='function'){document.getElementById('app').innerHTML='<div class="sl-box" style="max-width:560px;margin:40px auto;text-align:center"><div style="font-size:48px">⚠️</div><h2>js/demo-saas.js ফাইলটা পুরোনো বা পাওয়া যাচ্ছে না</h2><p style="color:#5b6b78;line-height:1.7">নতুন <b>js/demo-saas.js</b> আর <b>js/prices.js</b> ফাইল দুটো GitHub-এ আপলোড করো (admin.html যে ফোল্ডারে, তার <b>js</b> ফোল্ডারে)। তারপর Ctrl+F5 চাপো।</p></div>';return;}
+ var C=SL.cfg,bn=SL.bn,esc=SL.esc,DAY=864e5,app=document.getElementById('app'),tab='ov',openId=null,search='',last=null;
+ function q(i){return document.getElementById(i);}
+ function fd(t){return t?new Date(t).toLocaleDateString('bn-BD',{day:'numeric',month:'short',year:'numeric'}):'—';}
+ function money(n){return '৳'+bn(Math.round(n));}
+ function admHash(){try{return JSON.parse(localStorage.getItem('sl_admin')||'null');}catch(e){return null;}}
+ function toast(t){try{if(window.ADO&&!/^❌/.test(String(t))){var nv=navOf(tab);ADO.log(String(t).replace(/^[^A-Za-z0-9\u0980-\u09FF]+/,'').slice(0,90),'মেনু: '+(nv?nv.t:tab),/পাসওয়ার্ড|লগইন|রোল/.test(t)?'auth':/পেমেন্ট|রিফান্ড|অনুরোধ|মেয়াদ/.test(t)?'money':'action');}}catch(x){}var e=document.createElement('div');e.textContent=t;e.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1f3a5f;color:#fff;padding:11px 22px;border-radius:999px;font-weight:700;z-index:9999;box-shadow:0 10px 24px rgba(0,0,0,.25)';document.body.appendChild(e);setTimeout(function(){e.remove();},2200);}
+ function copy(id){var e=q(id);e.select();try{document.execCommand('copy');toast('✅ কপি হয়েছে');}catch(x){toast('হাতে কপি করো');}}
+ function stat(a){var s=SL.status(a);return s;}
+ function badge(a){var s=stat(a);return s.state==='active'&&s.comp?'<span class="bdg t">🎁 ফ্রি অ্যাক্সেস · '+bn(s.left)+' দিন</span>':s.state==='active'?'<span class="bdg">✅ চালু · '+bn(s.left)+' দিন</span>':s.state==='trial'?'<span class="bdg t">🎁 ট্রায়াল · '+bn(s.left)+' দিন</span>':s.state==='suspended'?'<span class="bdg s">🚫 বন্ধ</span>':'<span class="bdg x">⛔ মেয়াদ শেষ</span>';}
+ var CLOUD=SL.cloud,TOK='',CACHE={acc:{},prog:{}},loaded=false;
+ try{TOK=localStorage.getItem('sl_admin_token')||'';if(TOK&&!SL.isAdmin()){localStorage.removeItem('sl_admin_token');TOK='';}}catch(e){}
+ function link(a,mem){var b=new URL('account.html',location.href).href;return CLOUD?b:b+'#a='+SL.pack(a,!!mem);}
+ function accMap(){return CLOUD?CACHE.acc:SL.get().acc;}
+ function dbLoad(){
+  if(!CLOUD)return Promise.resolve(true);
+  return SL.api({a:'adm_list',k:TOK}).then(function(r){
+   if(!r.ok){toast('❌ '+(r.err||'ক্লাউড থেকে লোড হয়নি'));return false;}
+   CACHE={acc:{},prog:r.prog||{}};(r.acc||[]).forEach(function(a){a.members=a.members||[];a.pays=a.pays||[];a.reqs=a.reqs||[];CACHE.acc[a.email]=a;});loaded=true;return true;
+  });
+ }
+ function dbSave(email){
+  if(!CLOUD)return;
+  SL.api({a:'adm_put',k:TOK,email:email,rec:CACHE.acc[email]}).then(function(r){
+   if(!r.ok)return toast('❌ ক্লাউডে সেভ হয়নি: '+(r.err||''));
+   var a=CACHE.acc[email];if(a&&r.acc){a.reqs=r.acc.reqs;a.members=r.acc.members;a.mv=r.acc.mv;}
+  });
+ }
+ function dbDel(email){
+  if(!CLOUD){var x=SL.get();delete x.acc[email];delete x.prog[email];if(x.ses===email)x.ses=null;SL.put(x);return;}
+  delete CACHE.acc[email];SL.api({a:'adm_del',k:TOK,email:email}).then(function(r){if(!r.ok)toast('❌ মুছতে পারেনি: '+(r.err||''));});
+ }
+ function dbCreate(a){if(CLOUD){CACHE.acc[a.email]=a;dbSave(a.email);}else{var x=SL.get();x.acc[a.email]=a;SL.put(x);}}
+ function dbProg(email){return CLOUD?(CACHE.prog[email]||{}):SL.progress(email);}
+ function mut(email,fn){
+  if(CLOUD){var a=CACHE.acc[email];if(!a)return;fn(a);dbSave(email);return;}
+  var x=SL.get(),a=x.acc[email];if(!a)return;fn(a,x);SL.put(x);
+ }
+ function approveReq(em,rid){mut(em,function(a){var r=(a.reqs||[]).filter(function(x){return x.id===rid;})[0];if(!r||r.status!=='pending')return;a.kind=r.plan;if(r.bands&&r.bands.length)a.bands=r.bands;if(r.plan==='custom'){a.seats=r.seats||1;a.subs=r.subs||[];}adjust(a,SL.days(r.plan,r.period));a.pays.unshift({t:Date.now(),plan:r.plan,period:r.period,price:r.price,trx:r.trx,req:rid});r.status='approved';});toast('✅ অনুমোদিত, প্ল্যান চালু হয়েছে');}
+ function rejectReq(em,rid){mut(em,function(a){var r=(a.reqs||[]).filter(function(x){return x.id===rid;})[0];if(r&&r.status==='pending')r.status='rejected';});toast('অনুরোধ বাতিল করা হয়েছে');}
+ function pendList(){var o=[];list().forEach(function(a){(a.reqs||[]).forEach(function(r){if(r.status==='pending')o.push([a,r]);});});return o;}
+ function pendBadge(a){var n=(a.reqs||[]).filter(function(r){return r.status==='pending';}).length;return n?'<span class="bdg x">🔔 '+bn(n)+' অনুরোধ</span>':'';}
+ function reqLine(a,r,pre){return '<div class="ad-row"><div class="nm">'+esc(a.school||a.name)+' · '+((C.PLANS[r.plan]||{name:r.plan}).name)+' ('+(r.period==='week'?'সাপ্তাহিক':'মাসিক')+')<small>'+esc(a.email)+(r.bands&&r.bands.length?' · 🎓 '+SL.bandsLabel(r.bands):'')+(r.plan==='custom'?' · 🧩 '+bn(r.seats||1)+' জন, '+(r.subs||[]).map(function(k){return SL.SUBJ[k];}).join('+'):'')+' · '+(r.method==='nagad'?'🟠 নগদ':r.method==='bkash'?'🟣 বিকাশ':'')+(r.from?' <b>'+esc(r.from)+'</b>':'')+' · TrxID: <b>'+esc(r.trx)+'</b> · '+fd(r.t)+'</small></div><b>'+money(r.price)+'</b><button class="slb o ad-sm" data-'+pre+'a="'+esc(a.email)+'|'+r.id+'">✅ অনুমোদন</button><button class="slb r" data-'+pre+'r="'+esc(a.email)+'|'+r.id+'">বাতিল</button></div>';}
+ function reqPanel(a){var p=(a.reqs||[]).filter(function(r){return r.status==='pending';});return p.length?'<div><h4>🔔 পেমেন্ট অনুরোধ</h4>'+p.map(function(r){return reqLine(a,r,'p');}).join('')+'</div>':'';}
+ function progHTML(a){
+  var pg=dbProg(a.email),pl=SL.profiles(a),h='',any=false;
+  pl.forEach(function(p){var o=pg[p.id]||{},ks=Object.keys(o);if(!ks.length)return;any=true;var avg=Math.round(ks.reduce(function(x,k){return x+o[k].pc;},0)/ks.length);h+='<div style="padding:2px 0">'+esc(p.name)+': <b>'+bn(ks.length)+'টি অধ্যায়, গড় '+bn(avg)+'%</b></div>';});
+  return '<div><h4>📈 অগ্রগতি</h4>'+(any?h:'<small style="color:#5b6b78">এখনও কুইজ দেয়নি</small>')+'</div>';
+ }
+ function customEd(a){var S=SL.SUBJ,subs=a.subs||[];return '<div class="ad-inl"><b>🧩 কাস্টম প্ল্যান:</b> জন <input type="number" id="cseat" min="1" max="30" value="'+(a.seats||1)+'" style="width:80px">'+Object.keys(S).map(function(k){return '<label style="display:inline-flex;gap:4px;align-items:center"><input type="checkbox" class="csub" value="'+k+'"'+(subs.indexOf(k)>-1?' checked':'')+'>'+S[k]+'</label>';}).join(' ')+'<button class="slb s ad-sm" data-cs="1">💾 সেভ</button></div>';}
+ function classDevEd(a){var P=C.PLANS[a.kind]||C.PLANS.student,bs=SL.myBands(a),dl=a.devs||[];
+  return '<div class="ad-inl"><b>🎓 ক্লাস:</b>'+SL.CLASSES.map(function(c){return '<label style="display:inline-flex;gap:4px;align-items:center"><input type="checkbox" class="bsb" value="'+c.id+'"'+(bs.indexOf(c.id)>-1?' checked':'')+'>'+SL.bandsLabel([c.id])+'</label>';}).join(' ')+'<button class="slb s ad-sm" data-bs="1">💾 সেভ</button>'+((a.bands&&a.bands.length)?'':'<small style="color:#5b6b78">(ক্লাস সেট করা নেই, ৯–১০ ধরা হচ্ছে)</small>')+'</div>'
+  +'<div class="ad-inl"><b>📱 ডিভাইস ('+bn(dl.length)+'/'+bn(P.devices)+'):</b> '+(dl.length?dl.map(function(x){return '<span class="bdg s">'+esc(x.n)+'</span>';}).join(' '):'<small style="color:#5b6b78">নেই</small>')+(dl.length?'<button class="slb r ad-sm" data-dv="1">♻️ সব ডিভাইস রিসেট</button>':'')+'</div>';}
+ function addPay(a,price,trx,days){if(price>0||trx)a.pays.unshift({t:Date.now(),plan:a.kind,period:'manual',price:+price||0,trx:trx||'ম্যানুয়াল',days:days});}
+ function adjust(a,days){ /* দিন যোগ/কমানো */
+  var n=Date.now(),s=SL.status(a),base=(s.state==='trial'||s.state==='active')?Math.max(a.trialEnd||0,a.paidUntil||0):n;
+  var ne=base+days*DAY;a.paidUntil=ne;if(days<0||ne<=n)a.trialEnd=Math.min(a.trialEnd||0,ne);if(days>0&&(a.trialEnd||0)<n)a.trialEnd=n;
+ }
+ /* ---------- লগইন / সেটআপ ---------- */
+ function gateView(){
+  var has=admHash();
+  app.innerHTML='<div class="sl-box ad-lock"><div style="text-align:center;font-size:52px">👑</div><h2 style="text-align:center">'+(has?'সুপার অ্যাডমিন লগইন':'প্রথমবার সেটআপ')+'</h2>'+(has?'':'<p style="color:#5b6b78">এই ব্রাউজারের জন্য তোমার সুপার অ্যাডমিন পাসওয়ার্ড বানাও। মনে রেখো, এটা ভুলে গেলে ডাটা ব্যাকআপ ছাড়া ফেরত পাবে না।</p>')
+  +'<form id="gf" class="sl-f"><div><label>পাসওয়ার্ড'+(has?'':' (কমপক্ষে ৮ অক্ষর)')+'</label><input type="password" id="ap" autocomplete="'+(has?'current-password':'new-password')+'"></div>'+(has?'':'<div><label>আবার লেখো</label><input type="password" id="ap2"></div>')+''+(CLOUD?'<div><label>☁️ ক্লাউড টোকেন (Code.gs-এ যেটা দিয়েছ)</label><input id="tk" value="'+esc(TOK)+'" autocomplete="off"></div>':'')+'<div id="ge" class="sl-err"></div><button class="slb p" type="submit">'+(has?'🔓 ঢোকো':'✅ সেট করো')+'</button></form></div>';
+  q('gf').onsubmit=function(e){e.preventDefault();var p=q('ap').value,ge=q('ge');function er(t){ge.textContent=t;ge.style.display='block';}
+   if(has){SL.hash('adm|'+p).then(function(h){if(h!==has.h)return er('পাসওয়ার্ড ভুল।');enter(er);});}
+   else{if(p.length<8)return er('কমপক্ষে ৮ অক্ষর দাও।');if(p!==q('ap2').value)return er('দুটো পাসওয়ার্ড মেলেনি।');SL.hash('adm|'+p).then(function(h){localStorage.setItem('sl_admin',JSON.stringify({h:h,t:Date.now()}));enter(er);});}};
+ }
+ function enter(er){
+  var go=function(){if(window.ADO)ADO.log('অ্যাডমিন লগইন (ডেমো)','','auth');localStorage.setItem('sl_admin_until',String(Date.now()+8*3600*1000));if(CLOUD)localStorage.setItem('sl_admin_token',TOK);render();};
+  if(!CLOUD)return go();
+  var t=q('tk')?q('tk').value.trim():TOK;if(!t)return er&&er('ক্লাউড টোকেন লেখো।');TOK=t;
+  dbLoad().then(function(ok){if(ok)go();else if(er)er('টোকেন ভুল, বা ইন্টারনেট/ক্লাউড URL-এ সমস্যা।');});
+ }
+ function exit(){if(window.ADO)ADO.log('অ্যাডমিন লগআউট','','auth');localStorage.removeItem('sl_admin_until');try{localStorage.removeItem('sl_admin_token');}catch(e){}TOK='';gateView();}
+ /* ---------- Phase 2: নতুন শেল (সাইডবার, ডার্ক মোড, গ্লোবাল সার্চ) ---------- */
+ var dark=false,col=false,side=false,chq='',chs='',cht='',cha='';
+ try{dark=localStorage.getItem('sl_admin_theme')==='dark';col=localStorage.getItem('sl_admin_col')==='1';}catch(e){}
+ var NAV=[
+  {g:'প্রধান'},{k:'ov',i:'📊',t:'ওভারভিউ'},
+  {g:'শিক্ষা কনটেন্ট'},
+  {k:'cls',i:'🏫',t:'ক্লাস'},{k:'sbj',i:'📚',t:'বিষয়'},{k:'chp',i:'📖',t:'অধ্যায়'},{k:'les',i:'📝',t:'লেসন'},{k:'lab',i:'🧪',t:'ভার্চুয়াল ল্যাব'},
+  {k:'s_biology',i:'🧬',t:'জীববিজ্ঞান ম্যানেজার'},{k:'s_physics',i:'⚡',t:'পদার্থবিজ্ঞান ম্যানেজার'},{k:'s_chemistry',i:'⚗️',t:'রসায়ন ম্যানেজার'},{k:'s_math',i:'📐',t:'গণিত ম্যানেজার'},
+  {k:'qb',i:'❓',t:'প্রশ্নব্যাংক'},{k:'qz',i:'🏆',t:'কুইজ ম্যানেজার'},
+  {g:'মানুষ'},
+  {k:'stu',i:'🎓',t:'শিক্ষার্থী'},{k:'ac',i:'🧾',t:'অ্যাকাউন্ট ও সাবস্ক্রিপশন'},{k:'nw',i:'➕',t:'নতুন অ্যাকাউন্ট'},{k:'tch',i:'👩‍🏫',t:'শিক্ষক'},{k:'adm',i:'🛡️',t:'স্টাফ ও রোল'},
+  {g:'ব্যবসা'},{k:'pr',i:'🏷️',t:'সাবস্ক্রিপশন প্ল্যান'},{k:'pm',i:'💰',t:'পেমেন্ট'},
+  {g:'সিস্টেম'},
+  {k:'ntf',i:'🔔',t:'ঘোষণা/নোটিফিকেশন'},{k:'an',i:'📈',t:'অ্যানালিটিক্স'},{k:'aud',i:'🧾',t:'অডিট লগ'},{k:'web',i:'🌐',t:'ওয়েবসাইট সেটিংস'},{k:'sec',i:'🔐',t:'সিকিউরিটি'},{k:'st',i:'💾',t:'ব্যাকআপ ও সেটিংস'}
+ ];
+ var SOON={
+  cls:['ক্লাস ১–৫, ৬–৮, ৯–১০, ১১–১২ বানানো ও এডিট','ক্রম বদলানো, চালু/বন্ধ করা','ক্লাসে বিষয় বসানো'],
+  les:['লেসন বানানো ও সাজানো (লেখা, ছবি, ভিডিও)','প্রকাশের আগে প্রিভিউ','ড্রাফট → রিভিউ → পাবলিশ'],
+  lab:['ল্যাবের তথ্য: কঠিনতা, উদ্দেশ্য, নির্দেশনা, পর্যবেক্ষণ প্রশ্ন','ফ্রি/প্রিমিয়াম ঠিক করা','⚠️ সিমুলেশন কোড আলাদা থাকবে, অ্যাডমিন ইনপুটে JavaScript চালানো যাবে না'],
+  qb:['৭ ধরনের প্রশ্ন বানানো, ইমপোর্ট/এক্সপোর্ট','অধ্যায়/বিষয়/ক্লাস অনুযায়ী ট্যাগ','কঠিনতা, নম্বর, সময়'],
+  qz:['প্রশ্ন বেছে কুইজ বানানো, র‍্যান্ডম ক্রম','পাস মার্ক, সময়, পাবলিশ/আনপাবলিশ'],
+  tch:['শিক্ষক অ্যাকাউন্ট ও ক্লাস দেওয়া','শিক্ষক শুধু নিজের ক্লাসের তথ্য দেখবে'],
+  adm:['Super Admin / Admin / Teacher / Content Editor / Student রোল','পারমিশন দেওয়া ও কেড়ে নেওয়া','প্রতিটি কাজ সার্ভারে যাচাই হবে'],
+  ntf:['ঘোষণা বানানো, সময় ঠিক করা','ক্লাস/শিক্ষক/সবার জন্য পাঠানো','শিক্ষার্থীর ড্যাশবোর্ডে দেখানো'],
+  an:['দৈনিক/সাপ্তাহিক/মাসিক সক্রিয় শিক্ষার্থী','জনপ্রিয় অধ্যায় ও ল্যাব, কুইজ গড়','CSV এক্সপোর্ট','শুধু আসল রেকর্ড থেকে, বানানো সংখ্যা নয়'],
+  aud:['কে, কখন, কী করল (লগইন, পারমিশন, প্রকাশ, মুছে ফেলা, প্রাইস বদল)','সার্ভারে রাখা হবে যাতে বদলানো না যায়'],
+  web:['সাইটের নাম, লোগো, হোমপেজ লেখা, যোগাযোগ, ঘোষণা ব্যানার','মেইন্টেন্যান্স মোড','ভুল সেটিং যাতে লেআউট না ভাঙে সে সুরক্ষা']
+ };
+ function CH(){return (window.CHAPTERS_BASE||window.CHAPTERS||[]).map(function(c){var f=String(c.file||'').split('/').pop().replace(/\.html.*$/,'');return {t:c.title,s:c.subject,st:c.status,f:f,file:c.file,x:!!c.extra,free:SL.isFree(f),d:c.desc||''};});}
+ function navOf(k){return NAV.filter(function(x){return x.k===k;})[0];}
+ function vPlat(){
+  var A=CH(),S=SL.SUBJ,L=list(),live=A.filter(function(c){return c.st==='live';}).length,fr=A.filter(function(c){return c.free;}).length,mx=1,bars='';
+  var cnt={};Object.keys(S).forEach(function(k){cnt[k]=A.filter(function(c){return c.s===k;}).length;mx=Math.max(mx,cnt[k]);});
+  Object.keys(S).forEach(function(k){bars+='<div class="r"><span>'+S[k]+'</span><div class="tr"><i style="width:'+Math.round(cnt[k]*100/mx)+'%"></i></div><b>'+bn(cnt[k])+'</b></div>';});
+  var off=function(t,w){return '<div class="off"><small>'+t+'</small><b>—</b><em>'+w+'</em></div>';};
+  return '<h2 style="margin:4px 0 10px;color:var(--ink)">🌐 প্ল্যাটফর্ম (সাইটের আসল তালিকা থেকে)</h2><div class="ad-cards"><div><small>📖 মোট অধ্যায়/ল্যাব পেজ</small><b>'+bn(A.length)+'</b><em>chapters.js থেকে</em></div><div><small>✅ প্রকাশিত</small><b>'+bn(live)+'</b></div><div><small>⏳ শীঘ্রই আসছে</small><b>'+bn(A.length-live)+'</b></div><div><small>📚 বিষয়</small><b>'+bn(Object.keys(S).length)+'</b></div><div><small>🎁 ফ্রি অধ্যায়</small><b>'+bn(fr)+'</b></div><div><small>🎓 অ্যাকাউন্ট (এই ব্রাউজারে)</small><b>'+bn(L.length)+'</b></div><div><small>👩‍🏫 শিক্ষক</small><b>'+bn(L.reduce(function(n,a){return n+(a.members||[]).filter(function(m){return m.role==='teacher';}).length;},0))+'</b><em>এই ব্রাউজারের ডাটা</em></div><div><small>🛡️ স্টাফ (স্থানীয় তালিকা)</small><b>'+bn(window.ADP?ADP.staffCount():0)+'</b><em>লগইনসহ নয়</em></div></div>'
+  +'<div class="sl-box"><h2>📊 বিষয় অনুযায়ী অধ্যায়</h2><div class="ad-bars">'+bars+'</div></div>'
+  +'<h2 style="margin:4px 0 10px;color:var(--ink)">🔒 এগুলো আসল ডাটাবেস ছাড়া দেখানো যাবে না</h2><div class="ad-cards">'+off('📝 কুইজ অ্যাটেম্পট','Phase 8 + backend')+off('🧪 ল্যাব ব্যবহার','Phase 8 + backend')+off('📈 সক্রিয় শিক্ষার্থী','Phase 8 + backend')+'</div><div class="sl-note">কোনো সংখ্যা বানিয়ে দেখানো হয় না। যেগুলোর আসল রেকর্ড নেই, সেগুলো "—" দেখাচ্ছে।</div>'
+  +'<h2 style="margin:18px 0 10px;color:var(--ink)">💼 অ্যাকাউন্ট ও আয় (নিচের অংশ)</h2>';
+ }
+ function chBadge(c){return (c.st==='live'?'<span class="bdg">✅ প্রকাশিত</span>':'<span class="bdg t">⏳ শীঘ্রই</span>')+(c.x?' <span class="bdg s">⭐ বোনাস</span>':'');}
+ function vChp(sub){
+  var S=SL.SUBJ,A=CH().filter(function(c){return !sub||c.s===sub;}),live=A.filter(function(c){return c.st==='live';}).length,fr=A.filter(function(c){return c.free;}).length;
+  var h='<div class="ad-cards"><div><small>মোট অধ্যায়</small><b>'+bn(A.length)+'</b></div><div><small>✅ প্রকাশিত</small><b>'+bn(live)+'</b></div><div><small>⏳ শীঘ্রই</small><b>'+bn(A.length-live)+'</b></div><div><small>🎁 ফ্রি</small><b>'+bn(fr)+'</b></div></div>'
+  +'<div class="sl-box"><div class="ad-fil"><input id="cq" placeholder="🔍 অধ্যায় খোঁজো" value="'+esc(chq)+'" style="flex:1;min-width:180px">'
+  +(sub?'':'<select id="cs"><option value="">সব বিষয়</option>'+Object.keys(S).map(function(k){return '<option value="'+k+'"'+(chs===k?' selected':'')+'>'+S[k]+'</option>';}).join('')+'</select>')
+  +'<select id="ct"><option value="">সব অবস্থা</option><option value="live"'+(cht==='live'?' selected':'')+'>প্রকাশিত</option><option value="soon"'+(cht==='soon'?' selected':'')+'>শীঘ্রই</option></select>'
+  +'<select id="ca"><option value="">ফ্রি + পেইড</option><option value="free"'+(cha==='free'?' selected':'')+'>শুধু ফ্রি</option><option value="paid"'+(cha==='paid'?' selected':'')+'>শুধু পেইড</option></select></div><div class="sl-scroll" id="chtb"></div></div>'
+  +'<div class="sl-note">👀 এখন শুধু <b>দেখার মোড</b>। অধ্যায় যোগ/এডিট/সাজানো/প্রকাশ Phase 3 ও 4-এ আসবে। ফ্রি তালিকা এখনও <code>demo-saas.js</code>-এর FREE থেকে আসছে।</div>';
+  q('body').innerHTML=h;
+  function draw(){
+   chq=q('cq').value;cht=q('ct').value;cha=q('ca').value;if(q('cs'))chs=q('cs').value;
+   var t=chq.toLowerCase(),R=A.filter(function(c){return (!t||(c.t+' '+c.d).toLowerCase().indexOf(t)>-1)&&(sub||!chs||c.s===chs)&&(!cht||c.st===cht)&&(!cha||(cha==='free')===c.free);});
+   q('chtb').innerHTML=R.length?'<table class="sl-tbl"><tr><th>অধ্যায়</th><th>বিষয়</th><th>অবস্থা</th><th>অ্যাক্সেস</th><th>খোলো</th></tr>'+R.map(function(c){return '<tr><td>'+esc(c.t)+'</td><td>'+esc(S[c.s]||c.s)+'</td><td>'+chBadge(c)+'</td><td>'+(c.free?'<span class="bdg">🎁 ফ্রি</span>':'<span class="bdg s">💳 পেইড</span>')+'</td><td>'+(c.st==='live'?'<a href="'+esc(c.file)+'" target="_blank" rel="noopener">↗</a>':'—')+'</td></tr>';}).join('')+'</table>':'<p style="color:var(--mut)">কিছু পাওয়া যায়নি।</p>';
+  }
+  ['cq','ct','ca','cs'].forEach(function(i){if(q(i)){q(i).oninput=draw;q(i).onchange=draw;}});draw();
+ }
+ function vSbj(){
+  var S=SL.SUBJ,A=CH(),I={biology:'🧬',physics:'⚡',chemistry:'⚗️',math:'📐'};
+  q('body').innerHTML='<div class="ad-cards">'+Object.keys(S).map(function(k){var a=A.filter(function(c){return c.s===k;});return '<div><small>'+(I[k]||'📘')+' '+S[k]+'</small><b>'+bn(a.length)+'</b><em>'+bn(a.filter(function(c){return c.st==='live';}).length)+'টি প্রকাশিত</em><button class="slb s ad-sm" style="margin-top:8px" data-nv="s_'+k+'">ম্যানেজার খোলো</button></div>';}).join('')+'</div><div class="sl-note">👀 দেখার মোড। বিষয় যোগ/এডিট/আইকন/ক্লাসে বসানো Phase 3-এ আসবে।</div>';
+  bindNav();
+ }
+ function vSec(){
+  q('body').innerHTML='<div class="sl-box"><h2>🔐 সিকিউরিটির সত্যিকারের অবস্থা</h2><p style="color:var(--mut);margin-top:0">যা আসলে আছে, আর যা নেই, দুটোই সোজাসুজি:</p><table class="sl-tbl"><tr><th>বিষয়</th><th>অবস্থা</th></tr>'
+  +'<tr><td>অ্যাডমিন লগইন</td><td><span class="bdg x">ডেমো, নিরাপদ নয়</span></td></tr>'
+  +'<tr><td>পাসওয়ার্ড কোথায় থাকে</td><td><span class="bdg t">ব্রাউজারে (hash)</span></td></tr>'
+  +'<tr><td>পেইড/ট্রায়াল তালা</td><td><span class="bdg x">শুধু ফ্রন্টএন্ড</span></td></tr>'
+  +'<tr><td>রোল ও পারমিশন (RBAC)</td><td><span class="bdg s">এখনও নেই</span></td></tr>'
+  +'<tr><td>অডিট লগ</td><td><span class="bdg t">ডেমো (এই ব্রাউজারে, বদলানো যায়)</span></td></tr>'
+  +'<tr><td>ব্যাকএন্ড (Supabase) '+'</td><td><span class="bdg '+(window.SLBackend&&SLBackend.status().danger?'x':'s')+'">'+esc(window.SLBackend?SLBackend.status().msg:'সংযুক্ত নয়')+'</span></td></tr>'
+  +'<tr><td>ডাটাবেস নকশা ও RLS নিয়ম</td><td><span class="bdg t">backend/ ফোল্ডারে তৈরি, লোকাল PostgreSQL এ পরীক্ষিত, Supabase এ চালানো হয়নি</span></td></tr>'
+  +'<tr><td>রেট লিমিট, CSRF</td><td><span class="bdg s">এখনও নেই</span></td></tr>'
+  +'<tr><td>ক্লাউড সিঙ্ক ('+(CLOUD?'চালু':'বন্ধ')+')</td><td><span class="bdg '+(CLOUD?'t':'s')+'">'+(CLOUD?'Apps Script, শেয়ার্ড টোকেন':'চালু নেই')+'</span></td></tr></table>'
+  +'<div class="sl-note">⚠️ যে কেউ ব্রাউজারের console দিয়ে নিজেকে "অ্যাডমিন" বানাতে পারে। তাই <b>আসল গ্রাহকের অ্যাকাউন্ট বা আসল পেমেন্ট এই ডেমোতে রেখো না।</b> বিক্রির আগে Phase 9-এ আসল backend বসানো হবে।</div></div>';
+ }
+ function vSoon(n){
+  var l=(SOON[n.k]||[]).map(function(x){return '<li>'+x+'</li>';}).join('');
+  q('body').innerHTML='<div class="sl-box ad-soon"><div class="big">'+n.i+'</div><h2>'+n.t+'</h2><p style="color:var(--mut)">এটা <b>Phase '+bn(n.ph)+'</b>-এ আসবে। এখনও তৈরি হয়নি, তাই কোনো ডাটা দেখাচ্ছি না।</p><ul>'+l+'</ul>'+(n.be?'<div class="sl-note" style="text-align:left">🔒 এটা নিরাপদভাবে করতে আসল backend (Phase ৯) লাগবে। ফ্রন্টএন্ডে বানালে সেটা শুধু দেখতে সুন্দর হতো, নিরাপদ হতো না।</div>':'')+'</div>';
+ }
+ function bindNav(){[].forEach.call(document.querySelectorAll('[data-nv]'),function(b){b.onclick=function(){tab=b.dataset.nv;side=false;render();};});}
+ function gsearch(v){
+  var box=q('gres');v=(v||'').trim().toLowerCase();if(!v){box.style.display='none';return;}
+  var r=[];
+  NAV.forEach(function(n){if(n.k&&n.t.toLowerCase().indexOf(v)>-1)r.push(['মেনু',n.i+' '+n.t,'',function(){tab=n.k;}]);});
+  CH().filter(function(c){return c.t.toLowerCase().indexOf(v)>-1;}).slice(0,6).forEach(function(c){r.push(['অধ্যায়',c.t,SL.SUBJ[c.s]||'',function(){tab='chp';chq=c.t;chs='';cht='';cha='';}]);});
+  list().filter(function(a){return (a.name+' '+a.email+' '+(a.school||'')).toLowerCase().indexOf(v)>-1;}).slice(0,6).forEach(function(a){r.push(['অ্যাকাউন্ট',a.school||a.name,a.email,function(){tab='ac';openId=a.email;search='';}]);});
+  box.innerHTML=r.length?r.map(function(x,i){return '<div data-i="'+i+'">'+esc(x[1])+'<small>'+x[0]+(x[2]?' · '+esc(x[2]):'')+'</small></div>';}).join(''):'<div style="cursor:default">কিছু পাওয়া যায়নি</div>';
+  box.style.display='block';
+  [].forEach.call(box.querySelectorAll('[data-i]'),function(d){d.onclick=function(){r[+d.dataset.i][3]();side=false;render();};});
+ }
+ /* ---------- মূল ---------- */
+ function render(){
+  if(!SL.isAdmin())return gateView();
+  if(CLOUD&&!loaded){app.innerHTML='<p style="text-align:center;padding:60px;color:#5b6b78;font-size:18px">☁️ ক্লাউড থেকে লোড হচ্ছে...</p>';dbLoad().then(function(ok){if(ok)render();else{localStorage.removeItem('sl_admin_until');try{localStorage.removeItem('sl_admin_token');}catch(e){}TOK='';gateView();}});return;}
+  var cur=navOf(tab)||navOf('ov');tab=cur.k;
+  var role=window.ADP?ADP.viewAs():'super_admin',NPm=window.ADP?ADP.NP:{};
+  function okN(n){return !window.ADP||!n.k||!NPm[n.k]||ADP.can(role,NPm[n.k]);}
+  var NV=NAV.filter(function(n,i){if(n.g){var j=i+1;while(j<NAV.length&&!NAV[j].g){if(okN(NAV[j]))return true;j++;}return false;}return okN(n);});
+  var nav=NV.map(function(n){if(n.g)return '<div class="gp">'+n.g+'</div>';return '<button data-nv="'+n.k+'" class="'+(n.k===tab?'on':'')+'" title="'+esc(n.t)+'"><span class="ic">'+n.i+'</span><span class="lb">'+n.t+'</span>'+(n.ph?'<span class="tg">P'+n.ph+'</span>':'')+'</button>';}).join('');
+  app.innerHTML='<div class="ad-shell'+(dark?' dk':'')+(col?' col':'')+(side?' open':'')+'"><aside class="ad-side"><a class="bd" href="index.html"><span>👑</span><span class="tx">Shikbo<span>Lab</span></span></a><nav class="ad-nav" aria-label="অ্যাডমিন মেনু">'+nav+'</nav></aside><div class="ad-ov" id="adov"></div>'
+   +'<div class="ad-main"><div class="ad-topbar"><button id="tgs" aria-label="মেনু">☰</button><div class="ad-gs"><input id="gs" placeholder="🔍 অধ্যায়, অ্যাকাউন্ট বা মেনু খোঁজো" autocomplete="off" aria-label="গ্লোবাল সার্চ"><div class="ad-gres" id="gres"></div></div><span class="ad-demo">🧪 ডেমো মোড</span>'+(window.ADP?'<select id="vas" title="রোল প্রিভিউ (শুধু মেনু দেখার ডেমো)" aria-label="রোল প্রিভিউ" style="padding:8px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px Hind Siliguri,sans-serif">'+ADP.roles().filter(function(r){return r.id!=='student';}).map(function(r){return '<option value="'+r.id+'"'+(r.id===role?' selected':'')+'>👁️ '+esc(r.name)+'</option>';}).join('')+'</select>':'')+'<span style="flex:1"></span>'+(CLOUD?'<button id="rf" title="রিফ্রেশ">🔄</button>':'')+'<button id="thm" title="থিম বদলাও" aria-label="থিম">'+(dark?'☀️':'🌙')+'</button><button id="lo">🚪 লগআউট</button></div>'
+   +'<div class="ad-page"><h1>'+cur.i+' '+cur.t+'</h1><div id="body"></div></div></div></div>';
+  bindNav();
+  q('lo').onclick=exit;if(q('rf'))q('rf').onclick=function(){dbLoad().then(function(ok){if(ok)toast('✅ ক্লাউড থেকে নতুন তথ্য এসেছে');render();});};
+  if(q('vas'))q('vas').onchange=function(){ADP.setViewAs(this.value);render();};
+  q('thm').onclick=function(){dark=!dark;try{localStorage.setItem('sl_admin_theme',dark?'dark':'light');}catch(e){}render();};
+  q('tgs').onclick=function(){if(window.innerWidth<=900){side=!side;}else{col=!col;try{localStorage.setItem('sl_admin_col',col?'1':'0');}catch(e){}}render();};
+  q('adov').onclick=function(){side=false;render();};
+  var gs=q('gs');gs.oninput=function(){gsearch(gs.value);};gs.onkeydown=function(e){if(e.key==='Escape'){gs.value='';gsearch('');}};
+  document.addEventListener('click',function h(e){var b=q('gres');if(!b){document.removeEventListener('click',h);return;}if(!e.target.closest||!e.target.closest('.ad-gs'))b.style.display='none';});
+  if(CLOUD&&(tab==='ov'||tab==='ac'||tab==='pm')&&!window.__fresh){window.__fresh=1;dbLoad().then(function(){window.__fresh=0;});}
+  var V={ov:function(){vOv();q('body').insertAdjacentHTML('afterbegin',vPlat());bindNav();},ac:vAc,nw:vNw,pm:vPm,pr:vPr,st:vSt,sbj:function(){ADC('sbj');},chp:function(){ADC('chp');},cls:function(){ADC('cls');},qb:function(){ADC('qb');},qz:function(){ADC('qz');},lab:function(){ADC('lab');},les:function(){ADC('les');},sec:vSec,
+   s_biology:function(){ADC('bio');},s_physics:function(){ADC('sub','physics');},s_chemistry:function(){ADC('sub','chemistry');},s_math:function(){ADC('sub','math');}};
+  function ADC(n,sub){if(!window.ADC)return q('body').innerHTML='<div class="sl-box">js/admin-content.js পাওয়া যাচ্ছে না। ফাইলটা js ফোল্ডারে আপলোড করো।</div>';window.ADC.view(n,{body:q('body'),esc:esc,bn:bn,toast:toast,rerender:render,cfg:C,list:list,legacy:vPr},sub);}
+  V.pr=function(){ADC('plans');};V.pm=function(){if(!window.ADB)return q('body').innerHTML='<div class="sl-box">js/admin-billing.js পাওয়া যাচ্ছে না।</div>';window.ADB.view('pm',{body:q('body'),esc:esc,bn:bn,toast:toast,rerender:render,list:list,mut:mut,fd:fd,money:money,cfg:C,approve:approveReq,reject:rejectReq});};
+  V.ntf=function(){ADC('ntf');};V.web=function(){ADC('web');};
+  V.an=function(){ADOv('an');};V.aud=function(){ADOv('aud');};V.st=function(){ADOv('st');};
+  function ADOv(n){if(!window.ADO)return q('body').innerHTML='<div class="sl-box">js/admin-ops.js পাওয়া যাচ্ছে না।</div>';window.ADO.view(n,{body:q('body'),esc:esc,bn:bn,toast:toast,rerender:render,list:list,stat:stat,prog:dbProg,fd:fd,money:money,cfg:C,cloud:CLOUD,cache:function(){return CACHE;},legacy:vSt});}
+  V.stu=function(){ADPv('stu');};V.tch=function(){ADPv('tch');};V.adm=function(){ADPv('adm');};
+  function ADPv(n){if(!window.ADP)return q('body').innerHTML='<div class="sl-box">js/admin-people.js পাওয়া যাচ্ছে না।</div>';window.ADP.view(n,{body:q('body'),esc:esc,bn:bn,toast:toast,rerender:render,list:list,mut:mut,prog:dbProg,badge:badge,fd:fd,stat:stat,limits:SL.limits,counts:SL.counts,profiles:SL.profiles,goAcc:function(em){tab='ac';openId=em;render();}});}
+  if(window.ADP&&NPm[tab]&&!ADP.can(role,NPm[tab])){q('body').innerHTML='<div class="sl-box ad-soon"><div class="big">🚫</div><h2>এই রোলে এই অংশ নেই</h2><p style="color:var(--mut)">রোল প্রিভিউতে <b>'+esc(ADP.roles().filter(function(r){return r.id===role;})[0].name)+'</b> এর পারমিশন নেই। এটা শুধু ডেমো প্রিভিউ।</p></div>';return;}
+  if(window.ADP&&role!=='super_admin')q('body').insertAdjacentHTML('beforebegin','<div class="sl-note">👁️ তুমি <b>'+esc(ADP.roles().filter(function(r){return r.id===role;})[0].name)+'</b> রোলের মেনু প্রিভিউ দেখছ। এটা নিরাপত্তা নয়, শুধু দেখার ডেমো।</div>');
+  (V[tab]||function(){vSoon(cur);})();
+ }
+ function list(){var x={acc:accMap()};return Object.keys(x.acc).map(function(k){return x.acc[k];}).sort(function(a,b){return (b.created||0)-(a.created||0);});}
+ /* ওভারভিউ */
+ function vOv(){
+  var L=list(),c={active:0,trial:0,expired:0,suspended:0},rev=0,pays=[];
+  L.forEach(function(a){c[stat(a).state]++;(a.pays||[]).forEach(function(p){rev+=+p.price||0;pays.push([a,p]);});});
+  var soon=L.filter(function(a){var s=stat(a);return (s.state==='active'||s.state==='trial')&&s.left<=3;});
+  var h='<div class="ad-big"><div><small>মোট অ্যাকাউন্ট</small><b>'+bn(L.length)+'</b></div><div><small>✅ চালু (পেইড)</small><b>'+bn(c.active)+'</b></div><div><small>🎁 ট্রায়াল</small><b>'+bn(c.trial)+'</b></div><div><small>⛔ মেয়াদ শেষ</small><b>'+bn(c.expired)+'</b></div><div><small>🚫 বন্ধ</small><b>'+bn(c.suspended)+'</b></div><div><small>💰 মোট আয়</small><b>'+money(rev)+'</b></div></div>';
+  var pend=pendList();h+='<div class="sl-box" style="'+(pend.length?'border:2px solid #e76f51':'')+'"><h2>🔔 পেমেন্ট অনুরোধ ('+bn(pend.length)+')</h2>'+(pend.length?pend.map(function(x){return reqLine(x[0],x[1],'o');}).join(''):'<p style="color:#5b6b78;margin:0">কোনো অপেক্ষমাণ অনুরোধ নেই ✨</p>')+'</div>';
+  h+='<div class="sl-box"><h2>⏰ ৩ দিনের মধ্যে মেয়াদ শেষ হবে</h2>'+(soon.length?soon.map(function(a){return '<div class="ad-row"><div class="nm">'+esc(a.school||a.name)+'<small>'+esc(a.email)+'</small></div>'+badge(a)+'<button class="slb s ad-sm" data-go="'+esc(a.email)+'">পরিচালনা করো</button></div>';}).join(''):'<p style="color:#5b6b78;margin:0">কেউ নেই ✨</p>')+'</div>';
+  pays.sort(function(a,b){return b[1].t-a[1].t;});
+  h+='<div class="sl-box"><h2>🧾 সাম্প্রতিক পেমেন্ট</h2>'+(pays.length?pays.slice(0,6).map(function(x){return '<div class="ad-row"><div class="nm">'+esc(x[0].school||x[0].name)+'<small>'+fd(x[1].t)+' · TrxID: '+esc(x[1].trx)+'</small></div><b>'+money(x[1].price)+'</b></div>';}).join(''):'<p style="color:#5b6b78;margin:0">এখনও কোনো পেমেন্ট নেই।</p>')+'</div>';
+  h+=CLOUD?'<div class="sl-note" style="background:#e1f5ee;border-left-color:#2a9d8f">☁️ <b>ক্লাউড চালু:</b> গ্রাহক যেখানেই অ্যাকাউন্ট খুলুক, সাথে সাথে এখানে আসে। 🔄 রিফ্রেশ চাপলে নতুন তথ্য আসবে।</div>':'<div class="sl-note">💡 <b>মনে রেখো:</b> এখানে শুধু <u>এই ব্রাউজারে</u> থাকা অ্যাকাউন্ট দেখা যায়। গ্রাহকের নিজে খোলা অ্যাকাউন্ট দেখতে তার "অ্যাকাউন্ট কোড" নিয়ে <b>👥 অ্যাকাউন্ট → কোড ইমপোর্ট</b> করো।</div>';
+  q('body').innerHTML=h;
+  [].forEach.call(q('body').querySelectorAll('[data-go]'),function(b){b.onclick=function(){tab='ac';openId=b.dataset.go;render();};});
+  [].forEach.call(q('body').querySelectorAll('[data-oa],[data-or]'),function(b){b.onclick=function(){var ap=b.hasAttribute('data-oa'),k=(b.getAttribute('data-oa')||b.getAttribute('data-or')).split('|');if(ap)approveReq(k[0],k[1]);else rejectReq(k[0],k[1]);vOv();};});
+ }
+ /* অ্যাকাউন্ট তালিকা */
+ function vAc(){
+  var L=list().filter(function(a){var t=(search||'').toLowerCase();return !t||(a.name+' '+a.email+' '+(a.school||'')).toLowerCase().indexOf(t)>-1;});
+  var h='<div class="sl-box"><div class="ad-inl" style="margin-bottom:6px"><input id="sq" placeholder="🔍 নাম/ইমেইল/স্কুল খোঁজো" value="'+esc(search)+'" style="flex:1;min-width:200px"><button class="slb p ad-sm" id="imp">📥 কোড ইমপোর্ট</button></div><div id="impbox" style="display:none" class="ad-panel"><h4>গ্রাহকের অ্যাকাউন্ট কোড বা লিংক পেস্ট করো</h4><textarea id="impt" rows="3" style="width:100%;border:2px solid #e3eaf0;border-radius:12px;padding:8px;font:13px monospace"></textarea><div class="ad-inl"><button class="slb o ad-sm" id="impgo">✅ ইমপোর্ট করো</button></div></div>';
+  h+=L.length?L.map(function(a){return rowHTML(a);}).join(''):'<p style="color:#5b6b78">কোনো অ্যাকাউন্ট নেই। "➕ নতুন অ্যাকাউন্ট" থেকে বানাও।</p>';
+  h+='</div>';q('body').innerHTML=h;
+  q('sq').oninput=function(){search=this.value;var p=this.selectionStart;vAc();var n=q('sq');n.focus();n.setSelectionRange(p,p);};
+  if(CLOUD){var ib=q('imp');if(ib)ib.style.display='none';}
+  if(q('imp'))q('imp').onclick=function(){var b=q('impbox');b.style.display=b.style.display==='none'?'grid':'none';};
+  if(q('impgo'))q('impgo').onclick=function(){var o=SL.unpack(q('impt').value);if(!o)return toast('❌ কোডটা ঠিক নেই');var r=SL.mergeIn(o,true);toast(r.isNew?'✅ নতুন অ্যাকাউন্ট যোগ হয়েছে':'✅ আপডেট হয়েছে');openId=o.e;vAc();};
+  bindRows();
+ }
+ function rowHTML(a){
+  var P=C.PLANS[a.kind]||C.PLANS.student,o=openId===a.email,c=SL.counts(a);
+  var h='<div class="ad-row"><div class="nm">'+P.emoji+' '+esc(a.school||a.name)+'<small>'+esc(a.name)+' · '+esc(SL.disp(a.email))+'</small></div><span class="bdg s">'+P.name.replace(' প্ল্যান','')+'</span>'+badge(a)+pendBadge(a)+'<span style="color:#5b6b78;font-size:14px">👥 '+bn((a.members||[]).length+1)+'</span><button class="slb s ad-sm" data-open="'+esc(a.email)+'">'+(o?'▲ বন্ধ করো':'⚙️ পরিচালনা')+'</button></div>';
+  if(!o)return h;
+  var s=stat(a),exp=Math.max(a.trialEnd||0,a.paidUntil||0);
+  h+='<div class="ad-panel" data-e="'+esc(a.email)+'">'
+  +'<div><h4>📅 মেয়াদ: '+fd(exp)+(s.state==='expired'?' (শেষ)':'')+'</h4><div class="ad-inl"><button class="slb o ad-sm" data-d="7">+৭ দিন</button><button class="slb o ad-sm" data-d="30">+৩০ দিন</button><button class="slb o ad-sm" data-d="365">+১ বছর</button><button class="slb r" data-d="-7">−৭ দিন</button><button class="slb r" data-x="now">আজই মেয়াদ শেষ</button></div>'
+  +'<div class="ad-inl" style="margin-top:8px"><input type="number" id="cd" placeholder="দিন" value="10"> দিন <button class="slb p ad-sm" data-cd="1">যোগ করো</button><button class="slb r" data-cd="-1">কমাও</button></div>'
+  +'<div class="ad-inl" style="margin-top:8px"><input type="number" id="amt" placeholder="টাকা পেয়েছি (ঐচ্ছিক)" style="width:190px"><input id="trx" placeholder="TrxID (ঐচ্ছিক)" style="width:160px"><small style="color:#5b6b78">টাকা লিখলে "যোগ" করার সময় পেমেন্টের খাতায় উঠবে</small></div></div>'
+  +'<div class="ad-inl"><b>প্ল্যান:</b><select id="pk">'+Object.keys(C.PLANS).map(function(k){return '<option value="'+k+'"'+(k===a.kind?' selected':'')+'>'+C.PLANS[k].name+'</option>';}).join('')+'</select><button class="slb s ad-sm" data-pk="1">বদলাও</button>'
+  +'<b style="margin-left:10px">পাসওয়ার্ড:</b><input id="np" placeholder="নতুন পাসওয়ার্ড"><button class="slb s ad-sm" data-pw="1">রিসেট</button></div>'
+  +(a.kind==='custom'?customEd(a):'')
+  +classDevEd(a)
+  +'<div><h4>👥 সদস্য ('+bn(c.students)+' শিক্ষার্থী, '+bn(c.teachers)+' শিক্ষক)</h4>'+((a.members||[]).length?(a.members.map(function(m){return '<div class="ad-inl" style="padding:3px 0"><span>'+esc(m.name)+' <small style="color:#5b6b78">('+SL.ROLE[m.role]+')</small></span><button class="slb r" data-rm="'+m.id+'">মুছো</button></div>';}).join('')):'<small style="color:#5b6b78">কেউ নেই</small>')
+  +'<div class="ad-inl" style="margin-top:6px"><input id="mn" placeholder="সদস্যের নাম"><select id="mr"><option value="student">শিক্ষার্থী</option>'+(P.isSchool?'<option value="teacher">শিক্ষক</option>':'')+'</select><button class="slb s ad-sm" data-am="1">➕ যোগ</button></div></div>'
+  +reqPanel(a)+progHTML(a)+'<div class="ad-inl"><button class="slb p ad-sm" data-lk="1">'+(CLOUD?'📋 গ্রাহকের বার্তা তৈরি করো':'🔗 আপডেট লিংক তৈরি করো')+'</button><button class="slb s ad-sm" data-sp="1">'+(a.suspended?'✅ চালু করো (বন্ধ ছিল)':'🚫 সাময়িক বন্ধ করো')+'</button><button class="slb r" data-del="1">🗑 মুছে ফেলো</button></div>'
+  +'<div class="ad-out" id="lkout"><b>এই বার্তা গ্রাহককে পাঠাও (WhatsApp/মেসেজে):</b><textarea id="lkt" rows="5" readonly></textarea><div class="ad-inl"><button class="slb o ad-sm" id="lkc">📋 কপি করো</button></div></div></div>';
+  return h;
+ }
+ function bindRows(){
+  var b=q('body');
+  [].forEach.call(b.querySelectorAll('[data-open]'),function(e){e.onclick=function(){openId=openId===e.dataset.open?null:e.dataset.open;vAc();};});
+  var P=b.querySelector('.ad-panel[data-e]');if(!P)return;var em=P.dataset.e;
+  function amt(){return +(q('amt').value||0);}
+  function days(n){mut(em,function(a){adjust(a,n);if(n>0)addPay(a,amt(),q('trx').value.trim(),n);});toast('✅ মেয়াদ বদলানো হয়েছে');vAc();}
+  [].forEach.call(P.querySelectorAll('[data-d]'),function(e){e.onclick=function(){days(+e.dataset.d);};});
+  var xn=P.querySelector('[data-x]');if(xn)xn.onclick=function(){mut(em,function(a){a.trialEnd=Date.now()-1000;a.paidUntil=0;});toast('মেয়াদ শেষ করা হয়েছে');vAc();};
+  [].forEach.call(P.querySelectorAll('[data-cd]'),function(e){e.onclick=function(){var n=Math.abs(+q('cd').value||0)*(+e.dataset.cd);if(!n)return toast('দিন লেখো');days(n);};});
+  P.querySelector('[data-pk]').onclick=function(){mut(em,function(a){a.kind=q('pk').value;if(a.kind==='custom'&&!(a.subs||[]).length){a.seats=a.seats||1;a.subs=Object.keys(SL.SUBJ);}});toast('✅ প্ল্যান বদলেছে');vAc();};
+  var bsb=P.querySelector('[data-bs]');if(bsb)bsb.onclick=function(){var b=[].map.call(P.querySelectorAll('.bsb:checked'),function(e){return e.value;});if(!b.length)return toast('কমপক্ষে একটা ক্লাস বেছে নাও');mut(em,function(a){a.bands=SL.sortBands(b);});toast('✅ ক্লাস আপডেট হয়েছে');vAc();};
+  var dvb=P.querySelector('[data-dv]');if(dvb)dvb.onclick=function(){if(!confirm('এই অ্যাকাউন্টের সব ডিভাইস সরানো হবে। গ্রাহককে আবার লগইন করতে হবে। নিশ্চিত?'))return;mut(em,function(a){a.devs=[];a.dv=Date.now();});toast('✅ ডিভাইস রিসেট হয়েছে');vAc();};
+  var csb=P.querySelector('[data-cs]');if(csb)csb.onclick=function(){var sb=[].map.call(P.querySelectorAll('.csub:checked'),function(e){return e.value;});if(!sb.length)return toast('কমপক্ষে একটা বিষয় বেছে নাও');mut(em,function(a){a.seats=Math.min(30,Math.max(1,+q('cseat').value||1));a.subs=sb;});toast('✅ কাস্টম প্ল্যান আপডেট হয়েছে');vAc();};
+  P.querySelector('[data-pw]').onclick=function(){var p=q('np').value;if(p.length<8)return toast('কমপক্ষে ৮ অক্ষর');SL.hash(p).then(function(h){mut(em,function(a){a.hash=h;});toast(CLOUD?'✅ পাসওয়ার্ড রিসেট। গ্রাহককে নতুন পাসওয়ার্ড জানাও।':'✅ পাসওয়ার্ড রিসেট। নতুন লিংক পাঠাও।');});};
+  [].forEach.call(P.querySelectorAll('[data-rm]'),function(e){e.onclick=function(){mut(em,function(a){a.mv=Date.now();a.members=a.members.filter(function(m){return m.id!==e.dataset.rm;});});vAc();};});
+  P.querySelector('[data-am]').onclick=function(){var n=q('mn').value.trim();if(!n)return toast('নাম লেখো');mut(em,function(a){a.mv=Date.now();a.members.push({id:'m'+Date.now().toString(36)+Math.floor(Math.random()*99),name:n,role:q('mr').value});});vAc();};
+  P.querySelector('[data-sp]').onclick=function(){mut(em,function(a){a.suspended=!a.suspended;});vAc();};
+  P.querySelector('[data-del]').onclick=function(){if(!confirm('এই অ্যাকাউন্ট চিরতরে মুছে যাবে। নিশ্চিত?'))return;dbDel(em);openId=null;vAc();};
+  P.querySelector('[data-lk]').onclick=function(){var a=accMap()[em];q('lkt').value=msgFor(a,link(a,false),null);q('lkout').style.display='block';};
+  [].forEach.call(P.querySelectorAll('[data-pa],[data-pr]'),function(e){e.onclick=function(){var ap=e.hasAttribute('data-pa'),k=(e.getAttribute('data-pa')||e.getAttribute('data-pr')).split('|');if(ap)approveReq(k[0],k[1]);else rejectReq(k[0],k[1]);vAc();};});
+  var lc=q('lkc');if(lc)lc.onclick=function(){copy('lkt');};
+ }
+ function msgFor(a,lk,pw){var P=C.PLANS[a.kind]||C.PLANS.student,s=stat(a);
+  return 'আসসালামু আলাইকুম! ShikboLab 🎉\nপ্ল্যান: '+P.name+(a.kind==='custom'?' ('+bn(a.seats||1)+' জন, '+(a.subs||[]).map(function(k){return SL.SUBJ[k];}).join('+')+')':'')+'\nমেয়াদ: '+(s.state==='suspended'?'বন্ধ':fd(Math.max(a.trialEnd||0,a.paidUntil||0))+' পর্যন্ত ('+bn(s.left)+' দিন)')+'\nইমেইল: '+a.email+(pw?'\nপাসওয়ার্ড: '+pw:'')+(CLOUD?'\n\nএই লিংকে গিয়ে ইমেইল ও পাসওয়ার্ড দিয়ে লগইন করুন:\n':'\n\nএই লিংকে একবার ক্লিক করুন, তারপর লগইন করুন:\n')+lk;}
+ /* নতুন অ্যাকাউন্ট */
+ function vNw(){
+  q('body').innerHTML='<div class="sl-box"><h2>➕ নতুন অ্যাকাউন্ট বানাও (ম্যানুয়াল)</h2><p style="color:#5b6b78;margin-top:0">তুমি অ্যাকাউন্ট বানিয়ে লিংক পাঠাবে। গ্রাহক লিংকে ক্লিক করে তোমার দেওয়া পাসওয়ার্ড দিয়ে লগইন করবে।</p>'
+  +'<form id="nf" class="ad-f"><div><label>ধরন</label><select id="k">'+Object.keys(C.PLANS).map(function(k){return '<option value="'+k+'">'+C.PLANS[k].emoji+' '+C.PLANS[k].name+'</option>';}).join('')+'</select></div>'
+  +'<div id="sw"><label>স্কুল/প্রতিষ্ঠানের নাম</label><input id="sc"></div><div id="cw" style="display:none;grid-column:1/-1"><label>🧩 কাস্টম: কত জন ও কোন বিষয়</label><div class="ad-inl"><input type="number" id="cn" min="1" max="30" value="1" style="width:80px"> জন '+Object.keys(SL.SUBJ).map(function(k){return '<label style="display:inline-flex;gap:4px;align-items:center"><input type="checkbox" class="ncs" value="'+k+'" checked>'+SL.SUBJ[k]+'</label>';}).join(' ')+'</div></div><div><label>গ্রাহকের নাম *</label><input id="n"></div><div><label>ইমেইল *</label><input id="e" type="email"></div>'
+  +'<div><label>পাসওয়ার্ড *</label><div class="ad-inl" style="flex-wrap:nowrap"><input id="p" style="flex:1"><button type="button" class="slb s ad-sm" id="rp">🎲</button></div></div>'
+  +'<div><label>শুরুতে কত দিন?</label><input id="dd" type="number" value="30"></div><div><label>ধরন</label><select id="ty"><option value="paid">✅ পেইড/গিফট (সব ফিচার)</option><option value="trial">🎁 ফ্রি ট্রায়াল</option></select></div>'
+  +'<div><label>টাকা পেয়েছি (ঐচ্ছিক)</label><input id="am" type="number" placeholder="০"></div><div><label>TrxID (ঐচ্ছিক)</label><input id="tx"></div>'
+  +'<div style="grid-column:1/-1"><div id="ne" class="sl-err"></div><button class="slb o" type="submit">✅ অ্যাকাউন্ট বানাও</button></div></form>'
+  +'<div class="ad-out" id="nout"><b>🎉 তৈরি! এই বার্তা গ্রাহককে পাঠাও:</b><textarea id="nt" rows="9" readonly></textarea><button class="slb o ad-sm" id="nc">📋 কপি করো</button></div></div>';
+  function sync(){var pk=C.PLANS[q('k').value]||{};q('sw').style.display=pk.isSchool?'block':'none';q('cw').style.display=pk.custom?'block':'none';}q('k').onchange=sync;sync();
+  q('rp').onclick=function(){var c='abcdefghjkmnpqrstuvwxyz23456789',r='';for(var i=0;i<8;i++)r+=c[Math.floor(Math.random()*c.length)];q('p').value=r;};
+  q('nf').onsubmit=function(e){e.preventDefault();var ne=q('ne');function er(t){ne.textContent=t;ne.style.display='block';}ne.style.display='none';
+   var em=SL.normId(q('e').value),pw=q('p').value,nm=q('n').value.trim(),k=q('k').value,sc=q('sc').value.trim(),dd=Math.max(0,+q('dd').value||0);
+   if(!nm)return er('নাম লেখো।');if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em))return er('সঠিক ইমেইল লেখো।');if(pw.length<8)return er('পাসওয়ার্ড কমপক্ষে ৮ অক্ষর।');if((C.PLANS[k]||{}).isSchool&&!sc)return er('স্কুলের নাম লেখো।');var nsb=[].map.call(document.querySelectorAll('.ncs:checked'),function(e){return e.value;});if(k==='custom'&&!nsb.length)return er('কমপক্ষে একটা বিষয় বেছে নাও।');
+   if(accMap()[em])return er('এই ইমেইলে অ্যাকাউন্ট আগেই আছে।');
+   SL.hash(pw).then(function(h){var n=Date.now(),paid=q('ty').value==='paid';
+    var a={email:em,hash:h,name:nm,kind:k,school:sc,logo:'',created:n,trialEnd:paid?n:n+dd*DAY,paidUntil:paid?n+dd*DAY:0,suspended:false,members:[],mv:0,active:'owner',pays:[],reqs:[]};
+    if(k==='custom'){a.seats=Math.min(30,Math.max(1,+q('cn').value||1));a.subs=nsb;}
+    addPay(a,+q('am').value||0,q('tx').value.trim(),dd);dbCreate(a);
+    q('nt').value=msgFor(a,link(a,false),pw);q('nout').style.display='block';q('nout').scrollIntoView({behavior:'smooth'});toast('✅ অ্যাকাউন্ট তৈরি হয়েছে');});};
+  q('nc').onclick=function(){copy('nt');};
+ }
+ /* পেমেন্ট খাতা */
+ function vPm(){
+  var L=list(),rows=[],tot=0;L.forEach(function(a){(a.pays||[]).forEach(function(p){rows.push([a,p]);tot+=+p.price||0;});});rows.sort(function(a,b){return b[1].t-a[1].t;});
+  var mo=0,now=new Date();rows.forEach(function(r){var t=new Date(r[1].t);if(t.getMonth()===now.getMonth()&&t.getFullYear()===now.getFullYear())mo+=+r[1].price||0;});
+  q('body').innerHTML='<div class="ad-big"><div><small>মোট আয়</small><b>'+money(tot)+'</b></div><div><small>এই মাসের আয়</small><b>'+money(mo)+'</b></div><div><small>মোট পেমেন্ট</small><b>'+bn(rows.length)+'</b></div></div>'
+  +'<div class="sl-box"><h2>🧾 পেমেন্টের খাতা</h2>'+(rows.length?'<div class="sl-scroll"><table class="sl-tbl"><tr><th>তারিখ</th><th>গ্রাহক</th><th>প্ল্যান</th><th>ধরন</th><th>টাকা</th><th>TrxID</th></tr>'+rows.map(function(r){return '<tr><td>'+fd(r[1].t)+'</td><td>'+esc(r[0].school||r[0].name)+'</td><td>'+((C.PLANS[r[1].plan]||{name:r[1].plan}).name.replace(' প্ল্যান',''))+'</td><td>'+(r[1].period==='manual'?'ম্যানুয়াল':r[1].period==='week'?'সাপ্তাহিক':'মাসিক')+'</td><td>'+money(r[1].price)+'</td><td>'+esc(r[1].trx)+'</td></tr>';}).join('')+'</table></div>':'<p style="color:#5b6b78;margin:0">কোনো পেমেন্ট নেই।</p>')+'</div>';
+ }
+
+ /* প্রাইস ও ডিসকাউন্ট */
+ function curPrices(){var o={plans:{}};Object.keys(C.PLANS).forEach(function(k){var p=C.PLANS[k];o.plans[k]={month:p.price.month,week:p.price.week,disc:p.disc||0,label:p.dlabel||'',until:p.duntil||0};});return o;}
+ function readForm(){var o={plans:{}};Object.keys(C.PLANS).forEach(function(k){var u=q('u_'+k).value;o.plans[k]={month:Math.max(0,+q('m_'+k).value||0),week:Math.max(0,+q('w_'+k).value||0),disc:Math.min(90,Math.max(0,+q('d_'+k).value||0)),label:q('l_'+k).value.trim(),until:u?new Date(u+'T23:59:59').getTime():0};});return o;}
+ function vPr(){
+  var cur=curPrices(),h='<div class="sl-box"><h2>🏷️ প্রাইস ও ডিসকাউন্ট</h2><p style="color:#5b6b78;margin-top:0">দাম আর ছাড়ের % বদলাও। ছাড় দিলে প্ল্যান পেজে পুরোনো দামে দাগ কেটে "🔥 X% ছাড়" ব্যাজ দেখাবে। শেষ তারিখ দিলে ওই দিনের পর ছাড় নিজে থেকে উঠে যাবে।</p>'
+  +'<div class="ad-inl" style="margin-bottom:12px"><b>সব প্ল্যানে একসাথে ছাড়:</b><input type="number" id="all" min="0" max="90" placeholder="%" style="width:90px"><button class="slb o ad-sm" id="alla">প্রয়োগ করো</button><button class="slb r" id="allx">সব ছাড় বন্ধ করো</button></div><div class="sl-scroll"><table class="sl-tbl" style="min-width:760px"><tr><th>প্ল্যান</th><th>মাসিক ৳</th><th>সাপ্তাহিক ৳</th><th>ছাড় %</th><th>অফারের নাম</th><th>শেষ তারিখ</th><th>নতুন দাম (মাসিক / সাপ্তাহিক)</th></tr>';
+  Object.keys(C.PLANS).forEach(function(k){var p=C.PLANS[k],o=cur.plans[k],ud=o.until?new Date(o.until).toISOString().slice(0,10):'';
+   h+='<tr><td style="white-space:nowrap">'+p.emoji+' '+p.name.replace(' প্ল্যান','')+'</td><td><input type="number" id="m_'+k+'" value="'+o.month+'" style="width:90px"></td><td><input type="number" id="w_'+k+'" value="'+o.week+'" style="width:90px"></td><td><input type="number" id="d_'+k+'" value="'+o.disc+'" min="0" max="90" style="width:70px"></td><td><input id="l_'+k+'" value="'+esc(o.label)+'" placeholder="যেমন: ঈদ অফার" style="width:140px"></td><td><input type="date" id="u_'+k+'" value="'+ud+'"></td><td id="v_'+k+'" style="font-weight:700;color:#1f3a5f"></td></tr>';});
+  h+='</table></div><div class="ad-inl" style="margin-top:14px"><button class="slb p" id="psv">💾 সেভ করো (এই ব্রাউজারে প্রিভিউ)</button><button class="slb o" id="pdl">⬇️ prices.js ফাইল নামাও (সবার জন্য লাইভ)</button></div>'
+  +'<div class="sl-note" style="margin-top:14px"><b>সবার জন্য লাইভ করতে:</b><br>১) ওপরের "⬇️ prices.js ফাইল নামাও" চাপো।<br>২) ফাইলটা প্রজেক্টের <b>js</b> ফোল্ডারে আগের <code>prices.js</code>-এর জায়গায় রাখো (Replace)।<br>৩) টার্মিনালে: <code>git add .</code> → <code>git commit -m "Price update"</code> → <code>git push</code><br>১–২ মিনিট পর সবাই নতুন দাম দেখবে। (শুধু সেভ করলে নতুন দাম কেবল এই ব্রাউজারে দেখা যায়।)</div></div>';
+  q('body').innerHTML=h;
+  function prev(){var o=readForm();Object.keys(C.PLANS).forEach(function(k){var p=o.plans[k],d=p.disc,f=function(b){return d?Math.round(b*(1-d/100)):b;};q('v_'+k).innerHTML=(d?'<s style="color:#98a4ae;font-weight:500">৳'+bn(p.month)+'</s> ':'')+'৳'+bn(f(p.month))+' / '+(d?'<s style="color:#98a4ae;font-weight:500">৳'+bn(p.week)+'</s> ':'')+'৳'+bn(f(p.week));});}
+  q('body').addEventListener('input',prev);prev();
+  q('alla').onclick=function(){var v=Math.min(90,Math.max(0,+q('all').value||0));Object.keys(C.PLANS).forEach(function(k){q('d_'+k).value=v;});prev();};
+  q('allx').onclick=function(){Object.keys(C.PLANS).forEach(function(k){q('d_'+k).value=0;q('l_'+k).value='';q('u_'+k).value='';});prev();};
+  q('psv').onclick=function(){var o=readForm();localStorage.setItem('sl_prices',JSON.stringify(o));SL.applyPrices(o);toast('✅ সেভ হয়েছে (প্রিভিউ)। সবার জন্য লাইভ করতে ফাইল নামাও।');};
+  q('pdl').onclick=function(){var o=readForm(),t='/* ShikboLab দাম ও ডিসকাউন্ট (js/prices.js) */\nwindow.SL_PRICES='+JSON.stringify(o)+';\n';var b=new Blob([t],{type:'text/javascript'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='prices.js';a.click();localStorage.setItem('sl_prices',JSON.stringify(o));SL.applyPrices(o);toast('✅ prices.js নামছে। js ফোল্ডারে বসাও।');};
+ }
+ /* সেটিংস */
+ function vSt(){
+  q('body').innerHTML=''
+  +'<div class="sl-box"><h2>🔑 অ্যাডমিন পাসওয়ার্ড বদলাও</h2><div class="ad-inl"><input type="password" id="op" placeholder="বর্তমান"><input type="password" id="n1" placeholder="নতুন (৬+)"><button class="slb s ad-sm" id="cp">বদলাও</button></div></div>'
+  +'<div class="sl-box"><h2>📋 বর্তমান কনফিগ (দাম বদলাতে 🏷️ প্রাইস ট্যাব)</h2><div class="sl-scroll"><table class="sl-tbl"><tr><th></th><th>মাসিক</th><th>সাপ্তাহিক</th><th>শিক্ষার্থী</th><th>শিক্ষক</th></tr>'+Object.keys(C.PLANS).map(function(k){var p=C.PLANS[k],m=SL.price(k,'month'),w=SL.price(k,'week');return '<tr><td>'+p.emoji+' '+p.name+'</td><td>'+(m.disc?'<s>'+money(m.base)+'</s> ':'')+money(m.eff)+'</td><td>'+(w.disc?'<s>'+money(w.base)+'</s> ':'')+money(w.eff)+'</td><td>'+bn(p.students)+'</td><td>'+bn(p.teachers)+'</td></tr>';}).join('')+'</table></div><p style="margin:10px 0 0;color:#5b6b78">ট্রায়াল: '+bn(C.TRIAL_DAYS)+' দিন · বিকাশ: '+esc(C.PAY.bkash)+' · নগদ: '+esc(C.PAY.nagad)+' · WhatsApp: '+esc(C.PAY.wa)+' · ইনস্ট্যান্ট ডেমো পেমেন্ট: '+(C.INSTANT?'চালু':'বন্ধ')+'</p></div>'
+  +(CLOUD?'<div class="sl-box"><h2>💳 পেমেন্ট নম্বর (গ্রাহক এটাই দেখবে)</h2><p style="color:#5b6b78;margin-top:0">গ্রাহক প্ল্যান নিতে গেলে এই নম্বরগুলো দেখবে। টাকা পাঠিয়ে TrxID দিলে তুমি যাচাই করে অনুমোদন করবে।</p><div class="ad-inl"><input id="pbk" placeholder="বিকাশ নম্বর" inputmode="numeric"><input id="png" placeholder="নগদ নম্বর" inputmode="numeric"><input id="pwa" placeholder="WhatsApp (8801...)" inputmode="numeric"><button class="slb o ad-sm" id="psn">💾 সেভ করো</button></div></div>':'')
+  +'<div class="sl-box"><h2>🧹 ডেঞ্জার জোন</h2><button class="slb r" id="wp">সব ডেমো ডাটা মুছে ফেলো</button></div>';
+  if(CLOUD){SL.loadCfg().then(function(){var P=C.PAY;q('pbk').value=/X/i.test(P.bkash)?'':P.bkash;q('png').value=/X/i.test(P.nagad)?'':P.nagad;q('pwa').value=/X/i.test(P.wa)?'':P.wa;});q('psn').onclick=function(){var pay={bkash:q('pbk').value.trim(),nagad:q('png').value.trim(),wa:q('pwa').value.trim()};if(pay.bkash.replace(/\D/g,'').length<10&&pay.nagad.replace(/\D/g,'').length<10)return toast('অন্তত একটা সঠিক নম্বর দাও');SL.api({a:'adm_cfg',k:TOK,pay:pay}).then(function(r){if(r.ok){C.PAY.bkash=r.pay.bkash;C.PAY.nagad=r.pay.nagad;C.PAY.wa=r.pay.wa;try{localStorage.setItem('sl_pay',JSON.stringify(r.pay));}catch(e){}toast('✅ নম্বর সেভ হয়েছে, সবার জন্য লাইভ');}else toast('❌ '+(r.err||'সেভ হয়নি'));});};}
+  if(CLOUD){var wpb=q('wp');if(wpb)wpb.parentNode.style.display='none';}
+  q('cp').onclick=function(){var o=q('op').value,n=q('n1').value;if(n.length<8)return toast('নতুন পাসওয়ার্ড ৮+ অক্ষর');SL.hash('adm|'+o).then(function(h){if(h!==admHash().h)return toast('❌ বর্তমান পাসওয়ার্ড ভুল');SL.hash('adm|'+n).then(function(nh){localStorage.setItem('sl_admin',JSON.stringify({h:nh,t:Date.now()}));toast('✅ বদলেছে');q('op').value=q('n1').value='';});});};
+  q('wp').onclick=function(){if(prompt('নিশ্চিত হতে "মুছো" লেখো')==='মুছো'){localStorage.removeItem('sl_demo_v1');toast('মুছে গেছে');render();}};
+ }
+ render();
+})();
+</script>
+</body>
+</html>
