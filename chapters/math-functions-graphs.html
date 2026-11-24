@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ফাংশন ও গ্রাফ ল্যাব - ShikboLab</title>
+<meta name="description" content="📈 ফাংশন ও গ্রাফ (বিশেষ) — ShikboLab এ বাংলায় ইন্টারঅ্যাকটিভ ব্যাখ্যা, ভার্চুয়াল ল্যাব ও কুইজ।">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.tabs{flex-wrap:wrap}
+canvas{width:100%;height:auto;max-width:700px;display:block;margin:8px auto;border-radius:12px;background:#fff;border:1px solid var(--line);touch-action:none}
+.ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ctl label{font-weight:700;color:var(--navy);white-space:nowrap}
+.ctl input[type=range]{width:190px;max-width:100%}
+.ctl select{font-family:inherit;font-size:16px;padding:6px 8px;border-radius:8px;border:2px solid #cfd9e1;background:#fff;width:auto;max-width:100%}
+.eqb{background:#eaf7f5;border-radius:10px;padding:10px;text-align:center;font-weight:700;color:var(--navy);margin:8px 0;font-size:20px;font-family:system-ui,'Segoe UI',Arial,sans-serif;overflow-x:auto}
+.vals{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.vals div{background:#eaf7f5;border-radius:10px;padding:6px 12px;font-weight:700;color:var(--navy);font-family:system-ui,Arial,sans-serif}
+.say{background:#fff4dc;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600}
+.warn{background:#fdeceb;border-left:5px solid #e76f51;border-radius:8px;padding:10px 14px;margin:12px 0}
+.fb{font-weight:700;margin-top:6px}
+.rd{font-size:14px;color:#46586a;text-align:center;min-height:22px;font-family:system-ui,Arial,sans-serif}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+</style>
+<link rel="stylesheet" href="../css/theme.css">
+<script src="../js/theme.js" defer></script>
+<script src="../js/prices.js"></script>
+<script src="../js/demo-saas.js?v=5"></script>
+<script src="../js/lab-boost.js?v=1" data-hidpi="0"></script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="../index.html">Shikbo<span>Lab</span></a>
+  <a class="back" href="../index.html">&larr; সব অধ্যায়</a>
+</header>
+<div class="wrap">
+  <div class="crumb">📐 গণিত &rsaquo; বিশেষ ল্যাব (এক্সট্রা)</div>
+  <h1 class="title">📈 ফাংশন ও গ্রাফ ল্যাব</h1>
+  <nav class="tabs"><a href="#note">📝 নোট</a><a href="#lab1">📏 ল্যাব ১</a><a href="#lab2">🪃 ল্যাব ২</a><a href="#lab3">🔀 ল্যাব ৩</a><a href="#lab4">🎯 ল্যাব ৪</a><a href="#lab5">✖️ ল্যাব ৫</a><a href="#quiz">❓ কুইজ</a></nav>
+
+  <section class="panel" id="note">
+    <h2>📝 সহজ নোট</h2>
+    <div class="key">🎯 <b>এই ল্যাবে শিখবে:</b> ফাংশন কী, সরলরেখার সমীকরণ y = mx + c, দ্বিঘাত ফাংশনের গ্রাফ (পরাবৃত্ত), গ্রাফ সরানো ও ঘোরানো, এবং দুটি সমীকরণ গ্রাফে সমাধান।</div>
+    <div class="warn">ℹ️ এটি NCTB বইয়ের ক্রম মেনে বানানো এক্সট্রা ল্যাব। বইয়ের অধ্যায়ের PDF দিলে বইয়ের সাথে মিলিয়ে নোট ও প্রশ্ন যোগ করে দেব।</div>
+    <h3>১. ফাংশন কী? ⭐⭐⭐</h3>
+    <ul>
+      <li>ফাংশন হলো একটা নিয়ম, যাতে প্রতিটি ইনপুট x-এর জন্য <b>ঠিক একটি</b> আউটপুট y পাওয়া যায়। লেখা হয় y = f(x)।</li>
+      <li>যেমন f(x) = 2x + 1: x = 3 দিলে y = 7। এটা একটা "যন্ত্র" যেটাতে সংখ্যা ঢোকালে নিয়ম মেনে অন্য সংখ্যা বেরোয়।</li>
+      <li><b>ডোমেন:</b> x-এর যেসব মান বসানো যায়। <b>রেঞ্জ:</b> y-এর যেসব মান পাওয়া যায়। যেমন f(x) = √x-এ x ঋণাত্মক দেওয়া যায় না, তাই ডোমেন x ≥ ০।</li>
+      <li><b>উল্লম্ব রেখা পরীক্ষা:</b> গ্রাফে যেকোনো উল্লম্ব রেখা টানলে সেটা বক্ররেখাকে একবারের বেশি না কাটলে তবেই সেটা ফাংশনের গ্রাফ।</li>
+    </ul>
+    <h3>২. সরলরেখা: y = mx + c ⭐⭐⭐</h3>
+    <ul>
+      <li><b>m = ঢাল:</b> x এক ঘর বাড়লে y কত বাড়ে। m ধনাত্মক হলে রেখা ওপরে ওঠে, ঋণাত্মক হলে নিচে নামে, শূন্য হলে অনুভূমিক।</li>
+      <li><b>c = y-ছেদক:</b> রেখা যেখানে y-অক্ষকে কাটে, অর্থাৎ (০, c)।</li>
+      <li><b>x-ছেদক:</b> y = ০ বসালে x = −c ÷ m।</li>
+    </ul>
+    <h3>৩. দ্বিঘাত ফাংশন: y = ax² + bx + c ⭐⭐⭐</h3>
+    <ul>
+      <li>গ্রাফ <b>পরাবৃত্ত (প্যারাবোলা)</b>। a &gt; ০ হলে মুখ ওপরে (হাসিমুখ), a &lt; ০ হলে মুখ নিচে।</li>
+      <li><b>শীর্ষবিন্দু:</b> x = −b ÷ 2a, তার y মান বসিয়ে বের হয়। এই x-এ খাড়া রেখাটি <b>প্রতিসাম্য অক্ষ</b>।</li>
+      <li><b>নিশ্চায়ক D = b² − 4ac</b>: D &gt; ০ হলে x-অক্ষকে দুই বিন্দুতে কাটে (দুটি বাস্তব মূল), D = ০ হলে একটি বিন্দুতে ছোঁয়, D &lt; ০ হলে x-অক্ষকে কাটে না।</li>
+      <li>মূল (সমাধান) = যেখানে গ্রাফ x-অক্ষ কাটে, অর্থাৎ ax² + bx + c = ০ এর সমাধান।</li>
+    </ul>
+    <h3>৪. গ্রাফ সরানো ও ঘোরানো ⭐⭐</h3>
+    <div class="key">y = a · f(x − h) + k<br>k বাড়ালে গ্রাফ <b>ওপরে</b> ওঠে। h বাড়ালে গ্রাফ <b>ডানে</b> সরে। |a| বাড়ালে গ্রাফ <b>সরু</b> হয়। a ঋণাত্মক হলে গ্রাফ <b>উল্টে</b> যায়।</div>
+    <h3>৫. দুটি সমীকরণের গ্রাফে সমাধান ⭐⭐</h3>
+    <ul>
+      <li>দুটি রেখা যেখানে কাটে, সেই বিন্দুর (x, y) দুই সমীকরণকেই সিদ্ধ করে। সেটাই সমীকরণ জোড়ার সমাধান।</li>
+      <li>ঢাল ভিন্ন হলে একটি সমাধান। ঢাল সমান কিন্তু c ভিন্ন হলে রেখা সমান্তরাল, কোনো সমাধান নেই। দুটি সমীকরণ একই রেখা হলে অসংখ্য সমাধান।</li>
+    </ul>
+  </section>
+
+  <!-- ============ ল্যাব ১ ============ -->
+  <section class="panel" id="lab1">
+    <h2>📏 ল্যাব ১: সরলরেখা y = mx + c</h2>
+    <div class="key">ঢাল m ও y-ছেদক c বদলে দেখো রেখা কীভাবে নড়ে। ক্যানভাসের ওপর মাউস নিলে (বা আঙুল রাখলে) বিন্দুর স্থানাঙ্ক দেখা যাবে।</div>
+    <div class="ctl"><label>ঢাল m: <b id="l1mv">1</b></label><input type="range" id="l1m" min="-5" max="5" step="0.5" value="1">
+      <label>y-ছেদক c: <b id="l1cv">0</b></label><input type="range" id="l1c" min="-8" max="8" step="1" value="0"></div>
+    <div class="eqb" id="l1eq"></div>
+    <canvas id="c1" width="700" height="480"></canvas>
+    <div class="rd" id="l1rd"></div>
+    <div class="vals"><div id="l1x">x-ছেদক</div><div id="l1y">y-ছেদক</div></div>
+    <div class="say" id="l1say"></div>
+    <div class="ctl"><label>x = </label><input type="range" id="l1xi" min="-6" max="6" step="1" value="2"><b id="l1res"></b></div>
+  </section>
+
+  <!-- ============ ল্যাব ২ ============ -->
+  <section class="panel" id="lab2">
+    <h2>🪃 ল্যাব ২: দ্বিঘাত ফাংশন y = ax² + bx + c</h2>
+    <div class="ctl"><label>a: <b id="l2av">1</b></label><input type="range" id="l2a" min="-3" max="3" step="0.5" value="1">
+      <label>b: <b id="l2bv">0</b></label><input type="range" id="l2b" min="-8" max="8" step="1" value="0">
+      <label>c: <b id="l2cv">-4</b></label><input type="range" id="l2c" min="-8" max="8" step="1" value="-4"></div>
+    <div class="eqb" id="l2eq"></div>
+    <canvas id="c2" width="700" height="480"></canvas>
+    <div class="rd" id="l2rd"></div>
+    <div class="vals"><div id="l2d">D</div><div id="l2v">শীর্ষবিন্দু</div><div id="l2r">মূল</div></div>
+    <div class="say" id="l2say"></div>
+  </section>
+
+  <!-- ============ ল্যাব ৩ ============ -->
+  <section class="panel" id="lab3">
+    <h2>🔀 ল্যাব ৩: গ্রাফ সরাও, ঘোরাও, সরু করো</h2>
+    <div class="key">একটা মূল ফাংশন বেছে নাও (ধূসর রেখা)। তারপর y = a · f(x − h) + k সূত্রে a, h, k বদলে দেখো (রঙিন রেখা)।</div>
+    <div class="ctl"><label>মূল ফাংশন f(x):</label><select id="l3f"><option value="0">x²</option><option value="1">|x|</option><option value="2">√x</option><option value="3">x³</option><option value="4">1/x</option><option value="5">sin x</option></select></div>
+    <div class="ctl"><label>a: <b id="l3av">1</b></label><input type="range" id="l3a" min="-3" max="3" step="0.5" value="1">
+      <label>h (ডানে/বামে): <b id="l3hv">0</b></label><input type="range" id="l3h" min="-6" max="6" step="1" value="0">
+      <label>k (ওপরে/নিচে): <b id="l3kv">0</b></label><input type="range" id="l3k" min="-6" max="6" step="1" value="0"></div>
+    <div class="eqb" id="l3eq"></div>
+    <canvas id="c3" width="700" height="480"></canvas>
+    <div class="say" id="l3say"></div>
+  </section>
+
+  <!-- ============ ল্যাব ৪ ============ -->
+  <section class="panel" id="lab4">
+    <h2>🎯 ল্যাব ৪: গ্রাফ মেলাও (খেলা)</h2>
+    <div class="key">কমলা রেখা হলো লক্ষ্য। slider ঘুরিয়ে সবুজ ডটেড রেখাকে ঠিক তার ওপর বসাও, তারপর "যাচাই করো" চাপো।</div>
+    <div class="ctl"><label>স্তর:</label><select id="l4t"><option value="line">সরলরেখা y = mx + c</option><option value="par">পরাবৃত্ত y = a(x − h)² + k</option></select>
+      <button class="btn alt" id="l4new">🔄 নতুন লক্ষ্য</button></div>
+    <div class="ctl" id="l4ctl"></div>
+    <div class="eqb" id="l4eq"></div>
+    <canvas id="c4" width="700" height="480"></canvas>
+    <div class="btnrow"><button class="btn" id="l4ok">✔ যাচাই করো</button><button class="btn alt" id="l4hint">💡 ইঙ্গিত (কয়েকটা বিন্দু)</button></div>
+    <div class="fb" id="l4fb"></div>
+    <div class="say" id="l4sc">স্কোর: ০ / ০</div>
+  </section>
+
+  <!-- ============ ল্যাব ৫ ============ -->
+  <section class="panel" id="lab5">
+    <h2>✖️ ল্যাব ৫: দুটি সমীকরণ, একটি সমাধান</h2>
+    <div class="key">দুটি রেখা যেখানে কাটে সেই বিন্দুটাই সমীকরণ জোড়ার সমাধান। ঢাল বদলে দেখো কখন কাটে, কখন সমান্তরাল হয়।</div>
+    <div class="ctl"><label style="color:#e76f51">রেখা ১: m₁ = <b id="l5m1v">1</b></label><input type="range" id="l5m1" min="-4" max="4" step="1" value="1">
+      <label style="color:#e76f51">c₁ = <b id="l5c1v">-1</b></label><input type="range" id="l5c1" min="-6" max="6" step="1" value="-1"></div>
+    <div class="ctl"><label style="color:#1f77b4">রেখা ২: m₂ = <b id="l5m2v">-1</b></label><input type="range" id="l5m2" min="-4" max="4" step="1" value="-1">
+      <label style="color:#1f77b4">c₂ = <b id="l5c2v">5</b></label><input type="range" id="l5c2" min="-6" max="6" step="1" value="5"></div>
+    <div class="eqb" id="l5eq"></div>
+    <canvas id="c5" width="700" height="480"></canvas>
+    <div class="say" id="l5say"></div>
+  </section>
+
+  <section class="panel" id="quiz">
+    <h2>❓ কুইজ: নিজেকে যাচাই করো</h2>
+    <div id="quizbox"></div>
+    <div class="score" id="score"></div>
+  </section>
+</div>
+<footer class="site">&copy; ShikboLab</footer>
+
+<script>
+var BN='০১২৩৪৫৬৭৮৯';
+function bn(s){return String(s).replace(/[0-9]/g,function(d){return BN[d];});}
+function $(id){return document.getElementById(id);}
+function N(x){x=Math.round(x*100)/100;if(Math.abs(x)<1e-9)x=0;return bn(String(x).replace('-','−'));}
+function sg(x,first){var v=Math.abs(x);return (x<0?'− ':(first?'':'+ '))+N(v);}
+function R2(c){var d=Math.min(2,window.devicePixelRatio||1),w=c.width,h=c.height;c.width=w*d;c.height=h*d;var x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return x;}
+
+/* ---------- গ্রাফ আঁকার সাহায্যকারী ---------- */
+var W=700,H=480,S=28,OX=350,OY=240;
+function sx(x){return OX+x*S;} function sy(y){return OY-y*S;}
+function wx(px){return (px-OX)/S;} function wy(py){return (OY-py)/S;}
+function Graph(id){this.c=$(id);this.x=R2(this.c);}
+Graph.prototype.grid=function(){
+  var x=this.x;x.clearRect(0,0,W,H);x.fillStyle='#fff';x.fillRect(0,0,W,H);
+  x.lineWidth=1;
+  for(var i=-12;i<=12;i++){x.strokeStyle=i===0?'#1f3a5f':'#e3e9ee';x.lineWidth=i===0?2:1;x.beginPath();x.moveTo(sx(i),0);x.lineTo(sx(i),H);x.stroke();}
+  for(var j=-8;j<=8;j++){x.strokeStyle=j===0?'#1f3a5f':'#e3e9ee';x.lineWidth=j===0?2:1;x.beginPath();x.moveTo(0,sy(j));x.lineTo(W,sy(j));x.stroke();}
+  x.fillStyle='#5b6770';x.font='11px system-ui,Arial';x.textAlign='center';
+  for(i=-12;i<=12;i+=2){if(i!==0)x.fillText(N(i),sx(i),OY+14);}
+  x.textAlign='right';for(j=-8;j<=8;j+=2){if(j!==0)x.fillText(N(j),OX-5,sy(j)+4);}
+  x.font='700 13px system-ui';x.fillStyle='#1f3a5f';x.textAlign='left';x.fillText('x',W-14,OY-6);x.fillText('y',OX+6,12);
+};
+Graph.prototype.fn=function(f,col,w,dash){
+  var x=this.x,prev=null;x.strokeStyle=col;x.lineWidth=w||3;x.setLineDash(dash||[]);x.lineJoin='round';x.beginPath();
+  var started=false;
+  for(var px=0;px<=W;px+=1.5){
+    var X=wx(px),Y=f(X);
+    if(!isFinite(Y)||isNaN(Y)){started=false;prev=null;continue;}
+    var py=sy(Y);
+    if(prev!==null&&Math.abs(py-prev)>H*1.2){started=false;}
+    if(py<-2000||py>2000){started=false;prev=py;continue;}
+    if(!started){x.moveTo(px,py);started=true;}else x.lineTo(px,py);
+    prev=py;
+  }
+  x.stroke();x.setLineDash([]);
+};
+Graph.prototype.pt=function(X,Y,col,lab,off){
+  var x=this.x;x.fillStyle=col;x.strokeStyle='#fff';x.lineWidth=2;x.beginPath();x.arc(sx(X),sy(Y),6,0,6.283);x.fill();x.stroke();
+  if(lab){x.fillStyle=col;x.font='700 13px system-ui';x.textAlign='left';x.fillText(lab,sx(X)+9,sy(Y)-9+(off||0));}
+};
+Graph.prototype.vline=function(X,col){var x=this.x;x.strokeStyle=col;x.lineWidth=2;x.setLineDash([6,5]);x.beginPath();x.moveTo(sx(X),0);x.lineTo(sx(X),H);x.stroke();x.setLineDash([]);};
+function hover(g,id,rd,f){
+  var c=g.c;function mv(e){var r=c.getBoundingClientRect(),t=e.touches?e.touches[0]:e,px=(t.clientX-r.left)*W/r.width,X=wx(px),Y=f?f(X):NaN;
+    $(rd).textContent='x = '+N(X)+(isFinite(Y)?',  y = '+N(Y):'');}
+  c.addEventListener('mousemove',mv);c.addEventListener('touchmove',mv,{passive:true});c.addEventListener('mouseleave',function(){$(rd).textContent='';});
+}
+function lerp(a,b,t){return a+(b-a)*t;}
+
+/* ===================== ল্যাব ১ ===================== */
+var g1=new Graph('c1'),cur1=null;
+function l1get(){return {m:+$('l1m').value,c:+$('l1c').value};}
+var l1f=function(X){var p=l1get();return p.m*X+p.c;};
+hover(g1,'c1','l1rd',l1f);
+function l1ui(){
+  var p=l1get();$('l1mv').textContent=N(p.m);$('l1cv').textContent=N(p.c);
+  $('l1eq').innerHTML='y = '+(p.m===0?'':(p.m===1?'x':(p.m===-1?'−x':N(p.m)+'x')))+(p.m===0?N(p.c):(p.c===0?'':' '+sg(p.c,false)));
+  $('l1x').textContent='x-ছেদক: '+(p.m===0?(p.c===0?'সব বিন্দু':'নেই'):'('+N(-p.c/p.m)+', ০)');
+  $('l1y').textContent='y-ছেদক: (০, '+N(p.c)+')';
+  $('l1say').textContent=p.m>0?'m ধনাত্মক ('+N(p.m)+'): x এক ঘর বাড়লে y '+N(p.m)+' ঘর বাড়ে, রেখা বাঁ থেকে ডানে ওপরে ওঠে।':(p.m<0?'m ঋণাত্মক ('+N(p.m)+'): x বাড়লে y কমে, রেখা নিচে নামে।':'m = ০: ঢাল নেই, রেখা অনুভূমিক। y সবসময় '+N(p.c)+'।');
+  var xi=+$('l1xi').value;$('l1res').textContent='  y = '+N(p.m)+'×'+N(xi)+' '+sg(p.c,false)+' = '+N(p.m*xi+p.c);
+}
+['l1m','l1c','l1xi'].forEach(function(id){$(id).addEventListener('input',l1ui);});l1ui();
+function l1draw(){
+  var p=l1get(),g=g1;g.grid();g.fn(l1f,'#e76f51',4);
+  if(p.m!==0){g.pt(-p.c/p.m,0,'#1d7a6f','');}g.pt(0,p.c,'#2a9d8f','(০, '+N(p.c)+')');
+  var xi=+$('l1xi').value;g.pt(xi,p.m*xi+p.c,'#1f3a5f','('+N(xi)+', '+N(p.m*xi+p.c)+')',-6);
+  // ঢালের ত্রিভুজ
+  var x=g.x,y0=p.c;x.strokeStyle='#1f3a5f';x.lineWidth=2;x.setLineDash([4,3]);x.beginPath();x.moveTo(sx(0),sy(y0));x.lineTo(sx(1),sy(y0));x.lineTo(sx(1),sy(y0+p.m));x.stroke();x.setLineDash([]);
+  x.fillStyle='#1f3a5f';x.font='12px Hind Siliguri,system-ui';x.textAlign='center';x.fillText('১',sx(.5),sy(y0)+15);x.textAlign='left';x.fillText(N(p.m),sx(1)+5,sy(y0+p.m/2));
+}
+
+/* ===================== ল্যাব ২ ===================== */
+var g2=new Graph('c2'),D2={a:1,b:0,c:-4};
+function l2get(){return {a:+$('l2a').value,b:+$('l2b').value,c:+$('l2c').value};}
+hover(g2,'c2','l2rd',function(X){return D2.a*X*X+D2.b*X+D2.c;});
+function l2ui(){
+  var p=l2get();['a','b','c'].forEach(function(k){$('l2'+k+'v').textContent=N(p[k]);});
+  var s='y = '+(p.a===1?'':(p.a===-1?'−':N(p.a)))+'x²'+(p.b===0?'':' '+(p.b<0?'− ':'+ ')+(Math.abs(p.b)===1?'':N(Math.abs(p.b)))+'x')+(p.c===0?'':' '+sg(p.c,false));
+  if(p.a===0)s='y = '+(p.b===0?'':(p.b===1?'x':(p.b===-1?'−x':N(p.b)+'x')))+(p.b===0?N(p.c):(p.c===0?'':' '+sg(p.c,false)))+'  (a = ০, তাই এটা সরলরেখা!)';
+  $('l2eq').textContent=s;
+  var D=p.b*p.b-4*p.a*p.c;
+  $('l2d').textContent='D = b² − ৪ac = '+N(D);
+  if(p.a===0){$('l2v').textContent='শীর্ষবিন্দু নেই (রেখা)';$('l2r').textContent=p.b===0?'মূল নেই':'মূল: x = '+N(-p.c/p.b);$('l2say').textContent='a = ০ হলে x² পদ থাকে না, তাই দ্বিঘাত ফাংশন থাকে না।';return;}
+  var vx=-p.b/(2*p.a),vy=p.c-p.b*p.b/(4*p.a);
+  $('l2v').textContent='শীর্ষবিন্দু: ('+N(vx)+', '+N(vy)+')';
+  var rt='';if(D>0){var r1=(-p.b-Math.sqrt(D))/(2*p.a),r2=(-p.b+Math.sqrt(D))/(2*p.a);rt='মূল: x = '+N(Math.min(r1,r2))+' ও '+N(Math.max(r1,r2));}else if(D===0)rt='মূল: x = '+N(vx)+' (একটি)';else rt='বাস্তব মূল নেই';
+  $('l2r').textContent=rt;
+  $('l2say').textContent=(p.a>0?'a ধনাত্মক: পরাবৃত্তের মুখ ওপরে। ':'a ঋণাত্মক: পরাবৃত্তের মুখ নিচে। ')+(D>0?'D ধনাত্মক, তাই x-অক্ষকে দুই বিন্দুতে কাটে।':(D===0?'D = ০, তাই x-অক্ষকে ঠিক একবার ছোঁয়।':'D ঋণাত্মক, তাই x-অক্ষকে কাটে না।'));
+}
+['l2a','l2b','l2c'].forEach(function(id){$(id).addEventListener('input',l2ui);});l2ui();
+function l2draw(){
+  var t=l2get();['a','b','c'].forEach(function(k){D2[k]=lerp(D2[k],t[k],.18);if(Math.abs(D2[k]-t[k])<.005)D2[k]=t[k];});
+  var g=g2,p=D2;g.grid();
+  var f=function(X){return p.a*X*X+p.b*X+p.c;};
+  if(p.a!==0){g.vline(-p.b/(2*p.a),'rgba(42,157,143,.6)');}
+  g.fn(f,'#e76f51',4);
+  if(t.a!==0){
+    var D=t.b*t.b-4*t.a*t.c,vx=-t.b/(2*t.a),vy=t.c-t.b*t.b/(4*t.a);
+    g.pt(vx,vy,'#1f3a5f','শীর্ষবিন্দু');
+    if(D>=0){var r1=(-t.b-Math.sqrt(D))/(2*t.a),r2=(-t.b+Math.sqrt(D))/(2*t.a);g.pt(r1,0,'#2a9d8f','');if(D>0)g.pt(r2,0,'#2a9d8f','');}
+    g.pt(0,t.c,'#8e24aa','');
+  }
+}
+
+/* ===================== ল্যাব ৩ ===================== */
+var g3=new Graph('c3'),D3={a:1,h:0,k:0};
+var BASE=[function(x){return x*x;},function(x){return Math.abs(x);},function(x){return x>=0?Math.sqrt(x):NaN;},function(x){return x*x*x;},function(x){return Math.abs(x)<1e-6?NaN:1/x;},function(x){return Math.sin(x);}];
+var BNAME=['x²','|x|','√x','x³','1/x','sin x'];
+function l3get(){return {a:+$('l3a').value,h:+$('l3h').value,k:+$('l3k').value,f:+$('l3f').value};}
+function l3ui(){
+  var p=l3get();$('l3av').textContent=N(p.a);$('l3hv').textContent=N(p.h);$('l3kv').textContent=N(p.k);
+  var inner=p.h===0?'x':'(x '+(p.h>0?'− ':'+ ')+N(Math.abs(p.h))+')';
+  var fn=BNAME[p.f],body=fn.replace(/x/g,function(){return inner;});
+  if(p.f===0)body=(p.h===0?'x²':inner+'²');if(p.f===3)body=(p.h===0?'x³':inner+'³');
+  if(p.f===1)body='|'+inner+'|';if(p.f===2)body='√'+inner;if(p.f===4)body='1/'+inner;if(p.f===5)body='sin'+(p.h===0?' x':inner);
+  $('l3eq').textContent=bn('y = '+(p.a===1?'':(p.a===-1?'−':N(p.a)+' · '))+body+(p.k===0?'':' '+sg(p.k,false)));
+  var t=[];if(p.k>0)t.push('গ্রাফ '+N(p.k)+' ঘর ওপরে উঠেছে');if(p.k<0)t.push('গ্রাফ '+N(-p.k)+' ঘর নিচে নেমেছে');
+  if(p.h>0)t.push('ডানে '+N(p.h)+' ঘর সরেছে');if(p.h<0)t.push('বামে '+N(-p.h)+' ঘর সরেছে');
+  if(p.a<0)t.push('উল্টে গেছে (x-অক্ষের সাপেক্ষে প্রতিফলন)');if(Math.abs(p.a)>1)t.push('উল্লম্বভাবে টানা, তাই সরু');if(Math.abs(p.a)<1&&p.a!==0)t.push('চ্যাপ্টা');if(p.a===0)t.push('a = ০, তাই গ্রাফ সোজা y = '+N(p.k));
+  $('l3say').textContent=(t.length?t.join('; ')+'।':'এখন মূল গ্রাফই দেখাচ্ছে।')+' মনে রাখো: x − h লিখলে গ্রাফ <b>ডানে</b> যায়, যা প্রথমে উল্টো মনে হয়।'.replace(/<\/?b>/g,'');
+}
+['l3a','l3h','l3k','l3f'].forEach(function(id){$(id).addEventListener('input',l3ui);$(id).addEventListener('change',l3ui);});l3ui();
+function l3draw(){
+  var t=l3get();['a','h','k'].forEach(function(k){D3[k]=lerp(D3[k],t[k],.18);if(Math.abs(D3[k]-t[k])<.005)D3[k]=t[k];});
+  var g=g3,f=BASE[t.f],p=D3;g.grid();g.fn(f,'#b0bec5',3,[7,5]);
+  g.fn(function(X){return p.a*f(X-p.h)+p.k;},'#e76f51',4);
+}
+
+/* ===================== ল্যাব ৪ ===================== */
+var g4=new Graph('c4'),G4={t:'line',tg:null,sc:0,tot:0,done:false,hint:false};
+function r4(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+function new4(){
+  G4.t=$('l4t').value;G4.done=false;G4.hint=false;$('l4fb').textContent='';
+  if(G4.t==='line'){var m=0;while(m===0)m=r4(-4,4);G4.tg={m:m,c:r4(-5,5)};}
+  else{var a=[-2,-1.5,-1,-.5,.5,1,1.5,2][r4(0,7)];G4.tg={a:a,h:r4(-5,5),k:r4(-5,5)};}
+  var h='';
+  if(G4.t==='line')h='<label>m: <b id="u1v">0</b></label><input type="range" id="u1" min="-5" max="5" step="0.5" value="0"><label>c: <b id="u2v">0</b></label><input type="range" id="u2" min="-8" max="8" step="1" value="0">';
+  else h='<label>a: <b id="u1v">1</b></label><input type="range" id="u1" min="-3" max="3" step="0.5" value="1"><label>h: <b id="u2v">0</b></label><input type="range" id="u2" min="-8" max="8" step="1" value="0"><label>k: <b id="u3v">0</b></label><input type="range" id="u3" min="-8" max="8" step="1" value="0">';
+  $('l4ctl').innerHTML=h;
+  $('l4ctl').querySelectorAll('input').forEach(function(i){i.addEventListener('input',u4);});
+  u4();
+}
+function user4(){var v=[+($('u1')||{}).value||0,+($('u2')||{}).value||0,+($('u3')||{}).value||0];return G4.t==='line'?{m:v[0],c:v[1]}:{a:v[0],h:v[1],k:v[2]};}
+function fn4(p,t){return t==='line'?function(X){return p.m*X+p.c;}:function(X){return p.a*(X-p.h)*(X-p.h)+p.k;};}
+function u4(){var p=user4();$('u1v').textContent=N(G4.t==='line'?p.m:p.a);$('u2v').textContent=N(G4.t==='line'?p.c:p.h);if($('u3v'))$('u3v').textContent=N(p.k);
+  $('l4eq').textContent=G4.t==='line'?'তোমার রেখা: y = '+N(p.m)+'x '+sg(p.c,false):'তোমার পরাবৃত্ত: y = '+N(p.a)+'(x '+(p.h>0?'− '+N(p.h):'+ '+N(-p.h))+')² '+sg(p.k,false);}
+function d4(){
+  var g=g4;g.grid();g.fn(fn4(G4.tg,G4.t),'#e76f51',4);g.fn(fn4(user4(),G4.t),'#2a9d8f',3,[8,6]);
+  if(G4.hint){var f=fn4(G4.tg,G4.t);(G4.t==='line'?[0,1,2]:[G4.tg.h,G4.tg.h+1,G4.tg.h-1]).forEach(function(X){g.pt(X,f(X),'#1f3a5f','('+N(X)+', '+N(f(X))+')');});}
+}
+$('l4t').addEventListener('change',new4);$('l4new').onclick=new4;
+$('l4hint').onclick=function(){G4.hint=true;};
+$('l4ok').onclick=function(){
+  if(G4.done){$('l4fb').textContent='এটা শেষ। "নতুন লক্ষ্য" চাপো।';return;}
+  var p=user4(),t=G4.tg,ok=G4.t==='line'?(p.m===t.m&&p.c===t.c):(p.a===t.a&&p.h===t.h&&p.k===t.k);
+  G4.tot++;if(ok){G4.sc+=G4.hint?0.5:1;G4.done=true;}
+  $('l4fb').innerHTML=ok?'✅ ঠিক মিলেছে! '+(G4.t==='line'?'m = '+N(t.m)+', c = '+N(t.c):'a = '+N(t.a)+', h = '+N(t.h)+', k = '+N(t.k)):'❌ এখনো মেলেনি। '+(G4.t==='line'?'রেখা কোথায় y-অক্ষ কাটছে (c), আর ডানে এক ঘর গেলে কত ওপরে ওঠে (m) দেখো।':'শীর্ষবিন্দু (h, k) আগে মেলাও, তারপর a দিয়ে সরু বা চওড়া করো।');
+  $('l4fb').style.color=ok?'#1d7a6f':'#c0392b';
+  $('l4sc').textContent='স্কোর: '+N(G4.sc)+' / '+bn(G4.tot)+(G4.hint?' (ইঙ্গিত নিলে অর্ধেক নম্বর)':'');
+};
+new4();
+
+/* ===================== ল্যাব ৫ ===================== */
+var g5=new Graph('c5');
+function l5get(){return {m1:+$('l5m1').value,c1:+$('l5c1').value,m2:+$('l5m2').value,c2:+$('l5c2').value};}
+function l5ui(){
+  var p=l5get();['m1','c1','m2','c2'].forEach(function(k){$('l5'+k+'v').textContent=N(p[k]);});
+  function eq(m,c){return 'y = '+(m===0?'':(m===1?'x':(m===-1?'−x':N(m)+'x')))+(m===0?N(c):(c===0?'':' '+sg(c,false)));}
+  $('l5eq').innerHTML='<span style="color:#e76f51">'+eq(p.m1,p.c1)+'</span> &nbsp;&nbsp; <span style="color:#1f77b4">'+eq(p.m2,p.c2)+'</span>';
+  var t;
+  if(p.m1===p.m2){t=p.c1===p.c2?'দুটি সমীকরণ একই রেখা, তাই অসংখ্য সমাধান।':'ঢাল সমান ('+N(p.m1)+') কিন্তু c ভিন্ন, তাই রেখা দুটি সমান্তরাল। কখনো কাটে না, কোনো সমাধান নেই।';}
+  else{var x=(p.c2-p.c1)/(p.m1-p.m2),y=p.m1*x+p.c1;t='সমাধান: x = '+N(x)+', y = '+N(y)+'। যাচাই: রেখা ১-এ '+N(p.m1)+'×'+N(x)+' '+sg(p.c1,false)+' = '+N(y)+'; রেখা ২-এ '+N(p.m2)+'×'+N(x)+' '+sg(p.c2,false)+' = '+N(p.m2*x+p.c2)+'। দুটোই সমান, তাই এটাই সমাধান।';}
+  $('l5say').textContent=t;
+}
+['l5m1','l5c1','l5m2','l5c2'].forEach(function(id){$(id).addEventListener('input',l5ui);});l5ui();
+function l5draw(){
+  var p=l5get(),g=g5;g.grid();g.fn(function(X){return p.m1*X+p.c1;},'#e76f51',4);g.fn(function(X){return p.m2*X+p.c2;},'#1f77b4',4);
+  if(p.m1!==p.m2){var x=(p.c2-p.c1)/(p.m1-p.m2),y=p.m1*x+p.c1;g.pt(x,y,'#1f3a5f','('+N(x)+', '+N(y)+')');}
+}
+
+/* ---------- সব আঁকা (দৃশ্যমান হলে) ---------- */
+function frame(){l1draw();l2draw();l3draw();d4();l5draw();requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+
+/* ===================== কুইজ ===================== */
+var QUIZ=[
+ {q:'ফাংশনের সংজ্ঞা অনুযায়ী প্রতিটি x-এর জন্য y-এর কয়টি মান থাকে?',o:['একটিও না','ঠিক একটি','দুটি','অসংখ্য'],a:1,e:'ফাংশনে প্রতিটি ইনপুটের জন্য ঠিক একটি আউটপুট পাওয়া যায়।'},
+ {q:'y = 3x + 2 রেখার ঢাল কত?',o:['২','৩','৫','১'],a:1,e:'y = mx + c-এর সাথে মিলিয়ে দেখলে m = ৩, c = ২।'},
+ {q:'y = 3x + 2 রেখা y-অক্ষকে কোথায় কাটে?',o:['(০, ৩)','(০, ২)','(২, ০)','(৩, ০)'],a:1,e:'x = ০ বসালে y = ২, তাই (০, ২)।'},
+ {q:'y = 2x − 6 রেখা x-অক্ষকে কোথায় কাটে?',o:['(৬, ০)','(৩, ০)','(−৩, ০)','(০, −৬)'],a:1,e:'y = ০ বসালে ২x = ৬, তাই x = ৩।'},
+ {q:'ঢাল ঋণাত্মক হলে রেখা কেমন হয়?',o:['বাঁ থেকে ডানে ওপরে ওঠে','বাঁ থেকে ডানে নিচে নামে','অনুভূমিক','খাড়া'],a:1,e:'m ঋণাত্মক হলে x বাড়লে y কমে।'},
+ {q:'y = ax² + bx + c-তে a ধনাত্মক হলে পরাবৃত্তের মুখ কোন দিকে?',o:['ওপরে','নিচে','ডানে','বামে'],a:0,e:'a ধনাত্মক হলে মুখ ওপরে (হাসিমুখ), a ঋণাত্মক হলে নিচে।'},
+ {q:'y = x² − 4 এর মূল (x-অক্ষ ছেদ) কী কী?',o:['২ ও −২','৪ ও −৪','০ ও ৪','কোনো মূল নেই'],a:0,e:'x² − 4 = ০ হলে x² = ৪, তাই x = ২ বা −২।'},
+ {q:'কোন ক্ষেত্রে দ্বিঘাত সমীকরণের কোনো বাস্তব মূল থাকে না?',o:['D > ০','D = ০','D < ০','a > ০'],a:2,e:'D = b² − 4ac ঋণাত্মক হলে পরাবৃত্ত x-অক্ষকে কাটে না।'},
+ {q:'y = x² গ্রাফকে ওপরে ৩ ঘর সরাতে নতুন সমীকরণ কী?',o:['y = x² − ৩','y = x² + ৩','y = (x + ৩)²','y = (x − ৩)²'],a:1,e:'ওপরে k ঘর সরালে y = f(x) + k। তাই y = x² + ৩।'},
+ {q:'y = (x − 2)² গ্রাফ y = x²-এর তুলনায় কোথায় সরেছে?',o:['২ ঘর বামে','২ ঘর ডানে','২ ঘর ওপরে','২ ঘর নিচে'],a:1,e:'f(x − h)-এ গ্রাফ h ঘর ডানে সরে। এখানে h = ২।'},
+ {q:'y = −x² গ্রাফের বৈশিষ্ট্য কোনটি?',o:['মুখ ওপরে','মুখ নিচে','x-অক্ষের ওপর দিয়ে সরলরেখা','y-অক্ষের বামে'],a:1,e:'a = −১ ঋণাত্মক, তাই পরাবৃত্ত উল্টে গিয়ে মুখ নিচে।'},
+ {q:'দুটি রেখা y = 2x + 1 ও y = 2x + 5-এর সমাধান কয়টি?',o:['একটি','দুটি','কোনোটিই না','অসংখ্য'],a:2,e:'ঢাল সমান (২) কিন্তু c ভিন্ন, তাই রেখা সমান্তরাল, কখনো কাটে না।'}
+];
+var answered=0,correct=0;
+(function(){
+  var box=$('quizbox');
+  QUIZ.forEach(function(item,qi){
+    var div=document.createElement('div');div.className='q';
+    var html='<p>'+bn(qi+1)+'. '+item.q+'</p>';
+    item.o.forEach(function(opt,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'">'+opt+'</button>';});
+    html+='<div class="exp" id="exp'+qi+'">💡 '+item.e+'</div>';
+    div.innerHTML=html;box.appendChild(div);
+  });
+  box.addEventListener('click',function(ev){
+    var b=ev.target.closest('.opt');if(!b||b.parentNode.getAttribute('data-done'))return;
+    var qi=+b.getAttribute('data-q'),oi=+b.getAttribute('data-o');
+    b.parentNode.setAttribute('data-done','1');
+    var btns=b.parentNode.querySelectorAll('.opt');btns[QUIZ[qi].a].classList.add('ok');
+    if(oi===QUIZ[qi].a)correct++;else b.classList.add('no');
+    $('exp'+qi).style.display='block';answered++;
+    if(answered===QUIZ.length)$('score').textContent='🎉 তোমার স্কোর: '+bn(correct)+' / '+bn(QUIZ.length);
+  });
+})();
+</script>
+</body>
+</html>

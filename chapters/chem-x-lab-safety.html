@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🥽 ল্যাব নিরাপত্তা ও যন্ত্রপাতি - ShikboLab</title>
+<meta name="description" content="🥽 ল্যাব নিরাপত্তা ও যন্ত্রপাতি (বিশেষ) — ShikboLab এ বাংলায় ইন্টারঅ্যাকটিভ ব্যাখ্যা, ভার্চুয়াল ল্যাব ও কুইজ।">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.tabs{flex-wrap:wrap}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.row>.grow{flex:1;min-width:260px}
+.say{background:#fff4dc;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600}
+.warn{background:#fdeceb;border-left:5px solid #e76f51;border-radius:8px;padding:10px 14px;margin:12px 0}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ctl label{font-weight:700;color:var(--navy)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fb{font-weight:700;margin-top:6px;min-height:26px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.pills button{font-family:inherit}
+/* timeline */
+.tl{display:flex;gap:6px;overflow-x:auto;padding:10px 2px 14px;margin:8px 0}
+.tl button{flex:0 0 auto;min-width:112px;font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:12px;padding:8px 10px;cursor:pointer;text-align:center;position:relative;transition:transform .2s,border-color .2s,background .2s}
+.tl button b{display:block;color:var(--navy);font-size:15px}
+.tl button small{color:var(--muted);font-size:13px}
+.tl button .em{font-size:26px;display:block}
+.tl button.on{border-color:var(--teal);background:#eaf7f5;transform:translateY(-4px)}
+.tlinfo{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:96px;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.flow span{background:#fff;border:2px solid var(--teal);border-radius:10px;padding:6px 12px;font-weight:700;color:var(--navy);opacity:.25;transition:opacity .5s,transform .5s;transform:scale(.9)}
+.flow span.show{opacity:1;transform:none}
+.flow i{font-style:normal;color:var(--teal);font-weight:800}
+/* bars */
+.bar{display:flex;align-items:center;gap:8px;margin:6px 0}
+.bar .bl{width:150px;font-weight:700;color:var(--navy);font-size:15px}
+.bar .bt{flex:1;background:#e8eef3;border-radius:8px;height:22px;overflow:hidden}
+.bar .bf{height:100%;border-radius:8px;transition:width .3s}
+/* stepper */
+.stepper{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.stepper span{background:#e8eef3;color:#5b6770;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+.stepper span.on{background:#2a9d8f;color:#fff}
+.stepper span.done{background:#d9f2ee;color:#1d7a6f}
+table.dt{border-collapse:collapse;width:100%;max-width:380px;margin:8px 0}
+table.dt th{background:var(--navy);color:#fff;padding:6px 8px}
+table.dt td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:center;font-weight:700}
+table.dt tr.new td{background:#fff4dc}
+canvas.w{max-width:380px}
+/* hazards */
+.hz{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin:10px 0}
+.hz button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:12px;padding:6px;cursor:pointer;font-size:13px;font-weight:700;color:var(--navy)}
+.hz button svg{width:64px;height:64px;display:block;margin:0 auto 2px}
+.hz button.on{border-color:var(--orange);background:#fff4ee}
+.hinfo{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:100px}
+.hinfo .big{float:left;width:84px;height:84px;margin-right:12px}
+.hinfo .big svg{width:84px;height:84px}
+.ppe{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.ppe button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700}
+.ppe button.on{border-color:var(--teal);background:#d9f2ee}
+.cls{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.cls button{font-family:inherit;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;padding:6px 14px;cursor:pointer}
+.cls button.ok{background:#d9f2ee;border-color:#2a9d8f}
+.cls button.no{background:#fde0da;border-color:#e76f51}
+.ans{display:none;background:#f0f6fa;border-radius:8px;padding:10px 14px;margin-top:6px}
+.ans.open{display:block;animation:fade .3s}
+.flame{display:inline-block;font-size:54px;animation:flick .25s infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.12,1.2) rotate(3deg)}}
+@media(max-width:600px){.bar .bl{width:110px}}
+
+.elgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px;margin:8px 0 12px}
+.elgrid button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:4px 2px;cursor:pointer;color:var(--navy);line-height:1.1}
+.elgrid button b{display:block;font-size:17px}.elgrid button small{font-size:11px;color:var(--muted)}
+.elgrid button.on{border-color:var(--teal);background:#eaf7f5}
+.formula{font-size:30px;font-weight:700;color:var(--navy);min-height:42px;text-align:center}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.legend{margin:8px 0;font-size:14px}
+.lg{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:middle}
+.chip{display:inline-block;background:#d9f2ee;color:#1d7a6f;border-radius:999px;padding:3px 12px;font-weight:700;font-size:14px;margin:2px 4px 2px 0}
+.tlinfo p{margin:6px 0}
+canvas{max-width:100%;height:auto}
+.jars{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.jars span{width:34px;height:44px;border:3px solid #6b7c8a;border-top:none;border-radius:0 0 10px 10px;position:relative;background:#fff;overflow:hidden}
+.jars span i{position:absolute;left:0;right:0;bottom:0;background:#2a9d8f;transition:height .4s}
+.beq{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0;font-size:22px;font-weight:700;color:var(--navy)}
+.beq .cf{display:inline-flex;align-items:center;gap:4px;background:#f6f9fb;border:2px solid #cfd9e1;border-radius:12px;padding:4px 8px}
+.beq .cf button{width:28px;height:28px;border-radius:50%;border:2px solid var(--teal);background:#fff;font-size:18px;font-weight:800;cursor:pointer;line-height:1;padding:0}
+.beq .cf b{min-width:22px;text-align:center}
+.beq .op{color:var(--teal)}
+table.at{border-collapse:collapse;margin:8px 0}
+table.at th{background:var(--navy);color:#fff;padding:5px 12px}
+table.at td{padding:5px 12px;border-bottom:1px solid var(--line);text-align:center;font-weight:700}
+table.at tr.okr td{background:#d9f2ee}
+table.at tr.bad td{background:#fde0da}
+.pills button{border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700;color:var(--navy)}
+.pills button.on{border-color:var(--teal);background:#d9f2ee}
+table.t{display:block;overflow-x:auto;max-width:100%}
+.kv{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.kv span{background:#eef5f9;border-radius:8px;padding:3px 10px;font-weight:700;color:var(--navy);font-size:14px}
+.big2{font-size:22px;font-weight:700;color:var(--navy)}
+.sw{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.sw label{display:inline-flex;align-items:center;gap:4px;background:#f6f9fb;border:2px solid #cfd9e1;border-radius:10px;padding:4px 10px;font-weight:700;cursor:pointer}
+canvas.w2{max-width:380px}
+p.eq{font-size:17px;margin:8px 0;line-height:1.7}
+p.eq{font-size:17px;margin:8px 0;line-height:1.7}
+h4{margin:14px 0 4px;color:var(--navy);font-size:17px}
+</style>
+<link rel="stylesheet" href="../css/theme.css">
+<script src="../js/theme.js" defer></script>
+<script src="../js/prices.js"></script>
+<script src="../js/demo-saas.js?v=5"></script>
+<script src="../js/lab-boost.js?v=1"></script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="../index.html">Shikbo<span>Lab</span></a>
+  <a class="back" href="../index.html#chemistry">&larr; সব অধ্যায়</a>
+</header>
+<div class="wrap">
+  <div class="crumb">🧪 রসায়ন &rsaquo; বোনাস এক্সট্রা ল্যাব</div>
+  <h1 class="title">🥽 ল্যাব নিরাপত্তা ও যন্ত্রপাতি</h1>
+  <nav class="tabs"><a href="#note">📝 ধারণা</a><a href="#lab1">🔬 ল্যাব ১</a><a href="#lab2">🔬 ল্যাব ২</a><a href="#lab3">🎮 নিরাপত্তার খেলা</a><a href="#quiz">❓ কুইজ</a></nav>
+  <section class="panel" id="note">
+    <h2>📝 ধারণা</h2>
+    <div class="key">🎯 ল্যাবে কাজ শুরুর আগে দুটো জিনিস জানা সবচেয়ে জরুরি: <b>কোন যন্ত্র কী কাজে লাগে</b> এবং <b>কীভাবে নিরাপদ থাকতে হয়</b>।</div>
+    <ul>
+      <li>ল্যাবে সবসময় <b>সেফটি গগলস, ল্যাব কোট ও ঢাকা জুতা</b> পরো। লম্বা চুল বেঁধে রাখো।</li>
+      <li>ল্যাবে কিছু খাওয়া বা পান করা যাবে না। কোনো রাসায়নিক চেখে দেখা যাবে না।</li>
+      <li>গন্ধ নিতে হলে নাক কাছে না নিয়ে <b>হাত দিয়ে বাতাস টেনে</b> (wafting) নিতে হয়।</li>
+      <li>টেস্টটিউব গরম করার সময় মুখ <b>নিজের ও অন্যের দিক থেকে সরিয়ে</b> রাখো।</li>
+      <li>ত্বকে বা চোখে রাসায়নিক লাগলে সাথে সাথে <b>প্রচুর পানি দিয়ে অনেকক্ষণ</b> ধুয়ে শিক্ষককে জানাও।</li>
+      <li>আয়তন পড়ার সময় চোখ তরলের তলের সমান উচ্চতায় রেখে <b>মেনিসকাসের নিচের বিন্দু</b> পড়ো।</li>
+    </ul>
+    <div class="warn">ℹ️ এটি শেখার সিমুলেশন। আসল ল্যাবে সবসময় শিক্ষকের নির্দেশ ও তোমার প্রতিষ্ঠানের নিরাপত্তা নিয়ম মেনে চলবে।</div>
+  </section>
+
+  <section class="panel" id="lab1">
+    <h2>🔬 ল্যাব ১: যন্ত্রপাতি চেনো</h2>
+    <div class="say">👉 যেকোনো যন্ত্রের নামে চাপো। ছবি, কাজ আর কতটা সূক্ষ্ম তা দেখো।</div>
+    <div class="pills" id="a1p"></div>
+    <div class="row">
+      <div><canvas id="a1c" class="w" width="380" height="280"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="a1t"></div></div>
+    </div>
+    <h3>🎮 কোন কাজে কোন যন্ত্র?</h3>
+    <div class="tlinfo" id="a1q"></div><div class="cls" id="a1o"></div><div class="fb" id="a1f"></div><small id="a1sc"></small>
+  </section>
+
+  <section class="panel" id="lab2">
+    <h2>🔬 ল্যাব ২: মেনিসকাস পড়ো</h2>
+    <div class="say">👉 মাপন সিলিন্ডারে তরলের আয়তন কত? বাঁকা তলের <b>নিচের বিন্দু</b> দেখে উত্তর দাও।</div>
+    <canvas id="m2c" class="w" width="380" height="280"></canvas>
+    <div class="cls" id="m2o"></div><div class="fb" id="m2f"></div><small id="m2sc"></small>
+  </section>
+
+  <section class="panel" id="lab3">
+    <h2>🎮 নিরাপত্তার খেলা: কী করবে?</h2>
+    <div class="tlinfo" id="z3q"></div><div class="cls" id="z3o"></div><div class="fb" id="z3f"></div><small id="z3sc"></small>
+  </section>
+
+  <section class="panel" id="quiz">
+    <h2>❓ কুইজ (<span id="qn"></span>টি MCQ)</h2>
+    <div id="quizbox"></div>
+    <div class="score" id="score"></div>
+  </section>
+</div>
+<footer class="site">&copy; ShikboLab &mdash; 🥽 ল্যাব নিরাপত্তা ও যন্ত্রপাতি</footer>
+<script>
+var BN='০১২৩৪৫৬৭৮৯',SUB='₀₁₂₃₄₅₆₇₈₉',SUP='⁰¹²³⁴⁵⁶⁷⁸⁹';
+function bn(s){return String(s).replace(/[0-9]/g,function(d){return BN[d];});}
+function sub(n){return String(n).replace(/[0-9]/g,function(d){return SUB[d];});}
+function sup(n){return String(n).replace(/[0-9]/g,function(d){return SUP[d];});}
+function $(id){return document.getElementById(id);}
+function lerp(a,b,t){return a+(b-a)*t;}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function ease(t){t=clamp(t,0,1);return t*t*(3-2*t);}
+function rnd(a,b){return a+Math.random()*(b-a);}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function gcd(a,b){return b?gcd(b,a%b):a;}
+var ORG='#e9a23b',BLU='#2b6cb0',RED='#e63946',NAVY='#1f3a5f';
+function ctxOf(id){return $(id).getContext('2d');}
+function circ(x,c,px,py,r,fill,stroke,lw){x.beginPath();x.arc(px,py,r,0,7);if(fill){x.fillStyle=fill;x.fill();}if(stroke){x.strokeStyle=stroke;x.lineWidth=lw||1;x.stroke();}}
+function txt(x,s,px,py,font,col,al){x.font=font;x.fillStyle=col;x.textAlign=al||'center';x.textBaseline='middle';x.fillText(s,px,py);}
+
+
+function f(x,d){d=d===undefined?3:d;return bn(parseFloat(x.toFixed(d)));}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function mkGame(q,o,fb,sc,gen){
+  var ok=0,t=0,cur;
+  function nxt(){cur=gen();$(q).innerHTML=cur.q;$(o).innerHTML=cur.o.map(function(x,i){return '<button data-i="'+i+'">'+x.t+'</button>';}).join('');$(fb).textContent='';}
+  $(o).addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b||b.disabled)return;
+    var i=+b.getAttribute('data-i'),all=$(o).querySelectorAll('button');t++;
+    for(var k=0;k<all.length;k++){all[k].disabled=true;if(cur.o[k].ok)all[k].classList.add('ok');}
+    if(cur.o[i].ok){ok++;$(fb).textContent='✅ '+cur.good;}else{b.classList.add('no');$(fb).textContent='❌ '+cur.bad;}
+    $(sc).textContent='স্কোর: '+bn(ok)+'/'+bn(t);setTimeout(nxt,2000);
+  });
+  nxt();
+}
+function opts(correct,wrongs){var a=[{t:correct,ok:1}];wrongs.forEach(function(w){a.push({t:w,ok:0});});return shuffle(a);}
+var FR=0;
+function hx(c){return [parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16)];}
+function mixc(a,b,t){var A=hx(a),B=hx(b);return 'rgb('+Math.round(lerp(A[0],B[0],t))+','+Math.round(lerp(A[1],B[1],t))+','+Math.round(lerp(A[2],B[2],t))+')';}
+function stp(id,labs,k){$(id).innerHTML=labs.map(function(l,i){return '<span class="'+(i<=k?'on':'')+'">'+l+'</span>';}).join('');}
+function rp(i,a,b){return a+((i*7919+13)%1000)/1000*(b-a);}
+function wdots(x,pts,ph,col){var L=[],tot=0,i;for(i=0;i<pts.length-1;i++){var d=Math.hypot(pts[i+1][0]-pts[i][0],pts[i+1][1]-pts[i][1]);L.push(d);tot+=d;}
+  for(var k=0;k<8;k++){var s=((ph+k/8)%1)*tot,j=0;while(j<L.length-1&&s>L[j]){s-=L[j];j++;}var u=s/L[j];circ(x,0,lerp(pts[j][0],pts[j+1][0],u),lerp(pts[j][1],pts[j+1][1],u),3,col,null);}}
+function qgame(a,b,c,d,Q){mkGame(a,b,c,d,function(){var g=pick(Q);return {q:g[0],o:opts(g[1],g[2]),good:g[3],bad:g[3]};});}
+
+var DRAWS=[];
+var APP=[['বিকার','তরল রাখা, মেশানো ও গরম করার পাত্র।','গায়ের দাগ শুধু আনুমানিক, তাই সূক্ষ্ম মাপে ব্যবহার করা হয় না।'],
+ ['কনিক্যাল ফ্লাস্ক','টাইট্রেশনে ব্যবহার হয়। সরু গলার কারণে ঝাঁকালেও তরল ছিটকে পড়ে না।','আয়তন মাপার জন্য নয়।'],
+ ['টেস্টটিউব','অল্প পরিমাণ রাসায়নিক নিয়ে বিক্রিয়া দেখা ও গরম করা।','আয়তন মাপার জন্য নয়।'],
+ ['মাপন সিলিন্ডার','তরলের আয়তন মোটামুটি নির্ভুলভাবে মাপা।','বিকারের চেয়ে সূক্ষ্ম, কিন্তু পিপেট ও বুরেটের চেয়ে কম।'],
+ ['বুরেট','টাইট্রেশনে ফোঁটা ফোঁটা করে তরল ছাড়া এবং কত পড়ল তা মাপা।','খুব সূক্ষ্ম, সাধারণত ০.১ mL দাগ থাকে।'],
+ ['পিপেট','নির্দিষ্ট আয়তনের (যেমন ২৫ mL) তরল এক পাত্র থেকে অন্য পাত্রে নেওয়া।','খুব সূক্ষ্ম। মুখ দিয়ে নয়, পিপেট ফিলার দিয়ে টানতে হয়।'],
+ ['আয়তনিক ফ্লাস্ক','নির্দিষ্ট ঘনমাত্রার দ্রবণ তৈরি করা।','খুব সূক্ষ্ম, গলার একটি দাগ পর্যন্ত ভরতে হয়।'],
+ ['ফানেল','সরু মুখের পাত্রে তরল ঢালা এবং ফিল্টার কাগজ দিয়ে ছাঁকা।','মাপার যন্ত্র নয়।'],
+ ['বুনসেন বার্নার','গ্যাস জ্বালিয়ে তাপ দেওয়া। বায়ুর ছিদ্র খোলা থাকলে শিখা নীল ও বেশি গরম হয়।','হলুদ শিখায় কালি পড়ে, তাই গরম করতে নীল শিখা ব্যবহার করা হয়।'],
+ ['ওয়াচ গ্লাস','অল্প কঠিন পদার্থ রাখা, ওজন করা বা বিকার ঢেকে রাখা।','মাপার যন্ত্র নয়।']];
+var A1={k:0};
+$('a1p').innerHTML=APP.map(function(a,i){return '<button data-i="'+i+'">'+a[0]+'</button>';}).join('');
+function a1show(){var a=APP[A1.k];$('a1t').innerHTML='<b>'+a[0]+'</b><br><b>কাজ:</b> '+a[1]+'<br><b>সূক্ষ্মতা:</b> '+a[2];}
+$('a1p').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;A1.k=+b.getAttribute('data-i');a1show();};a1show();
+var LQ='rgba(90,170,230,.55)',GL='#5b6b7a';
+function gl(x){x.strokeStyle=GL;x.lineWidth=3;x.lineJoin='round';}
+var ADR=[function(x){x.fillStyle=LQ;x.fillRect(122,150,136,88);gl(x);x.beginPath();x.moveTo(112,60);x.lineTo(120,68);x.lineTo(120,240);x.lineTo(260,240);x.lineTo(260,60);x.stroke();for(var i=0;i<4;i++){x.fillStyle=GL;x.fillRect(120,210-i*36,14,2);}},
+ function(x){x.fillStyle=LQ;x.beginPath();x.moveTo(140,190);x.lineTo(240,190);x.lineTo(268,240);x.lineTo(112,240);x.fill();gl(x);x.beginPath();x.moveTo(172,50);x.lineTo(172,110);x.lineTo(112,240);x.lineTo(268,240);x.lineTo(208,110);x.lineTo(208,50);x.stroke();},
+ function(x){x.fillStyle=LQ;x.beginPath();x.moveTo(172,160);x.lineTo(208,160);x.lineTo(208,222);x.arc(190,222,18,0,Math.PI);x.fill();gl(x);x.beginPath();x.moveTo(172,40);x.lineTo(172,222);x.arc(190,222,18,Math.PI,0,true);x.lineTo(208,40);x.stroke();},
+ function(x){x.fillStyle=LQ;x.fillRect(172,130,36,108);gl(x);x.beginPath();x.moveTo(170,36);x.lineTo(170,240);x.lineTo(210,240);x.lineTo(210,36);x.stroke();x.fillStyle=GL;x.fillRect(150,240,80,8);for(var i=0;i<10;i++)x.fillRect(170,220-i*18,i%5===0?16:9,1.5);},
+ function(x){x.fillStyle=LQ;x.fillRect(183,70,14,140);gl(x);x.lineWidth=2;x.strokeRect(182,26,16,186);x.beginPath();x.moveTo(186,212);x.lineTo(188,250);x.lineTo(192,250);x.lineTo(194,212);x.stroke();x.fillStyle=RED;x.fillRect(176,220,28,6);x.fillStyle=GL;for(var i=0;i<12;i++)x.fillRect(198,34+i*15,i%2?5:9,1.2);},
+ function(x){x.fillStyle=LQ;x.beginPath();x.ellipse(190,140,16,36,0,0,7);x.fill();x.fillRect(187,60,6,180);gl(x);x.lineWidth=2;x.beginPath();x.moveTo(187,30);x.lineTo(187,106);x.moveTo(193,30);x.lineTo(193,106);x.moveTo(187,174);x.lineTo(189,252);x.moveTo(193,174);x.lineTo(191,252);x.stroke();x.beginPath();x.ellipse(190,140,16,36,0,0,7);x.stroke();x.strokeStyle=RED;x.beginPath();x.moveTo(182,70);x.lineTo(198,70);x.stroke();},
+ function(x){x.fillStyle=LQ;x.beginPath();x.arc(190,190,54,0,7);x.fill();x.fillRect(181,96,18,50);gl(x);x.beginPath();x.arc(190,190,56,-Math.PI/2+.18,Math.PI*1.5-.18);x.stroke();x.beginPath();x.moveTo(180,136);x.lineTo(180,40);x.moveTo(200,136);x.lineTo(200,40);x.stroke();x.strokeStyle=RED;x.lineWidth=2;x.beginPath();x.moveTo(174,96);x.lineTo(206,96);x.stroke();x.fillStyle=GL;x.fillRect(176,28,28,12);},
+ function(x){gl(x);x.beginPath();x.moveTo(120,60);x.lineTo(182,150);x.lineTo(182,240);x.lineTo(198,232);x.lineTo(198,150);x.lineTo(260,60);x.closePath();x.stroke();x.strokeStyle='#c9b98a';x.lineWidth=2;x.beginPath();x.moveTo(134,68);x.lineTo(190,146);x.lineTo(246,68);x.stroke();},
+ function(x){x.fillStyle='#7b8794';x.fillRect(178,130,24,100);x.fillRect(140,230,100,14);x.fillStyle='#55606c';x.fillRect(170,196,40,10);x.fillRect(100,234,40,6);var h=80+Math.sin(FR*.25)*5;x.globalAlpha=.6;x.fillStyle='#3d7de0';x.beginPath();x.moveTo(170,130);x.quadraticCurveTo(160,130-h*.5,190,130-h);x.quadraticCurveTo(220,130-h*.5,210,130);x.fill();x.globalAlpha=.85;x.fillStyle='#9fd0ff';x.beginPath();x.moveTo(180,130);x.quadraticCurveTo(176,110,190,130-h*.45);x.quadraticCurveTo(204,110,200,130);x.fill();x.globalAlpha=1;},
+ function(x){gl(x);x.beginPath();x.moveTo(110,150);x.quadraticCurveTo(190,220,270,150);x.stroke();x.fillStyle='#f1efe6';x.beginPath();x.ellipse(190,176,26,8,0,0,7);x.fill();x.strokeStyle='#bbb';x.lineWidth=1;x.stroke();}];
+DRAWS.push(function(){var x=ctxOf('a1c');x.clearRect(0,0,380,280);ADR[A1.k](x);txt(x,APP[A1.k][0],190,268,'bold 13px Hind Siliguri',NAVY);});
+qgame('a1q','a1o','a1f','a1sc',[['টাইট্রেশনে ফোঁটা ফোঁটা করে ক্ষার যোগ করতে কোন যন্ত্র লাগে?','বুরেট',['বিকার','ফানেল','ওয়াচ গ্লাস'],'বুরেটের ট্যাপ ঘুরিয়ে ফোঁটা নিয়ন্ত্রণ করা যায়।'],
+ ['ঠিক ২৫ mL দ্রবণ এক পাত্র থেকে অন্য পাত্রে নিতে কোনটি সবচেয়ে ভালো?','পিপেট',['বিকার','টেস্টটিউব','কনিক্যাল ফ্লাস্ক'],'পিপেট নির্দিষ্ট আয়তন সূক্ষ্মভাবে দেয়।'],
+ ['০.১ M দ্রবণ ঠিক ২৫০ mL বানাতে কোন পাত্র লাগে?','আয়তনিক ফ্লাস্ক',['বিকার','মাপন সিলিন্ডার','টেস্টটিউব'],'আয়তনিক ফ্লাস্কের দাগ পর্যন্ত ভরলে আয়তন নির্ভুল হয়।'],
+ ['কাদা-পানি ছাঁকতে ফিল্টার কাগজ কোনটিতে বসানো হয়?','ফানেল',['বুরেট','পিপেট','ওয়াচ গ্লাস'],'ফানেলে ভাঁজ করা ফিল্টার কাগজ বসিয়ে ছাঁকা হয়।'],
+ ['প্রায় ৪০ mL পানি দ্রুত মেপে নিতে কোনটি ব্যবহার করবে?','মাপন সিলিন্ডার',['ওয়াচ গ্লাস','টেস্টটিউব','ফানেল'],'মোটামুটি নির্ভুল ও দ্রুত মাপের জন্য মাপন সিলিন্ডার।'],
+ ['অল্প রাসায়নিক নিয়ে শিখায় গরম করতে কোনটি ব্যবহার হয়?','টেস্টটিউব',['আয়তনিক ফ্লাস্ক','বুরেট','পিপেট'],'টেস্টটিউব হোল্ডারে ধরে গরম করা হয়। মাপার যন্ত্র কখনো গরম করা হয় না।']]);
+var M2={v:0,ok:0,n:0,lock:0,base:20};
+function m2new(){M2.base=pick([10,20,30,40]);M2.v=M2.base+pick([2,3,4,5,6,7,8])+pick([0,0.5]);M2.lock=0;var c=M2.v,o=shuffle([c,c+1,c-1,c+0.5]);
+  $('m2o').innerHTML=o.map(function(v){return '<button data-v="'+v+'">'+f(v,1)+' mL</button>';}).join('');$('m2f').textContent='';}
+$('m2o').onclick=function(ev){var b=ev.target.closest('button');if(!b||M2.lock)return;M2.lock=1;M2.n++;var v=+b.getAttribute('data-v');
+  [].forEach.call($('m2o').children,function(c){if(+c.getAttribute('data-v')===M2.v)c.classList.add('ok');});
+  if(v===M2.v){M2.ok++;$('m2f').textContent='✅ ঠিক! মেনিসকাসের নিচের বিন্দু '+f(M2.v,1)+' mL দাগে।';}else{b.classList.add('no');$('m2f').textContent='❌ সঠিক পাঠ '+f(M2.v,1)+' mL। কিনারা নয়, বাঁকা তলের নিচের বিন্দু দেখো।';}
+  $('m2sc').textContent='স্কোর: '+bn(M2.ok)+'/'+bn(M2.n);setTimeout(m2new,2400);};
+m2new();
+DRAWS.push(function(){var x=ctxOf('m2c'),i;x.clearRect(0,0,380,280);var Y=function(v){return 250-(v-M2.base)*22;},ly=Y(M2.v);
+  x.fillStyle=LQ;x.beginPath();x.moveTo(140,ly-9);x.quadraticCurveTo(190,ly+9,240,ly-9);x.lineTo(240,270);x.lineTo(140,270);x.fill();
+  gl(x);x.beginPath();x.moveTo(140,10);x.lineTo(140,270);x.lineTo(240,270);x.lineTo(240,10);x.stroke();
+  for(i=0;i<=10;i++){var yy=Y(M2.base+i);if(yy<16)break;x.fillStyle=GL;x.fillRect(240,yy-1,i%5===0?22:12,2);if(i%5===0)txt(x,bn(M2.base+i),278,yy,'bold 13px Hind Siliguri',NAVY);}
+  x.strokeStyle=RED;x.setLineDash([5,4]);x.lineWidth=1.5;x.beginPath();x.moveTo(40,ly);x.lineTo(135,ly);x.stroke();x.setLineDash([]);txt(x,'👁 চোখ',60,ly-14,'bold 12px Hind Siliguri',RED);
+  txt(x,'mL',300,20,'bold 12px Hind Siliguri',NAVY);txt(x,'প্রতি ছোট দাগ = ১ mL',70,266,'10px Hind Siliguri','#456');
+});
+qgame('z3q','z3o','z3f','z3sc',[['গাঢ় H₂SO₄ লঘু করতে হবে। কী করবে?','পানিতে ধীরে ধীরে এসিড ঢালব',['এসিডে দ্রুত পানি ঢালব','দুটো একসাথে ঢালব','গরম পানিতে এসিড ঢালব'],'এসিডে পানি দিলে হঠাৎ প্রচুর তাপে এসিড ছিটকে উঠতে পারে।'],
+ ['একটি অজানা গ্যাসের গন্ধ নিতে হবে। কী করবে?','হাত দিয়ে বাতাস নাকের দিকে টেনে নেব',['নাক পাত্রের মুখে লাগিয়ে শুঁকব','জোরে শ্বাস নেব','চেখে দেখব'],'সরাসরি শুঁকলে বিষাক্ত গ্যাস বেশি পরিমাণে ঢুকতে পারে।'],
+ ['হাতে এসিড পড়ে গেছে। প্রথমে কী করবে?','সাথে সাথে প্রচুর পানি দিয়ে অনেকক্ষণ ধোব',['কাপড় দিয়ে মুছে ফেলব','ক্ষার ঢেলে দেব','অপেক্ষা করব'],'আগে প্রচুর পানি দিয়ে ধুয়ে রাসায়নিক সরাতে হয়, তারপর শিক্ষককে জানাতে হয়।'],
+ ['টেস্টটিউবে তরল গরম করছ। মুখটা কোন দিকে থাকবে?','নিজের ও অন্যদের থেকে দূরে',['নিজের দিকে','পাশের বন্ধুর দিকে','সোজা ওপরে চোখের নিচে'],'হঠাৎ ফুটে তরল ছিটকে বের হতে পারে।'],
+ ['পিপেটে দ্রবণ কীভাবে টানবে?','পিপেট ফিলার দিয়ে',['মুখ দিয়ে টেনে','বিকার কাত করে','হাত দিয়ে চেপে'],'মুখ দিয়ে টানলে রাসায়নিক মুখে চলে যেতে পারে।'],
+ ['কাচের বিকার ভেঙে গেছে। কী করবে?','শিক্ষককে জানাব, ঝাড়ু দিয়ে তুলে ভাঙা কাচের আলাদা পাত্রে ফেলব',['খালি হাতে তুলে ফেলব','সাধারণ ময়লার ঝুড়িতে ফেলব','ফেলে রাখব'],'ভাঙা কাচ খালি হাতে ধরলে কেটে যায়, আর সাধারণ ঝুড়িতে ফেললে অন্যরা আহত হতে পারে।'],
+ ['বুনসেন বার্নারের পাশে ইথানলের বোতল খোলা। কী করবে?','বোতল বন্ধ করে শিখা থেকে দূরে সরাব',['কিছু করব না','বোতলটা শিখার আরও কাছে রাখব','শিখা বাড়িয়ে দেব'],'ইথানল দাহ্য, এর বাষ্পে সহজে আগুন ধরে।'],
+ ['পরীক্ষা শেষে বেঁচে যাওয়া রাসায়নিক কী করবে?','শিক্ষকের দেখানো বর্জ্য পাত্রে ফেলব',['মূল বোতলে ফেরত ঢালব','বেসিনে ঢেলে দেব','বাড়ি নিয়ে যাব'],'বোতলে ফেরত দিলে পুরো বোতল দূষিত হতে পারে, আর অনেক রাসায়নিক বেসিনে ফেলা নিরাপদ নয়।']]);
+var QUIZ=[
+ {q:'ল্যাবে চোখ রক্ষায় কী পরতে হয়?',o:['সেফটি গগলস','সানগ্লাস','টুপি','হেডফোন'],a:0,e:'গগলস চোখকে ছিটকে আসা রাসায়নিক থেকে বাঁচায়।'},
+ {q:'কোনটি আয়তন মাপার সবচেয়ে কম সূক্ষ্ম যন্ত্র?',o:['বিকার','বুরেট','পিপেট','আয়তনিক ফ্লাস্ক'],a:0,e:'বিকারের দাগ শুধু আনুমানিক।'},
+ {q:'পানির মতো তরলের আয়তন পড়ার সময় কোন বিন্দু দেখতে হয়?',o:['মেনিসকাসের নিচের বিন্দু','মেনিসকাসের ওপরের কিনারা','পাত্রের মুখ','পাত্রের তলা'],a:0,e:'চোখ তরলের তলের সমান উচ্চতায় রেখে নিচের বিন্দু পড়তে হয়।'},
+ {q:'বুনসেন বার্নারের কোন শিখা বেশি গরম ও পরিষ্কার?',o:['নীল শিখা','হলুদ শিখা','লাল শিখা','ধোঁয়াটে শিখা'],a:0,e:'বায়ুর ছিদ্র খোলা থাকলে গ্যাস সম্পূর্ণ পোড়ে, শিখা নীল ও বেশি গরম হয়।'},
+ {q:'ল্যাবে কোনটি করা নিষেধ?',o:['খাবার খাওয়া','গগলস পরা','চুল বেঁধে রাখা','হাত ধোয়া'],a:0,e:'খাবারের সাথে রাসায়নিক শরীরে ঢুকতে পারে।'},
+ {q:'টাইট্রেশনে কনিক্যাল ফ্লাস্ক ব্যবহারের সুবিধা কী?',o:['ঝাঁকালেও তরল ছিটকে পড়ে না','আয়তন খুব সূক্ষ্ম মাপা যায়','তরল দ্রুত ঠাণ্ডা হয়','রং বদলায় না'],a:0,e:'ঢালু দেয়াল ও সরু গলার কারণে ঘুরিয়ে মেশানো সহজ।'},
+ {q:'চোখে রাসায়নিক গেলে প্রথমে কী করতে হয়?',o:['প্রচুর পানি দিয়ে অনেকক্ষণ ধোয়া','চোখ ঘষা','চোখ বন্ধ করে বসে থাকা','ক্ষার দেওয়া'],a:0,e:'সাথে সাথে পানি দিয়ে ধুয়ে শিক্ষককে জানাতে হয় ও চিকিৎসা নিতে হয়।'},
+ {q:'কোনটি কখনো সরাসরি শিখায় গরম করা উচিত নয়?',o:['আয়তনিক ফ্লাস্ক','টেস্টটিউব','বিকার (তারজালির ওপর)','কনিক্যাল ফ্লাস্ক (তারজালির ওপর)'],a:0,e:'গরম করলে মাপার যন্ত্রের কাচ প্রসারিত হয়ে মাপ নষ্ট হয়।'}
+];
+
+var answered=0,correct=0;
+(function(){
+  $('qn').textContent=bn(QUIZ.length);
+  var box=$('quizbox');
+  QUIZ.forEach(function(item,qi){
+    var div=document.createElement('div');div.className='q';
+    var html='<p>'+bn(qi+1)+'. '+item.q+'</p>';
+    var ord=item.o.map(function(_,i){return i;});
+    if(!item.fix)ord=shuffle(ord);
+    item.ord=ord;item.a2=ord.indexOf(item.a);
+    ord.forEach(function(oi,pos){html+='<button class="opt" data-q="'+qi+'" data-o="'+pos+'">'+item.o[oi]+'</button>';});
+    html+='<div class="exp" id="exp'+qi+'">💡 '+item.e+'</div>';
+    div.innerHTML=html;box.appendChild(div);
+  });
+  box.addEventListener('click',function(ev){
+    var b=ev.target.closest('.opt');if(!b||b.parentNode.getAttribute('data-done'))return;
+    var qi=+b.getAttribute('data-q'),oi=+b.getAttribute('data-o');
+    b.parentNode.setAttribute('data-done','1');
+    var btns=b.parentNode.querySelectorAll('.opt');btns[QUIZ[qi].a2].classList.add('ok');
+    if(oi===QUIZ[qi].a2)correct++;else b.classList.add('no');
+    $('exp'+qi).style.display='block';answered++;
+    if(answered===QUIZ.length)$('score').textContent='🎉 তোমার স্কোর: '+bn(correct)+' / '+bn(QUIZ.length);
+  });
+})();
+
+function frame(){FR++;for(var i=0;i<DRAWS.length;i++)DRAWS[i]();requestAnimationFrame(frame);}
+frame();
+</script>
+</body>
+</html>

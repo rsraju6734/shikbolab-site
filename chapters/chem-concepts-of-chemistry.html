@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>রসায়নের ধারণা (অধ্যায় ১) - ShikboLab</title>
+<meta name="description" content="রসায়নের ধারণা (অধ্যায় ১) — ShikboLab এ বাংলায় ইন্টারঅ্যাকটিভ ব্যাখ্যা, ভার্চুয়াল ল্যাব ও কুইজ।">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.tabs{flex-wrap:wrap}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.row>.grow{flex:1;min-width:260px}
+.say{background:#fff4dc;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600}
+.warn{background:#fdeceb;border-left:5px solid #e76f51;border-radius:8px;padding:10px 14px;margin:12px 0}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ctl label{font-weight:700;color:var(--navy)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fb{font-weight:700;margin-top:6px;min-height:26px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.pills button{font-family:inherit}
+/* timeline */
+.tl{display:flex;gap:6px;overflow-x:auto;padding:10px 2px 14px;margin:8px 0}
+.tl button{flex:0 0 auto;min-width:112px;font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:12px;padding:8px 10px;cursor:pointer;text-align:center;position:relative;transition:transform .2s,border-color .2s,background .2s}
+.tl button b{display:block;color:var(--navy);font-size:15px}
+.tl button small{color:var(--muted);font-size:13px}
+.tl button .em{font-size:26px;display:block}
+.tl button.on{border-color:var(--teal);background:#eaf7f5;transform:translateY(-4px)}
+.tlinfo{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:96px;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.flow span{background:#fff;border:2px solid var(--teal);border-radius:10px;padding:6px 12px;font-weight:700;color:var(--navy);opacity:.25;transition:opacity .5s,transform .5s;transform:scale(.9)}
+.flow span.show{opacity:1;transform:none}
+.flow i{font-style:normal;color:var(--teal);font-weight:800}
+/* bars */
+.bar{display:flex;align-items:center;gap:8px;margin:6px 0}
+.bar .bl{width:150px;font-weight:700;color:var(--navy);font-size:15px}
+.bar .bt{flex:1;background:#e8eef3;border-radius:8px;height:22px;overflow:hidden}
+.bar .bf{height:100%;border-radius:8px;transition:width .3s}
+/* stepper */
+.stepper{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.stepper span{background:#e8eef3;color:#5b6770;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+.stepper span.on{background:#2a9d8f;color:#fff}
+.stepper span.done{background:#d9f2ee;color:#1d7a6f}
+table.dt{border-collapse:collapse;width:100%;max-width:380px;margin:8px 0}
+table.dt th{background:var(--navy);color:#fff;padding:6px 8px}
+table.dt td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:center;font-weight:700}
+table.dt tr.new td{background:#fff4dc}
+canvas.w{max-width:380px}
+/* hazards */
+.hz{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin:10px 0}
+.hz button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:12px;padding:6px;cursor:pointer;font-size:13px;font-weight:700;color:var(--navy)}
+.hz button svg{width:64px;height:64px;display:block;margin:0 auto 2px}
+.hz button.on{border-color:var(--orange);background:#fff4ee}
+.hinfo{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:100px}
+.hinfo .big{float:left;width:84px;height:84px;margin-right:12px}
+.hinfo .big svg{width:84px;height:84px}
+.ppe{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.ppe button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700}
+.ppe button.on{border-color:var(--teal);background:#d9f2ee}
+.cls{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.cls button{font-family:inherit;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;padding:6px 14px;cursor:pointer}
+.cls button.ok{background:#d9f2ee;border-color:#2a9d8f}
+.cls button.no{background:#fde0da;border-color:#e76f51}
+.ans{display:none;background:#f0f6fa;border-radius:8px;padding:10px 14px;margin-top:6px}
+.ans.open{display:block;animation:fade .3s}
+.flame{display:inline-block;font-size:54px;animation:flick .25s infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.12,1.2) rotate(3deg)}}
+@media(max-width:600px){.bar .bl{width:110px}}
+</style>
+<link rel="stylesheet" href="../css/theme.css">
+<script src="../js/theme.js" defer></script>
+<script src="../js/prices.js"></script>
+<script src="../js/demo-saas.js?v=5"></script>
+<script src="../js/lab-boost.js?v=1"></script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="../index.html">Shikbo<span>Lab</span></a>
+  <a class="back" href="../index.html#chemistry">&larr; সব অধ্যায়</a>
+</header>
+<div class="wrap">
+  <div class="crumb">🧪 রসায়ন &rsaquo; প্রথম অধ্যায় (নবম-দশম শ্রেণি)</div>
+  <h1 class="title">🧪 রসায়নের ধারণা (The Concepts of Chemistry)</h1>
+  <nav class="tabs"><a href="#note">📝 নোট</a><a href="#lab1">📜 ল্যাব ১</a><a href="#lab2">🥭 ল্যাব ২</a><a href="#lab3">🔬 ল্যাব ৩</a><a href="#lab4">⚠️ ল্যাব ৪</a><a href="#lab5">🔗 ল্যাব ৫</a><a href="#quiz">❓ কুইজ</a><a href="#qa">✍️ প্রশ্ন-উত্তর</a></nav>
+
+  <!-- ================= নোট ================= -->
+  <section class="panel" id="note">
+    <h2>📝 সহজ নোট</h2>
+    <div class="key">🎯 <b>এই অধ্যায় শেষে তুমি পারবে:</b> রসায়ন কী বলতে, রসায়নের ক্ষেত্র চিনতে, অন্য বিজ্ঞানের সাথে সম্পর্ক বলতে, রসায়ন পড়ার গুরুত্ব বুঝতে, গবেষণার ধাপ জানতে এবং ল্যাবে সতর্ক থাকতে।</div>
+    <div class="warn">ℹ️ নোটটি বইয়ের (১ম অধ্যায়ের) ক্রম মেনে সহজ ভাষায় লেখা। পরীক্ষায় লিখতে হলে বইয়ের ভাষা ও শিক্ষকের নির্দেশ মেনে লিখবে।</div>
+
+    <h3>১.১ রসায়ন পরিচিতি ⭐⭐⭐</h3>
+    <div class="key"><b>রসায়ন কী?</b> বিজ্ঞানের যে শাখায় পদার্থের <b>গঠন</b>, পদার্থের <b>ধর্ম</b> এবং পদার্থের <b>পারস্পরিক রূপান্তর</b> নিয়ে আলোচনা করা হয় তাকে রসায়ন বলে।</div>
+    <ul>
+      <li>রসায়নে মৌল, যৌগ ও এদের সংযুক্তি, গঠন, ব্যবহার এবং রূপান্তরের সময় তাপ শক্তির শোষণ বা নিঃসরণ আলোচনা করা হয়।</li>
+      <li><b>ইতিহাস:</b> প্রাগৈতিহাসিক যুগ থেকেই মানুষ না জেনে রসায়ন ব্যবহার করেছে। প্রথম ব্যবহৃত ধাতু তামা। খ্রিস্টপূর্ব ৩৫০০ অব্দের দিকে তামা ও টিন গলিয়ে সংকর ধাতু <b>ব্রোঞ্জ</b> তৈরি হয়।</li>
+      <li>খ্রিস্টপূর্ব ৩৮০ অব্দের দিকে গ্রিক দার্শনিক <b>ডেমোক্রিটাস</b> বললেন, পদার্থকে ভাঙতে থাকলে শেষে এমন এক ক্ষুদ্র কণা পাওয়া যাবে যাকে আর ভাঙা যাবে না। নাম দিলেন <b>অ্যাটম</b> (indivisible বা অবিভাজ্য)। প্রায় একই সময়ে ভারতীয় কণাদও এমন ধারণা দেন। তবে এর কোনো পরীক্ষামূলক প্রমাণ ছিল না।</li>
+      <li>অ্যারিস্টটল ভাবতেন সব পদার্থ মাটি, আগুন, পানি ও বাতাস দিয়ে তৈরি। এই ধারণা অনেকদিন চলেছিল।</li>
+      <li><b>Chemistry শব্দের উৎপত্তি:</b> আরব মুসলিম দার্শনিকরা সস্তা ধাতু থেকে সোনা বানাতে চেষ্টা করতেন, এর নাম <b>আলকেমি</b> (গবেষকরা আলকেমিস্ট)। আলকেমি এসেছে আরবি <b>আল-কিমিয়া</b> থেকে। Chemi শব্দ থেকে Chemistry, বাংলায় <b>রসায়ন</b>।</li>
+      <li><b>জাবির-ইবনে-হাইয়ান</b> গবেষণাগারে রসায়ন চর্চা করেন, তাঁকে অনেক সময় রসায়নের জনক বলা হয়। আর <b>অ্যান্টনি ল্যাভয়সিয়ে</b> (সাথে রবার্ট বয়েল, ফ্রান্সিস বেকন, জন ডাল্টন) রসায়নের প্রকৃত রহস্য উন্মোচন করেন। ল্যাভয়সিয়েকে <b>আধুনিক রসায়নের জনক</b> বলা হয়।</li>
+    </ul>
+
+    <h3>১.২ রসায়নের পরিধি বা ক্ষেত্রসমূহ ⭐⭐</h3>
+    <p>যেখানে পদার্থ আছে সেখানেই রসায়ন আছে। আমাদের শরীর, বায়ু, পানি, খাবার, জামা-কাপড়, সাবান, ওষুধ, সার, কীটনাশক, পেট্রোল-ডিজেল সবই রসায়নের অংশ। প্রতিটি দেহ যেন একেকটি বড় রাসায়নিক কারখানা।</p>
+    <table class="t">
+      <tr><th>বস্তু</th><th>উপাদান</th><th>রসায়ন কোথায়?</th></tr>
+      <tr><td>বায়ু</td><td>প্রধানত নাইট্রোজেন ও অক্সিজেন</td><td>শ্বাসে নেওয়া অক্সিজেন শরীরে খাদ্যের সাথে বিক্রিয়া করে শক্তি দেয়।</td></tr>
+      <tr><td>খাবারের পানি</td><td>পানিসহ বিভিন্ন খনিজ লবণ</td><td>ক্যালসিয়াম, ম্যাগনেসিয়াম প্রভৃতির লবণ শরীরের জন্য উপকারী।</td></tr>
+      <tr><td>সার</td><td>নাইট্রোজেন, অক্সিজেন, কার্বন, ফসফরাস, ক্যালসিয়াম, ম্যাগনেসিয়াম, পটাশিয়াম</td><td>উদ্ভিদ মাটি থেকে এসব মৌল নিয়ে পুষ্টি পায়।</td></tr>
+      <tr><td>কাগজ</td><td>সেলুলোজ</td><td>বাঁশ, আখের ছোবড়া থেকে সেলুলোজ নিয়ে রাসায়নিক বিক্রিয়ায় কাগজ হয়।</td></tr>
+    </table>
+
+    <h3>১.৩ রসায়নের সাথে অন্য বিজ্ঞানের সম্পর্ক ⭐⭐</h3>
+    <ul>
+      <li><b>জীববিজ্ঞান:</b> সালোকসংশ্লেষণে CO₂ ও পানি থেকে গ্লুকোজ তৈরি একটি রাসায়নিক বিক্রিয়া। আমাদের হজমও রাসায়নিক বিক্রিয়া।</li>
+      <li><b>পদার্থবিজ্ঞান:</b> ব্যাটারি, পেট্রোল, প্রাকৃতিক গ্যাস, কয়লা পুড়িয়ে শক্তি পাওয়া রসায়নের অবদান। নিউক্লিয়ার ফিজিক্স ও নিউক্লিয়ার কেমিস্ট্রি একই সূত্রে বাঁধা।</li>
+      <li><b>গণিত:</b> দ্রবণের ঘনমাত্রা, যৌগের সংযুক্তি ও বিক্রিয়ার হার নির্ণয়ে গণনা লাগে।</li>
+    </ul>
+
+    <h3>১.৪ রসায়ন পাঠের গুরুত্ব ⭐⭐</h3>
+    <ul>
+      <li>ব্রাশ, পেস্ট, সাবান, শ্যাম্পু, চা-বিস্কুট সব রসায়নের অবদান।</li>
+      <li>কীটনাশক ফসল বাঁচায়, প্রিজারভেটিভ খাবার সংরক্ষণ করে। ওষুধ আবিষ্কার করে কলেরা, টাইফয়েড, ক্যান্সারের মতো রোগ থেকে মানুষ রক্ষা পাচ্ছে।</li>
+      <li><b>ক্ষতির দিক:</b> কারখানার বর্জ্য (কার্বন ডাই-অক্সাইড, কার্বন মনোক্সাইড, সালফার ডাই-অক্সাইড, ভারী ধাতু যেমন সীসা ও আর্সেনিক) পরিবেশ নষ্ট করে। অতিরিক্ত কীটনাশক বাতাস ও পানি দূষিত করে, মাছ ও উদ্ভিদের ভেতর দিয়ে আমাদের শরীরেও ঢোকে।</li>
+      <li>তাই রসায়ন পড়লে বোঝা যায় কোন ব্যবহার উপকারী আর কোনটা ক্ষতিকর।</li>
+    </ul>
+
+    <h3>১.৫ রসায়নে অনুসন্ধান বা গবেষণা প্রক্রিয়া ⭐⭐⭐</h3>
+    <div class="key">সঠিক পদ্ধতিতে পরীক্ষা-নিরীক্ষার মাধ্যমে অজানা কিছু জানার নামই <b>গবেষণা</b>। যিনি গবেষণা করেন তিনিই বিজ্ঞানী।</div>
+    <p>ধাপগুলো (বইয়ের ফ্লো চার্ট):</p>
+    <p><b>বিষয়বস্তু নির্ধারণ</b> → <b>বই বা পূর্বের গবেষণাপত্রের সাহায্যে ধারণা নেওয়া</b> → <b>প্রয়োজনীয় বস্তু, যন্ত্রপাতি ও পরীক্ষণ প্রণালি নির্ধারণ</b> → <b>পরীক্ষণ</b> → <b>তথ্য সংগ্রহ ও বিশ্লেষণ</b> → <b>ফলাফল ও ফলাফল নিয়ে আলোচনা</b></p>
+    <p>বইয়ের উদাহরণ: অ্যামোনিয়াম ক্লোরাইড পানিতে দ্রবীভূত করলে তাপ উৎপন্ন হবে না শোষিত হবে? (ল্যাব ৩-এ নিজে করে দেখো।)</p>
+
+    <h3>১.৬ ল্যাবের নিরাপত্তা ⭐⭐⭐</h3>
+    <ul>
+      <li>প্রায় প্রতিটি রাসায়নিক দ্রব্য কম-বেশি ক্ষতিকর। কোনোটি বিস্ফোরক, কোনোটি দাহ্য, কোনোটি শরীরের ক্ষতি করে, কোনোটি পরিবেশের।</li>
+      <li><b>নিরাপদ পোশাক:</b> অ্যাপ্রন (সাধারণত সাদা, হাঁটুর নিচ পর্যন্ত), হ্যান্ড গ্লাভস, চোখের জন্য সেফটি গগলস, আর মাস্ক।</li>
+      <li>রাসায়নিক দ্রব্যের বোতলে <b>সংকেত চিহ্ন</b> থাকে (জাতিসংঘের GHS নিয়ম)। চিহ্ন দেখে ঝুঁকি বোঝা যায়। ৮টি চিহ্ন ল্যাব ৪-এ শিখবে।</li>
+    </ul>
+  </section>
+
+  <!-- ================= ল্যাব ১ ================= -->
+  <section class="panel" id="lab1">
+    <h2>📜 ল্যাব ১: রসায়নের যাত্রা (টাইমলাইন)</h2>
+    <div class="say">👉 নিচের কার্ডে ক্লিক করো, অথবা "▶ অটো প্লে" চাপো। প্রতিটা ধাপে রসায়ন কীভাবে এগোল দেখবে।</div>
+    <div class="tl" id="tl"></div>
+    <div class="tlinfo" id="tlinfo"></div>
+    <div class="btnrow"><button class="btn" id="tlplay">▶ অটো প্লে</button><button class="btn alt" id="tlprev">← আগে</button><button class="btn alt" id="tlnext">পরে →</button></div>
+    <h3>Chemistry শব্দটা এল কোথা থেকে?</h3>
+    <div class="flow" id="wflow"><span>আল-কিমিয়া (আরবি)</span><i>→</i><span>কিমি / Chemi</span><i>→</i><span>Chemistry</span><i>→</i><span>রসায়ন</span></div>
+    <button class="btn" id="wplay">▶ দেখাও</button>
+  </section>
+
+  <!-- ================= ল্যাব ২ ================= -->
+  <section class="panel" id="lab2">
+    <h2>🥭 ল্যাব ২: দৈনন্দিন জীবনে রসায়ন</h2>
+    <h3>ক) কাঁচা আম টক, পাকা আম মিষ্টি কেন?</h3>
+    <div class="row">
+      <div><svg id="mango" viewBox="0 0 200 160" width="260" height="208">
+        <path d="M100 22 C98 12 104 6 112 4" stroke="#6b4a2b" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M108 14 C130 0 156 8 160 24 C140 28 118 26 108 14Z" fill="#3f8f3a"/>
+        <path id="mg" d="M100 22 C150 20 184 70 162 112 C146 142 100 152 68 132 C28 108 38 42 100 22Z" fill="#6faa3c" stroke="#00000022" stroke-width="2"/>
+        <ellipse cx="78" cy="62" rx="14" ry="22" fill="#ffffff44" transform="rotate(25 78 62)"/>
+      </svg></div>
+      <div class="grow">
+        <div class="ctl"><label>আমের পাকা অবস্থা:</label><input type="range" id="rip" min="0" max="100" value="0" style="flex:1;min-width:140px"><b id="ripv">কাঁচা</b></div>
+        <div class="bar"><div class="bl">জৈব এসিড (টক)</div><div class="bt"><div class="bf" id="bAcid" style="background:#e76f51"></div></div></div>
+        <div class="bar"><div class="bl">গ্লুকোজ ও ফ্রুক্টোজ</div><div class="bt"><div class="bf" id="bSug" style="background:#e9a23b"></div></div></div>
+        <div class="say" id="mtaste"></div>
+        <small>🔎 বার দুটি শুধু ধারণা দেওয়ার জন্য, আসল পরিমাণ নয়।</small>
+      </div>
+    </div>
+
+    <h3>খ) পেটের এসিডিটি ও এন্টাসিড</h3>
+    <p>পাকস্থলীতে অতিরিক্ত হাইড্রোক্লোরিক এসিড তৈরি হলে এসিডিটি হয়। এন্টাসিড (যেমন অ্যালুমিনিয়াম হাইড্রোক্সাইড, ম্যাগনেসিয়াম হাইড্রোক্সাইড) ওই এসিডকে <b>প্রশমিত</b> করে।</p>
+    <div class="row">
+      <div><canvas id="stom" class="w" width="380" height="260"></canvas></div>
+      <div class="grow">
+        <div class="btnrow"><button class="btn" id="aAdd">💊 এন্টাসিড খাও</button><button class="btn alt" id="aReset">↻ আবার</button></div>
+        <div class="bar"><div class="bl">লাল H⁺ (অম্ল)</div><div class="bt"><div class="bf" id="bH" style="background:#e63946"></div></div></div>
+        <div class="say" id="atxt">পাকস্থলীতে অনেক লাল H⁺ ঘুরছে। এটাই এসিডিটি।</div>
+        <div class="eqb" style="background:#eaf7f5;border-radius:10px;padding:8px;text-align:center;font-weight:700;color:var(--navy)">H⁺ + OH⁻ → H₂O (পানি)</div>
+        <small>⚠️ ডোজের বেশি খেলে ক্ষারের কণা (নীল OH⁻) বেশি পড়ে থাকে। তাই ওষুধ ডাক্তার বা ফার্মাসিস্টের কথামতো খাওয়াই ভালো।</small>
+      </div>
+    </div>
+
+    <h3>গ) জ্বালানি পোড়ালে কী হয়?</h3>
+    <p>কেরোসিন, প্রাকৃতিক গ্যাস, মোম এগুলোর মূল উপাদান <b>হাইড্রোকার্বন</b>। পুড়লে বাতাসের অক্সিজেনের সাথে বিক্রিয়া হয়।</p>
+    <div class="btnrow"><button class="btn" id="burn">🕯️ জ্বালাও</button><button class="btn alt" id="burnoff">নেভাও</button></div>
+    <div id="burnbox" class="tlinfo" style="margin-top:10px"><span id="flm" style="display:none" class="flame">🔥</span> <span id="btxt">জ্বালাও বাটনে চাপ দাও।</span></div>
+  </section>
+
+  <!-- ================= ল্যাব ৩ ================= -->
+  <section class="panel" id="lab3">
+    <h2>🔬 ল্যাব ৩: বিজ্ঞানীর মতো গবেষণা করো</h2>
+    <div class="say">❓ <b>গবেষণার প্রশ্ন:</b> অ্যামোনিয়াম ক্লোরাইড (NH₄Cl) পানিতে দ্রবীভূত করলে তাপ উৎপন্ন হবে না শোষিত হবে?</div>
+    <div class="stepper" id="stp"></div>
+    <div class="row">
+      <div>
+        <div class="box" id="hypbox" style="margin-bottom:10px">
+          <b>ধাপ ২-৩: ধারণা ও অনুমান</b>
+          <p style="margin:6px 0">বইয়ে পড়েছ ক্যালসিয়াম অক্সাইড পানিতে দ্রবীভূত হলে তাপ নির্গত হয়। এখন তোমার অনুমান কী?</p>
+          <div class="btnrow"><button class="btn alt" id="h1">🔥 তাপ উৎপন্ন হবে</button><button class="btn alt" id="h2">❄️ তাপ শোষিত হবে</button></div>
+          <div class="fb" id="hfb"></div>
+        </div>
+        <canvas id="beaker" class="w" width="380" height="300"></canvas>
+        <div class="btnrow"><button class="btn" id="add5" disabled>➕ ৫ গ্রাম NH₄Cl দাও</button><button class="btn alt" id="stir" disabled>🥄 নাড়ো</button><button class="btn alt" id="exReset">↻ নতুন করে</button></div>
+        <div class="fb" id="exfb">আগে অনুমান বেছে নাও।</div>
+      </div>
+      <div class="grow">
+        <b>ধাপ ৫: তথ্য সংগ্রহ ও বিশ্লেষণ</b>
+        <table class="dt" id="dtab"><thead><tr><th>দ্রবীভূত NH₄Cl</th><th>তাপমাত্রা</th></tr></thead><tbody></tbody></table>
+        <canvas id="gr" class="w" width="380" height="220"></canvas>
+        <div class="say" id="res" style="display:none"></div>
+        <small>🔎 এখানে বইয়ের টেবিলের মান (২৫, ২০, ১৫, ১০ °C) ব্যবহার হয়েছে। বাস্তবে পানির পরিমাণ ও তাপমাত্রা অনুযায়ী মান একটু ভিন্ন হতে পারে।</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ল্যাব ৪ ================= -->
+  <section class="panel" id="lab4">
+    <h2>⚠️ ল্যাব ৪: ল্যাবের নিরাপত্তা</h2>
+    <h3>ক) ৮টি সংকেত চিহ্ন চেনো</h3>
+    <div class="say">👉 একটা চিহ্নে ক্লিক করে দেখো এর ঝুঁকি আর সাবধানতা। (চিহ্নগুলো সহজ করে আঁকা)</div>
+    <div class="hz" id="hz"></div>
+    <div class="hinfo" id="hinfo">একটা চিহ্ন বেছে নাও।</div>
+
+    <h3>খ) চিহ্ন চেনার গেম</h3>
+    <div class="row">
+      <div id="gsym" style="width:130px"></div>
+      <div class="grow"><b>এই চিহ্নটা কী নির্দেশ করে?</b><div id="gopt"></div><div class="fb" id="gfb"></div><div class="score" id="gscore" style="text-align:left;font-size:17px"></div></div>
+    </div>
+
+    <h3>গ) নিরাপদ পোশাক পরাও</h3>
+    <p>নিচের পদার্থের জন্য কী কী পরতে হবে? ছবির নিচের বাটনে ক্লিক করে বেছে নাও, তারপর "পরীক্ষা করো" চাপো।</p>
+    <div class="row">
+      <div style="text-align:center">
+        <svg id="person" viewBox="0 0 200 270" width="200" height="270">
+          <rect x="72" y="188" width="24" height="70" rx="8" fill="#3b4a6b"/><rect x="104" y="188" width="24" height="70" rx="8" fill="#3b4a6b"/>
+          <rect x="66" y="252" width="34" height="12" rx="6" fill="#222"/><rect x="100" y="252" width="34" height="12" rx="6" fill="#222"/>
+          <rect x="62" y="88" width="76" height="106" rx="14" fill="#5aa0d8"/>
+          <rect x="40" y="92" width="22" height="88" rx="10" fill="#5aa0d8"/><rect x="138" y="92" width="22" height="88" rx="10" fill="#5aa0d8"/>
+          <circle cx="51" cy="188" r="9" fill="#f4c7a1"/><circle cx="149" cy="188" r="9" fill="#f4c7a1"/>
+          <rect x="90" y="76" width="20" height="16" fill="#f4c7a1"/>
+          <circle cx="100" cy="52" r="30" fill="#f4c7a1"/><path d="M70 48 C70 20 130 20 130 48 C120 34 80 34 70 48Z" fill="#3a2a22"/>
+          <circle cx="90" cy="54" r="3" fill="#222"/><circle cx="110" cy="54" r="3" fill="#222"/><path d="M92 68 Q100 73 108 68" stroke="#a33" stroke-width="2" fill="none"/>
+          <g id="pApron" style="display:none"><path d="M56 90 L144 90 L150 232 L50 232Z" fill="#fff" stroke="#9fb3c4" stroke-width="3"/><rect x="36" y="92" width="26" height="90" rx="11" fill="#fff" stroke="#9fb3c4" stroke-width="3"/><rect x="138" y="92" width="26" height="90" rx="11" fill="#fff" stroke="#9fb3c4" stroke-width="3"/><path d="M100 90 L100 232" stroke="#9fb3c4" stroke-width="2"/></g>
+          <g id="pGog" style="display:none"><rect x="72" y="44" width="56" height="20" rx="8" fill="#9ad7ff88" stroke="#1f3a5f" stroke-width="3"/><line x1="64" y1="54" x2="72" y2="54" stroke="#1f3a5f" stroke-width="3"/><line x1="128" y1="54" x2="136" y2="54" stroke="#1f3a5f" stroke-width="3"/></g>
+          <g id="pGlv" style="display:none"><ellipse cx="51" cy="190" rx="12" ry="14" fill="#f4c20d" stroke="#a07c00" stroke-width="2"/><ellipse cx="149" cy="190" rx="12" ry="14" fill="#f4c20d" stroke="#a07c00" stroke-width="2"/></g>
+          <g id="pMask" style="display:none"><path d="M76 62 L124 62 L120 82 L80 82Z" fill="#cfe9f5" stroke="#5b8aa8" stroke-width="2"/></g>
+        </svg>
+        <div class="ppe" id="ppe" style="justify-content:center"></div>
+      </div>
+      <div class="grow">
+        <div class="say" id="ptask"></div>
+        <div class="btnrow"><button class="btn" id="pcheck">✅ পরীক্ষা করো</button><button class="btn alt" id="pnext">পরের পদার্থ →</button></div>
+        <div class="fb" id="pfb"></div>
+        <small>বইয়ের নিয়ম: বিষাক্ত ও স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থে অ্যাপ্রন, গ্লাভস, গগলস ও মাস্ক। উত্তেজক পদার্থে অ্যাপ্রন, গ্লাভস ও গগলস।</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ল্যাব ৫ ================= -->
+  <section class="panel" id="lab5">
+    <h2>🔗 ল্যাব ৫: কোন বিজ্ঞানের সাথে সম্পর্ক?</h2>
+    <div class="say">প্রতিটা কথা পড়ে বেছে নাও, রসায়নের সাথে এটা কোন বিষয়ের সম্পর্ক।</div>
+    <div id="relbox"></div>
+    <div class="score" id="relscore"></div>
+  </section>
+
+  <!-- ================= কুইজ ================= -->
+  <section class="panel" id="quiz">
+    <h2>❓ কুইজ (১৫টি MCQ)</h2>
+    <div id="quizbox"></div>
+    <div class="score" id="score"></div>
+  </section>
+
+  <!-- ================= প্রশ্ন-উত্তর ================= -->
+  <section class="panel" id="qa">
+    <h2>✍️ সৃজনশীল ও সংক্ষিপ্ত প্রশ্ন (মডেল উত্তরসহ)</h2>
+    <div class="warn">ℹ️ আগে নিজে লিখে চেষ্টা করো, তারপর উত্তর খোলো। উত্তরগুলো বইয়ের তথ্য থেকে আমার লেখা সহজ রূপ। পরীক্ষায় শিক্ষকের নির্দেশনা মেনে লিখবে।</div>
+    <div id="qabox"></div>
+  </section>
+</div>
+<footer class="site">&copy; ShikboLab &mdash; রসায়নের ধারণা (অধ্যায় ১)</footer>
+
+<script>
+var BN='০১২৩৪৫৬৭৮৯';
+function bn(s){return String(s).replace(/[0-9]/g,function(d){return BN[d];});}
+function $(id){return document.getElementById(id);}
+function lerp(a,b,t){return a+(b-a)*t;}
+
+/* ---------- সংকেত চিহ্নের ছবি ---------- */
+function wedgePath(c,r1,r2){var a1=(c-30)*Math.PI/180,a2=(c+30)*Math.PI/180,cx=50,cy=52;
+  function p(r,a){return (cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1);}
+  return 'M'+p(r1,a1)+' L'+p(r2,a1)+' A'+r2+' '+r2+' 0 0 1 '+p(r2,a2)+' L'+p(r1,a2)+' A'+r1+' '+r1+' 0 0 0 '+p(r1,a1)+'Z';}
+var ICON={
+ explosive:'<g fill="#222"><circle cx="50" cy="56" r="9"/><path d="M50 22 L54 40 L68 30 L60 46 L80 48 L62 55 L74 70 L56 62 L50 80 L44 62 L26 70 L38 55 L20 48 L40 46 L32 30 L46 40Z"/></g>',
+ flammable:'<path d="M50 22 C58 38 72 44 67 62 C65 74 57 80 50 80 C42 80 33 73 33 62 C33 52 42 50 44 40 C46 46 48 48 52 48 C52 40 50 32 50 22Z" fill="#222"/><path d="M50 58 C55 64 58 68 50 74 C42 68 46 62 50 58Z" fill="#fff"/>',
+ toxic:'<g fill="#222"><circle cx="50" cy="42" r="16"/><rect x="42" y="52" width="16" height="10" rx="2"/></g><circle cx="44" cy="42" r="4" fill="#fff"/><circle cx="56" cy="42" r="4" fill="#fff"/><path d="M28 66 L72 82 M72 66 L28 82" stroke="#222" stroke-width="6" stroke-linecap="round"/>',
+ irritant:'<path d="M32 32 L68 68 M68 32 L32 68" stroke="#222" stroke-width="13" stroke-linecap="round"/>',
+ health:'<g fill="#222"><circle cx="50" cy="32" r="9"/><path d="M32 78 C32 56 40 44 50 44 C60 44 68 56 68 78Z"/></g><path d="M50 50 L52.5 57 L60 57 L54 61.5 L56 69 L50 64.5 L44 69 L46 61.5 L40 57 L47.5 57Z" fill="#fff"/>',
+ radio:'<g fill="#222"><path d="'+wedgePath(-90,9,30)+'"/><path d="'+wedgePath(30,9,30)+'"/><path d="'+wedgePath(150,9,30)+'"/><circle cx="50" cy="52" r="5.5"/></g>',
+ env:'<path d="M32 70 L32 44 M32 58 L22 48 M32 52 L42 40" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/><g fill="#222"><ellipse cx="62" cy="66" rx="14" ry="7"/><path d="M74 66 L84 58 L84 74Z"/></g><circle cx="56" cy="64" r="2" fill="#fff"/><path d="M26 82 Q40 76 50 82 T74 82" stroke="#222" stroke-width="3" fill="none"/>',
+ corr:'<g fill="#222"><path d="M38 24 C45 36 52 40 38 48 C24 40 31 36 38 24Z"/><path d="M62 24 C69 36 76 40 62 48 C48 40 55 36 62 24Z"/><rect x="24" y="60" width="52" height="8" rx="2"/><path d="M30 68 L30 76 M44 68 L44 80 M58 68 L58 74 M70 68 L70 78" stroke="#222" stroke-width="4"/></g>'
+};
+function sym(k){return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,4 96,50 50,96 4,50" fill="#fff" stroke="#d62828" stroke-width="6"/>'+ICON[k]+'</svg>';}
+var HZ=[
+ {k:'explosive',n:'বিস্ফোরক পদার্থ',en:'Explosive',risk:'আগুন লাগলে প্রচণ্ড বিস্ফোরণ হতে পারে। শরীর ও গবেষণাগারের মারাত্মক ক্ষতি করতে পারে।',pre:'খুব সাবধানে নাড়াচাড়া করতে হয়। উদাহরণ: টিএনটি, পার-অক্সাইড, নাইট্রোগ্লিসারিন।',ppe:null},
+ {k:'flammable',n:'দাহ্য পদার্থ',en:'Flammable',risk:'সহজে আগুন ধরে যায়। উদাহরণ: অ্যালকোহল, ইথার।',pre:'আগুন বা তাপ থেকে সব সময় দূরে রাখতে হবে।',ppe:null},
+ {k:'toxic',n:'বিষাক্ত পদার্থ',en:'Toxic',risk:'শরীরে লাগলে বা শ্বাসের সাথে ঢুকলে নানা ক্ষতি হয়। উদাহরণ: বেনজিন, ক্লোরোবেনজিন, মিথানল।',pre:'অ্যাপ্রন, হ্যান্ড গ্লাভস, সেফটি গগলস ও মাস্ক পরতে হবে।',ppe:['apron','gloves','goggles','mask']},
+ {k:'irritant',n:'উত্তেজক পদার্থ',en:'Irritant',risk:'ত্বক, চোখ ও শ্বাসতন্ত্রে জ্বালা ও ক্ষতি করে। উদাহরণ: ডাস্ট, লঘু এসিড, ক্ষার, নাইট্রাস অক্সাইড।',pre:'অ্যাপ্রন, হ্যান্ড গ্লাভস ও সেফটি গগলস পরতে হবে।',ppe:['apron','gloves','goggles']},
+ {k:'health',n:'স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ',en:'Health risk',risk:'ত্বকে বা শ্বাসের সাথে ঢুকলে স্বল্পমেয়াদি ও দীর্ঘমেয়াদি ক্ষতি করে, ক্যান্সারের মতো রোগ হতে পারে। উদাহরণ: বেনজিন, টলুইন, জাইলিন।',pre:'সতর্কভাবে রাখতে ও ব্যবহার করতে হবে। অ্যাপ্রন, গ্লাভস, গগলস ও মাস্ক পরতে হবে।',ppe:['apron','gloves','goggles','mask']},
+ {k:'radio',n:'তেজস্ক্রিয় পদার্থ',en:'Radioactive',risk:'ক্ষতিকারক রশ্মি বের হয়, যা ক্যান্সারের মতো মরণব্যাধি করতে পারে বা বিকলাঙ্গ করতে পারে। উদাহরণ: ইউরেনিয়াম, রেডিয়াম।',pre:'ব্যবহারের সময় বিশেষ সতর্ক থাকতে হবে।',ppe:null},
+ {k:'env',n:'পরিবেশের জন্য ক্ষতিকর',en:'Dangerous for environment',risk:'পরিবেশের ক্ষতি করে। উদাহরণ: লেড, মার্কারি।',pre:'ব্যবহারের পর যেখানে-সেখানে না ফেলে নির্দিষ্ট স্থানে রাখতে হবে। যতটা সম্ভব পুনরুদ্ধার করে আবার ব্যবহার করতে হবে।',ppe:null},
+ {k:'corr',n:'ক্ষত সৃষ্টিকারী',en:'Corrosive',risk:'শরীরে লাগলে ক্ষত সৃষ্টি হয়, শ্বাসের সাথে গেলে ভেতরের অঙ্গেরও ক্ষতি হয়। উদাহরণ: হাইড্রোক্লোরিক এসিড, সালফিউরিক এসিড, সোডিয়াম হাইড্রক্সাইডের ঘন দ্রবণ।',pre:'খুব সাবধানে ব্যবহার করতে হবে (বইয়ে আলাদা পোশাকের নাম নেই, শিক্ষকের নির্দেশ মানবে)।',ppe:null}
+];
+
+/* ---------- ল্যাব ১: টাইমলাইন ---------- */
+var TL=[
+ {em:'🔥',t:'প্রাগৈতিহাসিক যুগ',s:'না জেনেই রসায়ন',d:'মানুষ কাপড় বুনতে, ঘর বানাতে, রান্না করতে জানত না, তবু আগুন জ্বালিয়ে বিক্রিয়া ঘটাত। ধীরে ধীরে ধাতু ব্যবহার শুরু হলো। প্রথম ব্যবহৃত ধাতু তামা।'},
+ {em:'🛡️',t:'খ্রিস্টপূর্ব ৩৫০০',s:'ব্রোঞ্জ তৈরি',d:'কপার (তামা) আর টিন গলিয়ে মিশিয়ে ঠান্ডা করলে সংকর ধাতু (অ্যালয়) ব্রোঞ্জ হলো। ব্রোঞ্জ দিয়ে অস্ত্র, শিকারের ও কৃষির যন্ত্র, জ্বালানির কাঠ সংগ্রহের যন্ত্র বানানো হতো।'},
+ {em:'⚛️',t:'খ্রিস্টপূর্ব ৩৮০',s:'অ্যাটমের ধারণা',d:'গ্রিক দার্শনিক ডেমোক্রিটাস বললেন, ভাঙতে ভাঙতে এমন কণা পাওয়া যাবে যাকে আর ভাঙা যায় না। নাম দিলেন অ্যাটম (অবিভাজ্য)। ভারতীয় কণাদও একই ধরনের ধারণা দেন। কিন্তু তখন কোনো পরীক্ষামূলক প্রমাণ ছিল না।'},
+ {em:'🌍',t:'অ্যারিস্টটল',s:'চার উপাদান',d:'অ্যারিস্টটল ধারণাটির বিরোধিতা করেন। তাঁর মতে সব পদার্থ মাটি, আগুন, পানি ও বাতাস দিয়ে তৈরি। অনেকদিন মানুষ এটাই মেনেছে।'},
+ {em:'🧙',t:'মধ্যযুগ',s:'আলকেমি',d:'আরব দার্শনিকরা কপার, টিন, সিসা থেকে সোনা বানানোর চেষ্টা করতেন, আবার মানুষের আয়ু বাড়ানোর ওষুধও খুঁজতেন। সোনা বানানো না গেলেও নতুন নতুন পদার্থ তৈরি হয়। এটাই আলকেমি, গবেষকরা আলকেমিস্ট।'},
+ {em:'⚗️',t:'জাবির-ইবনে-হাইয়ান',s:'গবেষণাগারে রসায়ন',d:'তিনি গবেষণাগারে রসায়ন চর্চা করতেন, তাই অনেকে তাঁকে রসায়নের জনক বলেন। তিনি ভাবতেন সব পদার্থ মাটি, পানি, আগুন ও বাতাস দিয়ে তৈরি।'},
+ {em:'🔬',t:'আধুনিক রসায়ন',s:'ল্যাভয়সিয়ে ও অন্যরা',d:'অ্যান্টনি ল্যাভয়সিয়ে, রবার্ট বয়েল, স্যার ফ্রান্সিস বেকন ও জন ডাল্টন রসায়নের প্রকৃত রহস্য উন্মোচন করেন। ল্যাভয়সিয়েকে আধুনিক রসায়নের জনক বলা হয়।'}
+];
+var tli=0,tlt=null;
+function drawTL(){
+  var h='';TL.forEach(function(e,i){h+='<button data-i="'+i+'" class="'+(i===tli?'on':'')+'"><span class="em">'+e.em+'</span><b>'+e.t+'</b><small>'+e.s+'</small></button>';});
+  $('tl').innerHTML=h;
+  var e=TL[tli];$('tlinfo').innerHTML='<b>'+e.em+' '+e.t+' &mdash; '+e.s+'</b><p style="margin:6px 0 0">'+e.d+'</p>';
+  var on=$('tl').querySelector('.on');if(on&&on.scrollIntoView)on.scrollIntoView({block:'nearest',inline:'center'});
+}
+$('tl').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;tli=+b.getAttribute('data-i');stopTL();drawTL();};
+function stopTL(){if(tlt){clearInterval(tlt);tlt=null;$('tlplay').textContent='▶ অটো প্লে';}}
+$('tlplay').onclick=function(){if(tlt){stopTL();return;}$('tlplay').textContent='⏸ থামাও';tli=0;drawTL();tlt=setInterval(function(){if(tli<TL.length-1){tli++;drawTL();}else stopTL();},2600);};
+$('tlprev').onclick=function(){stopTL();tli=Math.max(0,tli-1);drawTL();};
+$('tlnext').onclick=function(){stopTL();tli=Math.min(TL.length-1,tli+1);drawTL();};
+drawTL();
+$('wplay').onclick=function(){var sp=$('wflow').querySelectorAll('span');sp.forEach(function(s){s.classList.remove('show');});sp.forEach(function(s,i){setTimeout(function(){s.classList.add('show');},i*700);});};
+$('wflow').querySelectorAll('span').forEach(function(s){s.classList.add('show');});
+
+/* ---------- ল্যাব ২ক: আম ---------- */
+function mango(){
+  var v=+$('rip').value,t=v/100;
+  var r=Math.round(lerp(111,250,t)),g=Math.round(lerp(170,190,t)),b=Math.round(lerp(60,45,t));
+  $('mg').setAttribute('fill','rgb('+r+','+g+','+b+')');
+  $('bAcid').style.width=Math.round(95-v*0.85)+'%';$('bSug').style.width=Math.round(8+v*0.85)+'%';
+  var lab=v<30?'কাঁচা':(v<70?'আধা পাকা':'পাকা');$('ripv').textContent=lab;
+  $('mtaste').innerHTML=v<30?'😖 <b>টক!</b> কাঁচা আমে জৈব এসিড বেশি থাকে, তাই টক।':(v<70?'😐 <b>টক-মিষ্টি।</b> এসিড কমছে, চিনি জাতীয় পদার্থ বাড়ছে।':'😋 <b>মিষ্টি!</b> পাকলে রাসায়নিক পরিবর্তনে গ্লুকোজ ও ফ্রুক্টোজ তৈরি হয়।');
+}
+$('rip').oninput=mango;mango();
+
+/* ---------- ল্যাব ২খ: এন্টাসিড ---------- */
+var AC={ps:[],add:0,msg:0};
+function acInit(){AC.ps=[];AC.add=0;
+  for(var i=0;i<16;i++)AC.ps.push({t:'H',x:60+Math.random()*260,y:60+Math.random()*140,vx:(Math.random()-.5)*2.2,vy:(Math.random()-.5)*2.2,a:1,w:0});
+  $('atxt').textContent='পাকস্থলীতে অনেক লাল H⁺ ঘুরছে। এটাই এসিডিটি।';$('aAdd').disabled=false;}
+function acCount(t){var n=0;AC.ps.forEach(function(p){if(p.t===t&&p.a>0.5)n++;});return n;}
+$('aAdd').onclick=function(){if(AC.add>=3)return;AC.add++;
+  for(var i=0;i<8;i++)AC.ps.push({t:'O',x:150+Math.random()*80,y:75,vx:(Math.random()-.5)*2,vy:1+Math.random(),a:1,w:0});
+  if(AC.add>=3)$('aAdd').disabled=true;};
+$('aReset').onclick=acInit;acInit();
+function acDraw(){
+  var c=$('stom'),x=c.getContext('2d');x.clearRect(0,0,380,260);
+  x.fillStyle='#fde8e3';x.strokeStyle='#e76f51';x.lineWidth=4;
+  x.beginPath();x.moveTo(70,50);x.bezierCurveTo(30,90,40,210,150,230);x.bezierCurveTo(260,250,350,200,330,120);x.bezierCurveTo(320,60,230,30,180,50);x.bezierCurveTo(150,62,100,30,70,50);x.closePath();x.fill();x.stroke();
+  x.fillStyle='#8a4b3a';x.font='bold 13px sans-serif';x.fillText('পাকস্থলী',8,248);
+  AC.ps.forEach(function(p){
+    if(p.a<=0)return;
+    if(p.w){p.a-=0.02;p.y-=0.4;x.globalAlpha=Math.max(0,p.a);x.fillStyle='#4aa3df';x.beginPath();x.arc(p.x,p.y,7,0,7);x.fill();x.fillStyle='#fff';x.font='bold 9px sans-serif';x.fillText('H₂O',p.x-9,p.y+3);x.globalAlpha=1;return;}
+    var ox=p.x,oy=p.y;p.x+=p.vx;p.y+=p.vy;
+    var ex=(p.x-192)/128,ey=(p.y-140)/78;
+    if(ex*ex+ey*ey>1){p.x=ox;p.y=oy;p.vx=-p.vx+(Math.random()-.5)*.6;p.vy=-p.vy+(Math.random()-.5)*.6;
+      if(p.t==='O'&&oy<80)p.vy=Math.abs(p.vy)+.3;}
+    x.fillStyle=p.t==='H'?'#e63946':'#2b6cb0';x.beginPath();x.arc(p.x,p.y,8,0,7);x.fill();
+    x.fillStyle='#fff';x.font='bold 10px sans-serif';x.fillText(p.t==='H'?'H⁺':'OH⁻',p.x-(p.t==='H'?6:9),p.y+4);
+  });
+  for(var i=0;i<AC.ps.length;i++){var a=AC.ps[i];if(a.t!=='H'||a.w||a.a<=0)continue;
+    for(var j=0;j<AC.ps.length;j++){var b=AC.ps[j];if(b.t!=='O'||b.w||b.a<=0)continue;
+      var dx=a.x-b.x,dy=a.y-b.y;if(dx*dx+dy*dy<420){a.w=1;b.a=0;break;}}}
+  var h=acCount('H'),o=acCount('O');
+  $('bH').style.width=Math.round(h/16*100)+'%';
+  if(AC.add>0){
+    if(h===0&&o===0)$('atxt').textContent='✅ সব H⁺ প্রশমিত হয়ে পানি হয়ে গেছে!';
+    else if(h===0)$('atxt').textContent='ক্ষারের কণা বাকি আছে, মানে বেশি ওষুধ পড়েছে। ডোজ মেনে খাওয়া জরুরি।';
+    else $('atxt').textContent='নীল OH⁻ লাল H⁺-কে ধরে পানি বানাচ্ছে। এখনো H⁺ আছে: '+bn(h)+'টি।';
+  }
+}
+
+/* ---------- ল্যাব ২গ: দহন ---------- */
+$('burn').onclick=function(){$('flm').style.display='inline-block';$('btxt').innerHTML='<b>হাইড্রোকার্বন + অক্সিজেন → কার্বন ডাই-অক্সাইড + জলীয় বাষ্প + আলো ও তাপ</b><br>দহনের সময় বাতাসের অক্সিজেনের সাথে বিক্রিয়া হয়। তাই আলো ও তাপ পাই, আর CO₂ ও জলীয় বাষ্প তৈরি হয়।';};
+$('burnoff').onclick=function(){$('flm').style.display='none';$('btxt').textContent='নিভে গেছে। আবার জ্বালাও।';};
+
+/* ---------- ল্যাব ৩: গবেষণা ---------- */
+var STEPS=['১ বিষয় নির্ধারণ','২ ধারণা নেওয়া','৩ প্রণালি ঠিক করা','৪ পরীক্ষণ','৫ তথ্য বিশ্লেষণ','৬ ফলাফল'];
+var EX={grams:0,pend:0,temp:25,shown:25,hyp:0,data:[[0,25]],step:0,crystals:[],stir:0,gp:0};
+var TMAP={0:25,5:20,10:15,15:10};
+function stp(n){EX.step=n;var h='';STEPS.forEach(function(s,i){h+='<span class="'+(i===n?'on':(i<n?'done':''))+'">'+s+'</span>';});$('stp').innerHTML=h;}
+function tbl(){var h='';EX.data.forEach(function(r,i){h+='<tr class="'+(i===EX.data.length-1&&i>0?'new':'')+'"><td>'+bn(r[0])+' গ্রাম'+(i===0?' (কিছু দেওয়া হয়নি)':'')+'</td><td>'+bn(r[1])+'°C</td></tr>';});document.querySelector('#dtab tbody').innerHTML=h;}
+function exReset(){EX.grams=0;EX.pend=0;EX.temp=25;EX.shown=25;EX.hyp=0;EX.data=[[0,25]];EX.crystals=[];EX.stir=0;EX.gp=0;
+  $('add5').disabled=true;$('stir').disabled=true;$('h1').classList.add('alt');$('h2').classList.add('alt');$('hfb').textContent='';$('res').style.display='none';
+  $('exfb').textContent='আগে অনুমান বেছে নাও।';stp(1);tbl();}
+function setHyp(n){if(EX.step>3)return;EX.hyp=n;$('h1').classList.toggle('alt',n!==1);$('h2').classList.toggle('alt',n!==2);
+  $('hfb').textContent='ঠিক আছে, তোমার অনুমান: '+(n===1?'তাপ উৎপন্ন হবে':'তাপ শোষিত হবে')+'। এবার পরীক্ষা করে দেখো।';
+  $('add5').disabled=false;stp(3);$('exfb').textContent='৫ গ্রাম অ্যামোনিয়াম ক্লোরাইড দাও, তারপর কাচের রড দিয়ে নাড়ো।';}
+$('h1').onclick=function(){setHyp(1);};$('h2').onclick=function(){setHyp(2);};
+$('add5').onclick=function(){if(EX.pend||EX.grams>=15)return;EX.pend=5;
+  for(var i=0;i<18;i++)EX.crystals.push({x:130+Math.random()*100,y:30-Math.random()*60,vy:1.5+Math.random(),st:0,a:1});
+  $('add5').disabled=true;$('stir').disabled=false;$('exfb').textContent='দানাগুলো তলায় জমেছে। এবার নাড়ো, যাতে দ্রবীভূত হয়।';};
+$('stir').onclick=function(){if(!EX.pend)return;EX.stir=90;$('stir').disabled=true;};
+$('exReset').onclick=exReset;
+function stirDone(){
+  EX.grams+=EX.pend;EX.pend=0;EX.temp=TMAP[EX.grams];EX.data.push([EX.grams,EX.temp]);tbl();EX.gp=0;
+  EX.crystals=[];
+  if(EX.grams<15){stp(4);$('add5').disabled=false;$('exfb').textContent='তাপমাত্রা '+bn(EX.temp)+'°C হলো। আরও ৫ গ্রাম দিয়ে দেখো।';}
+  else{stp(5);var ok=(EX.hyp===2);
+    $('exfb').textContent='পরীক্ষা শেষ।';
+    $('res').style.display='block';
+    $('res').innerHTML='📌 <b>ফলাফল:</b> যত বেশি অ্যামোনিয়াম ক্লোরাইড দ্রবীভূত হয়েছে, পানির তাপমাত্রা তত কমেছে (২৫°C থেকে ১০°C)। অর্থাৎ দ্রবীভূত হওয়ার সময় পানি থেকে <b>তাপ শোষিত</b> হয়েছে।<br>'+(ok?'🎉 তোমার অনুমান ঠিক ছিল!':'🙂 তোমার অনুমান মেলেনি, আর এটাই বিজ্ঞানের সৌন্দর্য। পরীক্ষাই শেষ কথা বলে, তাই অনুমান ভুল হলেও গবেষণা সফল।');}
+}
+function beakerDraw(){
+  var c=$('beaker'),x=c.getContext('2d');x.clearRect(0,0,380,300);
+  var cold=(25-EX.shown)/15;
+  var wc='rgb('+Math.round(lerp(190,120,cold))+','+Math.round(lerp(230,180,cold))+','+Math.round(lerp(245,250,cold))+')';
+  EX.shown+=(EX.temp-EX.shown)*0.03;if(Math.abs(EX.temp-EX.shown)<0.02)EX.shown=EX.temp;
+  /* beaker */
+  x.fillStyle=wc;x.fillRect(92,140,136,118);
+  x.strokeStyle='#1f3a5f';x.lineWidth=4;x.beginPath();x.moveTo(88,90);x.lineTo(88,262);x.lineTo(232,262);x.lineTo(232,90);x.stroke();
+  x.fillStyle='#1f3a5f';x.font='bold 12px sans-serif';x.fillText('২৫০ মিলি পানি',100,278);
+  /* stir swirl */
+  if(EX.stir>0){EX.stir--;var a=EX.stir/6;x.strokeStyle='#1f3a5f';x.lineWidth=5;x.beginPath();x.moveTo(160,70);x.lineTo(160+Math.cos(a)*30,225);x.stroke();
+    x.strokeStyle='#ffffffaa';x.lineWidth=2;for(var i=0;i<3;i++){x.beginPath();x.ellipse(160,190+i*16,26+Math.sin(a+i)*8,6,0,0,7);x.stroke();}
+    EX.crystals.forEach(function(k){k.a-=0.012;});
+    if(EX.stir===0)stirDone();}
+  /* crystals */
+  EX.crystals.forEach(function(k){
+    if(k.a<=0)return;
+    if(k.y<250){k.y+=k.vy;if(k.y>140)k.vy=0.8;}else{k.y=250;}
+    x.globalAlpha=Math.max(0,k.a);x.fillStyle='#fff';x.strokeStyle='#9fb3c4';x.lineWidth=1;x.beginPath();x.rect(k.x-3,k.y-3,6,6);x.fill();x.stroke();x.globalAlpha=1;});
+  /* thermometer */
+  var tx=300;x.fillStyle='#fff';x.strokeStyle='#1f3a5f';x.lineWidth=3;
+  x.beginPath();x.moveTo(tx-7,40);x.lineTo(tx-7,220);x.arc(tx,230,14,Math.PI*1.2,Math.PI*1.8,true);x.lineTo(tx+7,40);x.arc(tx,40,7,0,Math.PI,true);x.fill();x.stroke();
+  var f=(EX.shown-5)/25;var hgt=lerp(20,170,f);
+  x.fillStyle=cold>0.3?'#2b6cb0':'#e63946';x.fillRect(tx-3,225-hgt,6,hgt);x.beginPath();x.arc(tx,232,10,0,7);x.fill();
+  x.fillStyle='#1f3a5f';x.font='11px sans-serif';[10,15,20,25,30].forEach(function(t){var yy=225-lerp(20,170,(t-5)/25);x.fillRect(tx+9,yy,8,1.5);x.fillText(bn(t),tx+20,yy+4);});
+  x.font='bold 18px sans-serif';x.fillText(bn(EX.shown.toFixed(0))+'°C',tx-26,20);
+}
+function grDraw(){
+  var c=$('gr'),x=c.getContext('2d');x.clearRect(0,0,380,220);
+  var L=50,R=360,T=20,B=180;
+  x.strokeStyle='#cfd9e1';x.lineWidth=1;x.fillStyle='#5b6770';x.font='11px sans-serif';
+  for(var t=5;t<=30;t+=5){var y=B-(t-5)/25*(B-T);x.beginPath();x.moveTo(L,y);x.lineTo(R,y);x.stroke();x.fillText(bn(t),L-22,y+4);}
+  for(var g=0;g<=15;g+=5){var xx=L+g/15*(R-L);x.beginPath();x.moveTo(xx,T);x.lineTo(xx,B);x.stroke();x.fillText(bn(g),xx-4,B+14);}
+  x.fillStyle='#1f3a5f';x.font='bold 12px sans-serif';x.fillText('দ্রবীভূত NH₄Cl (গ্রাম)',120,208);x.save();x.translate(12,130);x.rotate(-Math.PI/2);x.fillText('তাপমাত্রা (°C)',0,0);x.restore();
+  var pts=EX.data.map(function(r){return [L+r[0]/15*(R-L),B-(r[1]-5)/25*(B-T)];});
+  x.strokeStyle='#e76f51';x.lineWidth=3;x.beginPath();pts.forEach(function(p,i){if(i)x.lineTo(p[0],p[1]);else x.moveTo(p[0],p[1]);});x.stroke();
+  pts.forEach(function(p){x.fillStyle='#2a9d8f';x.beginPath();x.arc(p[0],p[1],6,0,7);x.fill();});
+}
+exReset();
+
+/* ---------- ল্যাব ৪ক: চিহ্ন ---------- */
+(function(){
+  var h='';HZ.forEach(function(z,i){h+='<button data-i="'+i+'">'+sym(z.k)+z.n+'</button>';});$('hz').innerHTML=h;
+  $('hz').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;var z=HZ[+b.getAttribute('data-i')];
+    $('hz').querySelectorAll('button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+    $('hinfo').innerHTML='<div class="big">'+sym(z.k)+'</div><b style="font-size:19px;color:var(--navy)">'+z.n+'</b> <small>('+z.en+')</small><p style="margin:4px 0"><b>ঝুঁকি:</b> '+z.risk+'</p><p style="margin:4px 0"><b>সাবধানতা:</b> '+z.pre+'</p><div style="clear:both"></div>';};
+})();
+/* ---------- ল্যাব ৪খ: চিহ্ন গেম ---------- */
+var G={cur:-1,right:0,tot:0,done:false};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function gNew(){
+  var prev=G.cur;do{G.cur=Math.floor(Math.random()*HZ.length);}while(G.cur===prev);G.done=false;
+  $('gsym').innerHTML=sym(HZ[G.cur].k);
+  var opts=[G.cur];shuffle(HZ.map(function(z,i){return i;})).forEach(function(i){if(opts.length<4&&i!==G.cur)opts.push(i);});
+  var h='';shuffle(opts).forEach(function(i){h+='<button class="opt" data-i="'+i+'">'+HZ[i].n+'</button>';});
+  $('gopt').innerHTML=h;$('gfb').textContent='';
+  $('gscore').textContent=G.tot?('স্কোর: '+bn(G.right)+' / '+bn(G.tot)):'';
+}
+$('gopt').onclick=function(ev){var b=ev.target.closest('.opt');if(!b||G.done)return;G.done=true;G.tot++;
+  var i=+b.getAttribute('data-i');
+  if(i===G.cur){G.right++;b.classList.add('ok');$('gfb').textContent='✅ ঠিক!';}
+  else{b.classList.add('no');$('gopt').querySelectorAll('.opt').forEach(function(o){if(+o.getAttribute('data-i')===G.cur)o.classList.add('ok');});$('gfb').textContent='❌ এটা ছিল: '+HZ[G.cur].n;}
+  $('gscore').textContent='স্কোর: '+bn(G.right)+' / '+bn(G.tot);
+  setTimeout(gNew,1600);};
+gNew();
+/* ---------- ল্যাব ৪গ: পোশাক ---------- */
+var PPEN={apron:'🥼 অ্যাপ্রন',goggles:'🥽 সেফটি গগলস',gloves:'🧤 হ্যান্ড গ্লাভস',mask:'😷 মাস্ক'};
+var PID={apron:'pApron',goggles:'pGog',gloves:'pGlv',mask:'pMask'};
+var PT=[{n:'বেনজিন (বিষাক্ত পদার্থ)',z:'toxic'},{n:'লঘু এসিড (উত্তেজক পদার্থ)',z:'irritant'},{n:'টলুইন (স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ)',z:'health'},{n:'মিথানল (বিষাক্ত পদার্থ)',z:'toxic'},{n:'ক্ষার (উত্তেজক পদার্থ)',z:'irritant'}];
+var PS={i:-1,sel:{}};
+function zinfo(k){return HZ.filter(function(z){return z.k===k;})[0];}
+function pDraw(){Object.keys(PID).forEach(function(k){$(PID[k]).style.display=PS.sel[k]?'block':'none';});
+  var h='';Object.keys(PPEN).forEach(function(k){h+='<button data-k="'+k+'" class="'+(PS.sel[k]?'on':'')+'">'+PPEN[k]+'</button>';});$('ppe').innerHTML=h;}
+function pNew(){PS.i=(PS.i+1)%PT.length;PS.sel={};$('pfb').textContent='';$('ptask').innerHTML=sym(PT[PS.i].z).replace('<svg','<svg style="width:42px;height:42px;vertical-align:middle"')+' <b>'+PT[PS.i].n+'</b> নিয়ে কাজ করতে হবে। কী কী পরবে?';pDraw();}
+$('ppe').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;var k=b.getAttribute('data-k');PS.sel[k]=!PS.sel[k];pDraw();};
+$('pcheck').onclick=function(){var need=zinfo(PT[PS.i].z).ppe,miss=[],extra=[];
+  Object.keys(PPEN).forEach(function(k){var n=need.indexOf(k)>=0,s=!!PS.sel[k];if(n&&!s)miss.push(PPEN[k]);if(!n&&s)extra.push(PPEN[k]);});
+  var f=$('pfb');
+  if(!miss.length&&!extra.length)f.textContent='🎉 একদম ঠিক! নিরাপদ পোশাক পরেছ।';
+  else f.textContent=(miss.length?'⚠️ বাকি আছে: '+miss.join(', ')+'। ':'')+(extra.length?'ℹ️ বইয়ের নিয়মে এটা লাগে না: '+extra.join(', ')+'।':'');};
+$('pnext').onclick=pNew;pNew();
+
+/* ---------- ল্যাব ৫ ---------- */
+var REL=[
+ {t:'সালোকসংশ্লেষণে CO₂ ও পানি থেকে গ্লুকোজ তৈরি হয়।',a:'জীববিজ্ঞান'},
+ {t:'ব্যাটারি, পেট্রোল ও কয়লা পুড়িয়ে শক্তি (যানবাহন, বিদ্যুৎ) পাওয়া যায়।',a:'পদার্থবিজ্ঞান'},
+ {t:'দ্রবণের ঘনমাত্রা ও বিক্রিয়ার হার গণনা করে বের করা হয়।',a:'গণিত'},
+ {t:'খাবার হজম হয়ে গ্লুকোজ ও অ্যামিনো এসিড তৈরি হয়।',a:'জীববিজ্ঞান'},
+ {t:'নিউক্লিয়ার ফিজিক্স ও নিউক্লিয়ার কেমিস্ট্রি একই সূত্রে বাঁধা।',a:'পদার্থবিজ্ঞান'},
+ {t:'যৌগের সংযুক্তি নির্ণয়ে সূত্র ও গণনা লাগে।',a:'গণিত'}
+];
+var relDone=0,relRight=0;
+(function(){var h='';REL.forEach(function(r,i){h+='<div class="q"><p>'+bn(i+1)+'. '+r.t+'</p><div class="cls" data-i="'+i+'">';['জীববিজ্ঞান','পদার্থবিজ্ঞান','গণিত'].forEach(function(s){h+='<button data-s="'+s+'">'+s+'</button>';});h+='</div></div>';});
+  $('relbox').innerHTML=h;
+  $('relbox').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;var d=b.parentNode;if(d.getAttribute('data-done'))return;d.setAttribute('data-done','1');
+    var i=+d.getAttribute('data-i');relDone++;
+    d.querySelectorAll('button').forEach(function(x){if(x.getAttribute('data-s')===REL[i].a)x.classList.add('ok');});
+    if(b.getAttribute('data-s')===REL[i].a)relRight++;else b.classList.add('no');
+    if(relDone===REL.length)$('relscore').textContent='🎉 তোমার স্কোর: '+bn(relRight)+' / '+bn(REL.length);};})();
+
+/* ---------- কুইজ ---------- */
+var QUIZ=[
+ {q:'রসায়নের সঠিক সংজ্ঞা কোনটি?',o:['শুধু জীবদেহের গঠন নিয়ে আলোচনা','পদার্থের গঠন, ধর্ম ও পারস্পরিক রূপান্তর নিয়ে আলোচনা','শুধু শক্তির রূপান্তর নিয়ে আলোচনা','গ্রহ-নক্ষত্র নিয়ে আলোচনা'],a:1,e:'বিজ্ঞানের যে শাখায় পদার্থের গঠন, ধর্ম ও পারস্পরিক রূপান্তর নিয়ে আলোচনা করা হয় তাকে রসায়ন বলে।'},
+ {q:'Chemistry শব্দটি কোন শব্দ থেকে এসেছে?',o:['গ্রিক "অ্যাটম" থেকে','আরবি আল-কিমিয়া (Chemi / Kimi) থেকে','ল্যাটিন "অ্যাসিড" থেকে','সংস্কৃত "রস" থেকে'],a:1,e:'আলকেমি শব্দ এসেছে আরবি আল-কিমিয়া থেকে। এই Chemi শব্দ থেকেই Chemistry।'},
+ {q:'আধুনিক রসায়নের জনক কাকে বলা হয়?',o:['ডেমোক্রিটাস','অ্যারিস্টটল','অ্যান্টনি ল্যাভয়সিয়ে','জন ডাল্টন'],a:2,e:'অ্যান্টনি ল্যাভয়সিয়েকে আধুনিক রসায়নের জনক বলা হয়।'},
+ {q:'কপারের (তামার) সাথে কোন ধাতুকে গলিয়ে ব্রোঞ্জ তৈরি করা হয়?',o:['লোহা','জিংক','টিন','লেড'],a:2,e:'তামা ও টিন গলিয়ে মিশিয়ে সংকর ধাতু ব্রোঞ্জ তৈরি হয় (প্রায় খ্রিস্টপূর্ব ৩৫০০ অব্দে)।'},
+ {q:'"অ্যাটম" শব্দটির অর্থ কী?',o:['অবিভাজ্য (যাকে ভাঙা যায় না)','তরল','শক্তি','আলো'],a:0,e:'ডেমোক্রিটাস ক্ষুদ্রতম কণার নাম দেন অ্যাটম, যার অর্থ indivisible বা অবিভাজ্য।'},
+ {q:'কাঁচা আম টক হওয়ার কারণ কী?',o:['এতে গ্লুকোজ বেশি থাকে','এতে বিভিন্ন জৈব এসিড থাকে','এতে লবণ বেশি থাকে','এতে পানি কম থাকে'],a:1,e:'কাঁচা আমে জৈব এসিড থাকে, তাই টক। পাকলে এসিড কমে গ্লুকোজ ও ফ্রুক্টোজ তৈরি হয়, তাই মিষ্টি।'},
+ {q:'পেটের এসিডিটির জন্য এন্টাসিড ওষুধ খাওয়া হয় কেন?',o:['এসিড বাড়াতে','এসিডকে প্রশমিত করতে','পেট ঠান্ডা করতে','খাবার গরম করতে'],a:1,e:'এন্টাসিডে অ্যালুমিনিয়াম হাইড্রক্সাইড ও ম্যাগনেসিয়াম হাইড্রক্সাইডের মতো ক্ষারীয় যৌগ থাকে। এরা পাকস্থলীর অতিরিক্ত এসিডকে প্রশমিত করে।'},
+ {q:'নিচের কোন পদার্থের ব্যবহারে পরিবেশের সবচেয়ে বেশি ক্ষতি হয়?',o:['প্রিজারভেটিভস','কীটনাশক','অ্যালকোহল বা ইথার','সার'],a:1,e:'অতিরিক্ত কীটনাশক বাতাসে মিশে বায়ুদূষণ ও বৃষ্টির পানির সাথে নদী-পুকুরে গিয়ে পানিদূষণ করে, মাছ ও উদ্ভিদের ভেতর দিয়ে খাদ্যশৃঙ্খলে ঢোকে।'},
+ {q:'নিচের সংকেত চিহ্নটি কী প্রকাশ করে?<br><span style="display:inline-block;width:70px">'+sym('flammable')+'</span>',o:['বিস্ফোরক পদার্থ','দাহ্য পদার্থ','তেজস্ক্রিয় রশ্মি','আগুনের শিখা'],a:1,e:'আগুনের শিখা আঁকা চিহ্নটি দাহ্য পদার্থ বোঝায়। এসব পদার্থে সহজে আগুন ধরে, তাই আগুন ও তাপ থেকে দূরে রাখতে হয়।'},
+ {q:'নিচের কোন চিহ্নটি তেজস্ক্রিয় রশ্মি নির্দেশ করে?',o:['<span style="display:inline-block;width:56px;vertical-align:middle">'+sym('env')+'</span> (ক)','<span style="display:inline-block;width:56px;vertical-align:middle">'+sym('health')+'</span> (খ)','<span style="display:inline-block;width:56px;vertical-align:middle">'+sym('radio')+'</span> (গ)','<span style="display:inline-block;width:56px;vertical-align:middle">'+sym('irritant')+'</span> (ঘ)'],a:2,fix:true,e:'তিন পাপড়ির বৃত্তের চিহ্ন তেজস্ক্রিয় পদার্থের (যেমন ইউরেনিয়াম, রেডিয়াম)। (ক) পরিবেশের জন্য ক্ষতিকর, (খ) স্বাস্থ্য ঝুঁকিপূর্ণ, (ঘ) উত্তেজক।'},
+ {q:'বিষাক্ত পদার্থ ব্যবহারের সময় কী কী ব্যবহার করতে হয়?',o:['শুধু টুপি','অ্যাপ্রন, হ্যান্ড গ্লাভস, সেফটি গগলস ও মাস্ক','শুধু জুতা','কিছু লাগে না'],a:1,e:'বিষাক্ত পদার্থ (যেমন বেনজিন, মিথানল) শরীরে লাগলে বা শ্বাসে গেলে ক্ষতি করে। তাই অ্যাপ্রন, গ্লাভস, গগলস ও মাস্ক পরতে হয়।'},
+ {q:'গবেষণা প্রক্রিয়ার সঠিক ক্রম কোনটি?',o:['পরীক্ষণ → বিষয়বস্তু নির্ধারণ → ফলাফল','বিষয়বস্তু নির্ধারণ → ধারণা নেওয়া → প্রণালি ঠিক করা → পরীক্ষণ → তথ্য বিশ্লেষণ → ফলাফল','ফলাফল → পরীক্ষণ → বিষয়বস্তু','তথ্য সংগ্রহ → ধারণা নেওয়া → পরীক্ষণ'],a:1,e:'বইয়ের ফ্লো চার্ট: বিষয়বস্তু নির্ধারণ, ধারণা নেওয়া, বস্তু-যন্ত্রপাতি ও প্রণালি ঠিক করা, পরীক্ষণ, তথ্য সংগ্রহ ও বিশ্লেষণ, ফলাফল ও আলোচনা।'},
+ {q:'অ্যামোনিয়াম ক্লোরাইড পানিতে যত বেশি দ্রবীভূত হয়, পানির তাপমাত্রা কীভাবে বদলায়? এর সিদ্ধান্ত কী?',o:['বাড়ে, তাই তাপ উৎপন্ন হয়','কমে, তাই তাপ শোষিত হয়','অপরিবর্তিত থাকে','আগে কমে পরে বাড়ে'],a:1,e:'টেবিলে ০ গ্রামে ২৫°C, ৫ গ্রামে ২০°C, ১০ গ্রামে ১৫°C, ১৫ গ্রামে ১০°C। তাপমাত্রা কমছে, অর্থাৎ পানি থেকে তাপ শোষিত হচ্ছে।'},
+ {q:'সালোকসংশ্লেষণে CO₂ ও পানি থেকে গ্লুকোজ তৈরি রসায়নের সাথে কোন বিজ্ঞানের সম্পর্ক দেখায়?',o:['ভূগোল','জীববিজ্ঞান','জ্যোতির্বিজ্ঞান','ইতিহাস'],a:1,e:'সালোকসংশ্লেষণ উদ্ভিদের একটি রাসায়নিক বিক্রিয়া। তাই জীববিজ্ঞান ও রসায়নের গভীর সম্পর্ক।'},
+ {q:'ল্যাবে কেন অ্যাপ্রন পরতে হয়?',o:['ফ্যাশনের জন্য','রাসায়নিক পড়ে পোশাক ও শরীর নষ্ট হওয়া থেকে বাঁচতে','গরম থেকে বাঁচতে','শব্দ থেকে বাঁচতে'],a:1,e:'এসিড পড়লে পোশাক নষ্ট হয়, শরীরেরও ক্ষতি হতে পারে। তাই হাঁটুর নিচ পর্যন্ত লম্বা অ্যাপ্রন (সাধারণত সাদা) পরতে হয়।'}
+];
+var answered=0,correct=0;
+(function(){
+  var box=$('quizbox');
+  QUIZ.forEach(function(item,qi){
+    var div=document.createElement('div');div.className='q';
+    var html='<p>'+bn(qi+1)+'. '+item.q+'</p>';
+    var ord=item.o.map(function(_,i){return i;});
+    if(!item.fix)ord=shuffle(ord);
+    item.ord=ord;item.a2=ord.indexOf(item.a);
+    ord.forEach(function(oi,pos){html+='<button class="opt" data-q="'+qi+'" data-o="'+pos+'">'+item.o[oi]+'</button>';});
+    html+='<div class="exp" id="exp'+qi+'">💡 '+item.e+'</div>';
+    div.innerHTML=html;box.appendChild(div);
+  });
+  box.addEventListener('click',function(ev){
+    var b=ev.target.closest('.opt');if(!b||b.parentNode.getAttribute('data-done'))return;
+    var qi=+b.getAttribute('data-q'),oi=+b.getAttribute('data-o');
+    b.parentNode.setAttribute('data-done','1');
+    var btns=b.parentNode.querySelectorAll('.opt');btns[QUIZ[qi].a2].classList.add('ok');
+    if(oi===QUIZ[qi].a2)correct++;else b.classList.add('no');
+    $('exp'+qi).style.display='block';answered++;
+    if(answered===QUIZ.length)$('score').textContent='🎉 তোমার স্কোর: '+bn(correct)+' / '+bn(QUIZ.length);
+  });
+})();
+
+/* ---------- প্রশ্ন-উত্তর ---------- */
+var QA=[
+ {h:'সৃজনশীল ১ (ওষুধ সেবন ও কীটনাশক ছিটানোর ছবি)',items:[
+  ['(ক) গবেষণা কী? [জ্ঞান]','সঠিক পদ্ধতিতে পরীক্ষা-নিরীক্ষার মাধ্যমে অজানা কিছু জানার নামই গবেষণা।'],
+  ['(খ) পাকা আম খেতে মিষ্টি লাগে কেন? [অনুধাবন]','কাঁচা আমে বিভিন্ন জৈব এসিড থাকে, তাই টক লাগে। আম পাকার সময় রাসায়নিক পরিবর্তনে এসিড কমে যায় এবং গ্লুকোজ ও ফ্রুক্টোজ তৈরি হয়। এই চিনি জাতীয় পদার্থের জন্য পাকা আম মিষ্টি লাগে।'],
+  ['(গ) উদ্দীপকের A নং চিত্রে রসায়ন কীভাবে সম্পর্কিত? ব্যাখ্যা করো। [প্রয়োগ]','A চিত্রে ওষুধ সেবনের ছবি। ওষুধ রসায়নের অবদান। রসায়ন অধ্যয়ন ও গবেষণার মাধ্যমেই নতুন নতুন ওষুধ আবিষ্কার ও তৈরি হয়েছে। এর ফলে কলেরা, টাইফয়েড, যক্ষ্মার মতো রোগ এবং ক্যান্সারের মতো মরণব্যাধি থেকেও মানুষ অনেক ক্ষেত্রে রক্ষা পাচ্ছে। তাই ওষুধ সেবনের সাথে রসায়ন সম্পর্কিত।'],
+  ['(ঘ) উদ্দীপকের কোনটির অতিরিক্ত ব্যবহার পরিবেশের জন্য ক্ষতিকর? যুক্তিসহ লেখো। [উচ্চতর দক্ষতা]','B চিত্রের কীটনাশকের অতিরিক্ত ব্যবহার ক্ষতিকর। কীটনাশকের কিছু অংশ উবে গিয়ে বাতাসে মিশে বায়ু দূষিত করে। বৃষ্টির পানিতে ধুয়ে পুকুর, নদী ও খালে গিয়ে পানি দূষিত করে। এসব দূষিত পানিতে মাছ ও উদ্ভিদ ক্ষতিগ্রস্ত হয়। সেই মাছ ও উদ্ভিদ খেয়ে মানুষের শরীরেও ক্ষতিকর পদার্থ ঢোকে। তাই প্রয়োজনের বেশি কীটনাশক ব্যবহার পরিবেশ ও স্বাস্থ্য দুটির জন্যই ক্ষতিকর। (ওষুধও ডোজের বেশি খেলে ক্ষতি করে, তবে পরিবেশের ক্ষতির প্রশ্নে B ই উত্তর।)']]},
+ {h:'সৃজনশীল ২ (চিত্র-১: দাহ্য, চিত্র-২: বিষাক্ত, চিত্র-৩: তেজস্ক্রিয় চিহ্ন)',items:[
+  ['(ক) রসায়ন কী? [জ্ঞান]','বিজ্ঞানের যে শাখায় পদার্থের গঠন, ধর্ম এবং পারস্পরিক রূপান্তর নিয়ে আলোচনা করা হয় তাকে রসায়ন বলে।'],
+  ['(খ) পেটের এসিডিটির জন্য এন্টাসিড খাওয়া হয় কেন? [অনুধাবন]','পাকস্থলীতে অতিরিক্ত হাইড্রোক্লোরিক এসিড তৈরি হলে এসিডিটির সমস্যা হয়। এন্টাসিডে অ্যালুমিনিয়াম হাইড্রক্সাইড ও ম্যাগনেসিয়াম হাইড্রক্সাইডের মতো ক্ষারীয় যৌগ থাকে। এরা অতিরিক্ত এসিডকে প্রশমিত করে, তাই এসিডিটি কমে।'],
+  ['(গ) চিত্র-৩ এর সংকেতচিহ্নযুক্ত রাসায়নিক পদার্থ মানুষের কী কী ক্ষতিসাধন করে? ব্যাখ্যাসহ লেখো। [প্রয়োগ]','চিত্র-৩ তেজস্ক্রিয় পদার্থের চিহ্ন (যেমন ইউরেনিয়াম, রেডিয়াম)। এসব পদার্থ থেকে ক্ষতিকর রশ্মি বের হয়। এই রশ্মি ক্যান্সারের মতো মরণব্যাধি সৃষ্টি করতে পারে এবং কাউকে বিকলাঙ্গ করে দিতে পারে। তাই এগুলো ব্যবহারে বিশেষ সতর্ক থাকতে হয়।'],
+  ['(ঘ) চিত্র-১ ও চিত্র-২ এর রাসায়নিক পদার্থের ব্যবহার কেন ঝুঁকিপূর্ণ? ব্যাখ্যা করো। [উচ্চতর দক্ষতা]','চিত্র-১ দাহ্য পদার্থের চিহ্ন (যেমন অ্যালকোহল, ইথার)। এতে খুব সহজে আগুন ধরে যায়, তাই আগুন বা তাপের কাছে ব্যবহার করলে দুর্ঘটনা হতে পারে। চিত্র-২ বিষাক্ত পদার্থের চিহ্ন (যেমন বেনজিন, মিথানল)। এগুলো শরীরে লাগলে বা শ্বাসের সাথে ঢুকলে নানা ক্ষতি করে। তাই এগুলো ব্যবহারের সময় আগুন থেকে দূরে থাকতে হয় এবং অ্যাপ্রন, হ্যান্ড গ্লাভস, সেফটি গগলস ও মাস্ক পরতে হয়। অসতর্ক হলে ঝুঁকি বাড়ে।']]},
+ {h:'অতিরিক্ত সংক্ষিপ্ত প্রশ্ন (নিজের অনুশীলনের জন্য)',items:[
+  ['রসায়ন পাঠের গুরুত্ব কী?','দৈনন্দিন জীবনের পেস্ট, সাবান, ওষুধ, সার, কীটনাশক সবই রসায়নের অবদান। রসায়ন পড়লে কোন ব্যবহার উপকারী আর কোনটা পরিবেশ ও শরীরের জন্য ক্ষতিকর তা বোঝা যায়, ফলে মানুষ সাবধানে রসায়ন ব্যবহার করতে পারে।'],
+  ['গবেষণার ধাপগুলো লেখো।','বিষয়বস্তু নির্ধারণ, বই বা পূর্বের গবেষণাপত্র থেকে ধারণা নেওয়া, প্রয়োজনীয় বস্তু ও যন্ত্রপাতি ও পরীক্ষণ প্রণালি নির্ধারণ, পরীক্ষণ, তথ্য সংগ্রহ ও বিশ্লেষণ, ফলাফল ও ফলাফল নিয়ে আলোচনা।'],
+  ['ল্যাবে নিরাপত্তার জন্য কী কী ব্যবহার করতে হয়?','অ্যাপ্রন (সাধারণত সাদা, হাঁটুর নিচ পর্যন্ত লম্বা), হ্যান্ড গ্লাভস, চোখের জন্য সেফটি গগলস এবং মাস্ক।']]}
+];
+(function(){
+  var h='',n=0;
+  QA.forEach(function(g){h+='<h3>'+g.h+'</h3>';g.items.forEach(function(it){var id='qa'+(n++);
+    h+='<div class="q"><p>'+it[0]+'</p><button class="btn alt" data-id="'+id+'">উত্তর দেখো</button><div class="ans" id="'+id+'">'+it[1]+'</div></div>';});});
+  $('qabox').innerHTML=h;
+  $('qabox').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;var a=$(b.getAttribute('data-id'));var o=a.classList.toggle('open');b.textContent=o?'উত্তর লুকাও':'উত্তর দেখো';};
+})();
+
+/* ---------- অ্যানিমেশন লুপ ---------- */
+function frame(){acDraw();beakerDraw();grDraw();requestAnimationFrame(frame);}
+frame();
+</script>
+</body>
+</html>

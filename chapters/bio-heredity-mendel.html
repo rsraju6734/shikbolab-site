@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>বংশগতি: মেন্ডেলের ল্যাব - ShikboLab</title>
+<meta name="description" content="🧬 বংশগতি: মেন্ডেলের ল্যাব (বিশেষ) — ShikboLab এ বাংলায় ইন্টারঅ্যাকটিভ ব্যাখ্যা, ভার্চুয়াল ল্যাব ও কুইজ।">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.tabs{flex-wrap:wrap}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ctl label{font-weight:700;color:var(--navy)}
+.ctl select{font-family:inherit;font-size:16px;padding:6px 8px;border-radius:8px;border:2px solid #cfd9e1;background:#fff;width:auto;max-width:100%}
+.say{background:#fff4dc;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600}
+.warn{background:#fdeceb;border-left:5px solid #e76f51;border-radius:8px;padding:10px 14px;margin:12px 0}
+.ptscroll{overflow-x:auto;padding-bottom:6px}
+table.pq{border-collapse:separate;border-spacing:4px;margin:8px auto}
+table.pq th{background:#1f3a5f;color:#fff;border-radius:8px;padding:6px 10px;font-family:system-ui,Arial,sans-serif;min-width:54px}
+table.pq td{background:#eaf7f5;border-radius:8px;padding:6px 8px;text-align:center;font-family:system-ui,Arial,sans-serif;font-weight:700;color:var(--navy);min-width:68px;opacity:0;transform:scale(.6);animation:pop .45s forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+.ph{display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.ph svg{width:30px;height:30px}
+.par{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center;margin:8px 0}
+.parbox{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-align:center;min-width:170px}
+.parbox svg{width:46px;height:46px}
+.gam{display:inline-flex;gap:4px;margin-top:4px;flex-wrap:wrap;justify-content:center}
+.gam span{display:inline-block;background:#fff;border:2px solid var(--teal);border-radius:50%;padding:2px 7px;font-weight:700;font-family:system-ui,Arial,sans-serif;font-size:14px;animation:pop .4s forwards}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:15px}
+.bar .bl{width:170px;flex:none;display:flex;align-items:center;gap:6px}
+.bar .bl svg{width:26px;height:26px}
+.bar .bt{flex:1;background:#e8eef3;border-radius:8px;height:22px;position:relative;overflow:hidden}
+.bar .bf{height:100%;background:var(--teal);border-radius:8px;transition:width .6s}
+.bar .bx{position:absolute;top:0;bottom:0;border-left:3px dashed #e76f51}
+.bar .bn{width:110px;flex:none;font-weight:700;font-family:system-ui,Arial,sans-serif;font-size:14px}
+.kids{display:flex;flex-wrap:wrap;gap:2px;margin:8px 0;min-height:30px}
+.kids svg{width:24px;height:24px;animation:pop .3s forwards}
+.eqb{background:#eaf7f5;border-radius:10px;padding:8px;text-align:center;font-weight:700;color:var(--navy);margin:8px 0}
+.fb{font-weight:700;margin-top:6px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.pills button{font-family:inherit}
+@media(max-width:600px){.bar .bl{width:120px}.bar .bn{width:80px}}
+</style>
+<link rel="stylesheet" href="../css/theme.css">
+<script src="../js/theme.js" defer></script>
+<script src="../js/prices.js"></script>
+<script src="../js/demo-saas.js?v=5"></script>
+<script src="../js/lab-boost.js?v=1"></script>
+<script src="../js/draw-guide.js?v=3"></script>
+<script src="../js/draw/img-index.js?v=2"></script>
+<script src="../js/draw/bio-heredity-evolution.js?v=1"></script>
+<script src="../js/draw/bio-heredity-mendel.js?v=1"></script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="../index.html">Shikbo<span>Lab</span></a>
+  <a class="back" href="../index.html">&larr; সব অধ্যায়</a>
+</header>
+<div class="wrap">
+  <div class="crumb">🧬 জীববিজ্ঞান &rsaquo; বিশেষ ল্যাব (এক্সট্রা)</div>
+  <h1 class="title">🧬 বংশগতি: মেন্ডেলের ল্যাব</h1>
+  <nav class="tabs"><a href="#note">📝 নোট</a><a href="#draw">✏️ আঁকার ট্রিক</a><a href="#lab1">🌸 ল্যাব ১</a><a href="#lab2">🟡 ল্যাব ২</a><a href="#lab3">👶 ল্যাব ৩</a><a href="#lab4">🕵️ ল্যাব ৪</a><a href="#quiz">❓ কুইজ</a></nav>
+
+  <section class="panel" id="note">
+    <h2>📝 সহজ নোট</h2>
+    <div class="key">🎯 <b>এই ল্যাবে শিখবে:</b> জিন, অ্যালিল, প্রকট ও প্রচ্ছন্ন বৈশিষ্ট্য, পানেট বর্গ, মেন্ডেলের সূত্র, লিঙ্গ নির্ধারণ ও রক্তের গ্রুপ।</div>
+    <div class="warn">ℹ️ এটি NCTB বইয়ের ক্রম মেনে বানানো এক্সট্রা ল্যাব। বইয়ের অধ্যায়ের PDF দিলে বইয়ের সাথে মিলিয়ে নোট ও প্রশ্ন যোগ করে দেব।</div>
+    <h3>১. মূল শব্দগুলো ⭐⭐⭐</h3>
+    <ul>
+      <li><b>জিন:</b> বংশগতির একক। একটা বৈশিষ্ট্যের (যেমন ফুলের রং) নির্দেশ জিনে লেখা থাকে। জিন থাকে ক্রোমোসোমে।</li>
+      <li><b>অ্যালিল:</b> একই জিনের ভিন্ন রূপ। যেমন ফুলের রঙের জিনের অ্যালিল: বেগুনি (P) ও সাদা (p)। প্রতিটি জীব প্রতি জিনের <b>দুটি অ্যালিল</b> পায়, একটি বাবার কাছ থেকে, একটি মায়ের কাছ থেকে।</li>
+      <li><b>প্রকট (Dominant):</b> যে অ্যালিল থাকলে বৈশিষ্ট্য প্রকাশ পায় (বড় হাতের অক্ষর, যেমন P)। <b>প্রচ্ছন্ন (Recessive):</b> শুধু তখনই প্রকাশ পায় যখন দুটি অ্যালিলই প্রচ্ছন্ন (ছোট হাতের অক্ষর, pp)।</li>
+      <li><b>জিনোটাইপ:</b> অ্যালিলের গঠন (PP, Pp, pp)। <b>ফিনোটাইপ:</b> বাইরে যা দেখা যায় (বেগুনি বা সাদা)।</li>
+      <li><b>সমযুগ্ম (Homozygous):</b> দুটি অ্যালিল একই (PP বা pp)। <b>বিষমযুগ্ম (Heterozygous):</b> দুটি ভিন্ন (Pp)।</li>
+      <li><b>গ্যামেট:</b> জনন কোষ (শুক্রাণু ও ডিম্বাণু)। প্রতিটি গ্যামেটে প্রতি জিনের <b>একটি</b> অ্যালিল যায়।</li>
+    </ul>
+    <h3>২. মেন্ডেলের সূত্র ⭐⭐⭐</h3>
+    <div class="key"><b>প্রথম সূত্র (পৃথকীকরণ):</b> গ্যামেট তৈরির সময় একজোড়া অ্যালিল আলাদা হয়ে যায়, প্রতি গ্যামেটে একটি যায়। Pp × Pp ক্রসে সন্তানের ফিনোটাইপ অনুপাত <b>৩ : ১</b> (প্রকট : প্রচ্ছন্ন), জিনোটাইপ অনুপাত <b>১ : ২ : ১</b> (PP : Pp : pp)।</div>
+    <div class="key"><b>দ্বিতীয় সূত্র (স্বাধীন বণ্টন):</b> দুটি আলাদা বৈশিষ্ট্যের অ্যালিল একে অপরের থেকে স্বাধীনভাবে গ্যামেটে যায়। RrYy × RrYy ক্রসে ফিনোটাইপ অনুপাত <b>৯ : ৩ : ৩ : ১</b>।</div>
+    <ul>
+      <li>মেন্ডেল মটরশুঁটি নিয়ে হাজার হাজার গাছে পরীক্ষা করেছিলেন, কারণ অল্প সংখ্যায় ফল ঠিক ৩ : ১ নাও হতে পারে (সম্ভাব্যতার ব্যাপার)।</li>
+      <li><b>টেস্ট ক্রস:</b> প্রকট ফিনোটাইপের জীবের জিনোটাইপ (PP না Pp) জানতে তাকে প্রচ্ছন্ন (pp) জীবের সাথে ক্রস করা হয়। সব সন্তান প্রকট হলে PP, প্রায় অর্ধেক প্রচ্ছন্ন হলে Pp।</li>
+    </ul>
+    <h3>৩. মানুষের লিঙ্গ নির্ধারণ ⭐⭐</h3>
+    <ul>
+      <li>নারীর ক্রোমোসোম <b>XX</b>, পুরুষের <b>XY</b>। মা সবসময় X দেন, বাবা X বা Y দেন।</li>
+      <li>তাই সন্তানের লিঙ্গ নির্ধারণ করে <b>বাবার শুক্রাণু</b>: X পেলে মেয়ে, Y পেলে ছেলে। সম্ভাবনা ৫০ : ৫০।</li>
+    </ul>
+    <h3>৪. রক্তের গ্রুপ (ABO) ⭐⭐</h3>
+    <ul>
+      <li>তিনটি অ্যালিল: I<sup>A</sup>, I<sup>B</sup>, i। I<sup>A</sup> ও I<sup>B</sup> দুটোই i-এর উপর প্রকট, আর I<sup>A</sup> ও I<sup>B</sup> একসাথে থাকলে <b>দুটোই</b> প্রকাশ পায় (সহ-প্রকটতা), ফলে AB গ্রুপ।</li>
+      <li>A গ্রুপ: I<sup>A</sup>I<sup>A</sup> বা I<sup>A</sup>i। B গ্রুপ: I<sup>B</sup>I<sup>B</sup> বা I<sup>B</sup>i। AB গ্রুপ: I<sup>A</sup>I<sup>B</sup>। O গ্রুপ: ii।</li>
+    </ul>
+    <div class="star">📌 পানেট বর্গ হলো সম্ভাবনা বের করার ছক। এতে দেখানো হয় কোন গ্যামেট মিললে কোন জিনোটাইপ আসে। বাস্তবে এটি <b>সম্ভাবনা</b>, নিশ্চয়তা নয়: দুটি সন্তান থাকলে ৩ : ১ ঠিক ঠিক নাও হতে পারে।</div>
+  </section>
+
+  <!-- ============ ল্যাব ১ ============ -->
+  <section class="panel" id="draw"></section>
+<section class="panel" id="lab1">
+    <h2>🌸 ল্যাব ১: একসংকর ক্রস (একটি বৈশিষ্ট্য)</h2>
+    <div class="key">বৈশিষ্ট্য ও বাবা-মার জিনোটাইপ বেছে নাও। পানেট বর্গ আপনি আপনি তৈরি হবে। তারপর "সন্তান তৈরি করো" চেপে দেখো বাস্তবে কেমন অনুপাত আসে।</div>
+    <div class="ctl">
+      <label>বৈশিষ্ট্য:</label><select id="m1t"></select>
+      <label>মা-গাছ:</label><select id="m1a"></select>
+      <label>বাবা-গাছ:</label><select id="m1b"></select>
+    </div>
+    <div class="par" id="m1par"></div>
+    <div class="ptscroll"><div id="m1pq"></div></div>
+    <div class="say" id="m1say"></div>
+    <div class="btnrow"><button class="btn" data-n="10">🌱 ১০টা সন্তান</button><button class="btn" data-n="100">🌱 ১০০টা সন্তান</button><button class="btn" data-n="1000">🌱 ১০০০টা সন্তান</button></div>
+    <div class="kids" id="m1kids"></div>
+    <div id="m1bars"></div>
+    <div class="say" id="m1res"></div>
+  </section>
+
+  <!-- ============ ল্যাব ২ ============ -->
+  <section class="panel" id="lab2">
+    <h2>🟡 ল্যাব ২: দ্বিসংকর ক্রস (দুটি বৈশিষ্ট্য একসাথে)</h2>
+    <div class="key">মটরশুঁটির বীজ: <b>R</b> = গোল (প্রকট), r = কুঁচকানো। <b>Y</b> = হলুদ (প্রকট), y = সবুজ। বাবা-মার জিনোটাইপ বেছে নাও।</div>
+    <div class="ctl"><label>মা:</label><select id="m2a"></select><label>বাবা:</label><select id="m2b"></select>
+      <button class="btn alt" id="m2std">⭐ RrYy × RrYy (ক্লাসিক)</button></div>
+    <div class="par" id="m2par"></div>
+    <div class="ptscroll"><div id="m2pq"></div></div>
+    <div id="m2bars"></div>
+    <div class="say" id="m2say"></div>
+  </section>
+
+  <!-- ============ ল্যাব ৩ ============ -->
+  <section class="panel" id="lab3">
+    <h2>👶 ল্যাব ৩: লিঙ্গ নির্ধারণ ও রক্তের গ্রুপ</h2>
+    <h3>(ক) ছেলে হবে না মেয়ে?</h3>
+    <div class="par" id="m3par"><div class="parbox"><b>মা (XX)</b><div class="gam"><span>X</span><span>X</span></div></div><div class="parbox"><b>বাবা (XY)</b><div class="gam"><span>X</span><span>Y</span></div></div></div>
+    <div class="ptscroll"><div id="m3pq"></div></div>
+    <div class="btnrow"><button class="btn" data-sn="20">👶 ২০টা সন্তান</button><button class="btn" data-sn="100">👶 ১০০টা</button><button class="btn" data-sn="1000">👶 ১০০০টা</button></div>
+    <div id="m3bars"></div>
+    <div class="say" id="m3say">বোতাম চেপে দেখো। অল্প সংখ্যায় ৫০ : ৫০ থেকে অনেক সরে যেতে পারে, বেশি সংখ্যায় ৫০ : ৫০-এর কাছে আসে।</div>
+    <h3>(খ) সন্তানের রক্তের গ্রুপ কী হতে পারে?</h3>
+    <div class="ctl"><label>মায়ের জিনোটাইপ:</label><select id="m4a"></select><label>বাবার জিনোটাইপ:</label><select id="m4b"></select></div>
+    <div class="ptscroll"><div id="m4pq"></div></div>
+    <div id="m4bars"></div>
+    <div class="say" id="m4say"></div>
+  </section>
+
+  <!-- ============ ল্যাব ৪ ============ -->
+  <section class="panel" id="lab4">
+    <h2>🕵️ ল্যাব ৪: টেস্ট ক্রস গোয়েন্দা</h2>
+    <div class="key">এই বেগুনি ফুলের গাছটি PP না Pp? তাকে সাদা (pp) গাছের সাথে ক্রস করো এবং সন্তান দেখে সিদ্ধান্ত নাও।</div>
+    <div class="par"><div class="parbox"><b>রহস্যময় গাছ</b><div id="m5mys"></div><div style="font-size:26px">❓❓</div></div><div style="font-size:28px">×</div><div class="parbox"><b>সাদা ফুলের গাছ (pp)</b><div id="m5wh"></div><div class="gam"><span>p</span><span>p</span></div></div></div>
+    <div class="btnrow"><button class="btn" id="m5go">🌱 ক্রস করো (৪টা সন্তান)</button><button class="btn alt" id="m5new">🔄 নতুন গাছ</button></div>
+    <div class="kids" id="m5kids"></div>
+    <div class="say" id="m5cnt">এখনও ক্রস করোনি।</div>
+    <div class="ctl"><b>তোমার সিদ্ধান্ত:</b><button class="btn alt" id="m5pp">PP</button><button class="btn alt" id="m5pq">Pp</button></div>
+    <div class="fb" id="m5fb"></div>
+    <div class="say" id="m5sc">স্কোর: ০ / ০</div>
+  </section>
+
+  <section class="panel" id="quiz">
+    <h2>❓ কুইজ: নিজেকে যাচাই করো</h2>
+    <div id="quizbox"></div>
+    <div class="score" id="score"></div>
+  </section>
+</div>
+<footer class="site">&copy; ShikboLab</footer>
+
+<script>
+var BN='০১২৩৪৫৬৭৮৯';
+function bn(s){return String(s).replace(/[0-9]/g,function(d){return BN[d];});}
+function $(id){return document.getElementById(id);}
+function gcd(a,b){return b?gcd(b,a%b):a;}
+function rnd(n){return Math.floor(Math.random()*n);}
+
+/* ---------- ছবি (SVG) ---------- */
+function flower(c,st){var o='';for(var i=0;i<5;i++){var a=i*1.2566-1.5708;o+='<circle cx="'+(20+11*Math.cos(a))+'" cy="'+(20+11*Math.sin(a))+'" r="8" fill="'+c+'" stroke="'+(st||'rgba(0,0,0,.15)')+'"/>';}return '<svg viewBox="0 0 40 40">'+o+'<circle cx="20" cy="20" r="5" fill="#ffd54f"/></svg>';}
+function seed(c,wr){return '<svg viewBox="0 0 40 40">'+(wr?'<path d="M20 4 Q29 6 34 13 Q37 21 32 29 Q26 37 17 35 Q8 33 5 24 Q3 14 12 8Z" fill="'+c+'" stroke="#6d4c41" stroke-width="1.5"/><path d="M12 15 Q18 18 14 24 M24 12 Q27 18 23 22 M18 28 Q24 27 27 30" stroke="rgba(0,0,0,.35)" fill="none"/>':'<circle cx="20" cy="20" r="15" fill="'+c+'" stroke="#6d4c41" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="rgba(255,255,255,.4)"/>')+'</svg>';}
+function plant(tall){var h=tall?32:15;return '<svg viewBox="0 0 40 40"><line x1="20" y1="38" x2="20" y2="'+(38-h)+'" stroke="#43a047" stroke-width="3"/><circle cx="14" cy="'+(38-h*0.6)+'" r="4.5" fill="#66bb6a"/><circle cx="26" cy="'+(38-h*0.85)+'" r="4.5" fill="#66bb6a"/><circle cx="20" cy="'+(38-h)+'" r="4" fill="#a5d6a7"/></svg>';}
+var TRAITS=[
+ {id:'flower',name:'ফুলের রং',A:'P',dom:'বেগুনি',rec:'সাদা',d:function(x){return flower(x?'#9c27b0':'#ffffff','#999');}},
+ {id:'shape',name:'বীজের আকৃতি',A:'R',dom:'গোল',rec:'কুঁচকানো',d:function(x){return seed('#d9c25a',!x);}},
+ {id:'color',name:'বীজের রং',A:'Y',dom:'হলুদ',rec:'সবুজ',d:function(x){return seed(x?'#f2d43b':'#7cb342',false);}},
+ {id:'height',name:'গাছের উচ্চতা',A:'T',dom:'লম্বা',rec:'বামন',d:function(x){return plant(x);}}
+];
+
+/* ---------- জেনেটিক্স ফাংশন ---------- */
+function norm(g){var n=g.length/2,o=[];for(var i=0;i<n;i++){var p=[g[2*i],g[2*i+1]].sort(function(a,b){return a===b?0:(a<b?-1:1);});o.push(p[0]+p[1]);}return o.join('');}
+function normG(g){ // বড় হাতের অক্ষর আগে
+  var res='';for(var i=0;i<g.length;i+=2){var a=g[i],b=g[i+1];if(a===a.toLowerCase()&&b===b.toUpperCase()){var t=a;a=b;b=t;}res+=a+b;}return res;}
+function gametes(g){var out=[''];for(var i=0;i<g.length;i+=2){var n=[];out.forEach(function(x){n.push(x+g[i]);if(g[i+1]!==g[i])n.push(x+g[i+1]);else n.push(x+g[i+1]);});out=n;}
+  // হোমোজাইগাস হলে একই গ্যামেট দুইবার আসবে; অনন্য করি পানেটের জন্য ভিন্ন সারি/কলাম রাখি
+  return out;}
+function uniqG(g){var o=[];gametes(g).forEach(function(x){if(o.indexOf(x)<0)o.push(x);});return o;}
+function gamList(g){ // পানেটে প্রতিটি অ্যালিল-সমন্বয়, সংখ্যায় সঠিক ওজনের জন্য
+  var out=[''];for(var i=0;i<g.length;i+=2){var n=[];out.forEach(function(x){n.push(x+g[i]);n.push(x+g[i+1]);});out=n;}return out;}
+function isDom(a){return a===a.toUpperCase();}
+function phenoOf(g){ // প্রতিটি জোড়ার জন্য প্রকট/প্রচ্ছন্ন
+  var r=[];for(var i=0;i<g.length;i+=2){r.push(isDom(g[i])||isDom(g[i+1])?1:0);}return r;}
+function child(a,b){var o='';for(var i=0;i<a.length;i+=2){var s=a[i]+b[i];var t=s[0];/*unused*/o+=s;}return o;}
+function mate(ga,gb){ // ga,gb: গ্যামেট স্ট্রিং (একটি অ্যালিল প্রতি জিনে), ফল: সন্তানের জিনোটাইপ
+  var o='';for(var i=0;i<ga.length;i++){var a=ga[i],b=gb[i];if(a===a.toLowerCase()&&b===b.toUpperCase()){var t=a;a=b;b=t;}o+=a+b;}return o;}
+function randGam(g){var o='';for(var i=0;i<g.length;i+=2)o+=g[i+rnd(2)];return o;}
+function colorTxt(g){return g;}
+
+function pqTable(gA,gB,render){
+  var rows=gamList(gA),cols=gamList(gB),h='<table class="pq"><tr><th></th>';
+  cols.forEach(function(c){h+='<th>'+c+'</th>';});h+='</tr>';
+  var k=0;rows.forEach(function(r){h+='<tr><th>'+r+'</th>';cols.forEach(function(c){var cg=mate(r,c);h+='<td style="animation-delay:'+(k*55)+'ms">'+render(cg)+'</td>';k++;});h+='</tr>';});
+  return h+'</table>';
+}
+function uniqueBy(a){return a.filter(function(x,i,ar){return ar.indexOf(x)===i;});}
+function colLabel(g){return g;}
+
+/* ============ ল্যাব ১ ============ */
+(function(){
+  var ts=$('m1t');TRAITS.forEach(function(t,i){ts.innerHTML+='<option value="'+i+'">'+t.name+'</option>';});
+  var tr=function(){return TRAITS[+$('m1t').value];};
+  function fillG(){var A=tr().A,a=A.toLowerCase(),l=[A+A,A+a,a+a];['m1a','m1b'].forEach(function(id,k){var cur=$(id).value;$(id).innerHTML='';l.forEach(function(g,i){var lab=g+' ('+(i<2?tr().dom:tr().rec)+(i===1?', বিষমযুগ্ম':(i===0?', সমযুগ্ম':', সমযুগ্ম'))+')';$(id).innerHTML+='<option value="'+g+'">'+lab+'</option>';});$(id).selectedIndex=1;});}
+  fillG();
+  function box(g,t){var dom=isDom(g[0])||isDom(g[1]);return '<div class="parbox">'+t.d(dom)+'<br><b>'+g+'</b><br>'+(dom?t.dom:t.rec)+'<div class="gam">'+uniqG(g).map(function(x){return '<span>'+x+'</span>';}).join('')+'</div></div>';}
+  var counts=null;
+  function ratioTxt(arr){var g=0;arr.forEach(function(x){g=gcd(g,x);});return arr.map(function(x){return g?x/g:0;}).join(' : ');}
+  function draw(){
+    var t=tr(),A=$('m1a').value,B=$('m1b').value;
+    $('m1par').innerHTML=box(A,t)+'<div style="font-size:30px">×</div>'+box(B,t);
+    var gA=A,gB=B,al=t.A,tot={dom:0,rec:0,AA:0,Aa:0,aa:0},cells=[];
+    $('m1pq').innerHTML=pqTable(gA,gB,function(c){var d=isDom(c[0])||isDom(c[1]);return '<div class="ph">'+t.d(d)+'</div>'+c;});
+    gamList(gA).forEach(function(x){gamList(gB).forEach(function(y){var c=mate(x,y),d=isDom(c[0])||isDom(c[1]);if(d)tot.dom++;else tot.rec++;tot[c==al+al?'AA':(c===al.toLowerCase()+al.toLowerCase()?'aa':'Aa')]++;});});
+    $('m1say').innerHTML='প্রত্যাশিত ফল: প্রকট ('+t.dom+') : প্রচ্ছন্ন ('+t.rec+') = <b>'+bn(tot.dom+' : '+tot.rec)+'</b> (৪টির মধ্যে)। জিনোটাইপ '+al+al+' : '+al+al.toLowerCase()+' : '+al.toLowerCase()+al.toLowerCase()+' = <b>'+bn(tot.AA+' : '+tot.Aa+' : '+tot.aa)+'</b>।'+(A===al+al.toLowerCase()&&B===A?' এটাই মেন্ডেলের বিখ্যাত ৩ : ১ অনুপাত!':'');
+    t.exp={dom:tot.dom/4,rec:tot.rec/4};
+    $('m1kids').innerHTML='';$('m1bars').innerHTML='';$('m1res').textContent='';
+  }
+  ['m1t','m1a','m1b'].forEach(function(id){$(id).addEventListener('change',function(){if(id==='m1t')fillG();draw();});});
+  document.querySelectorAll('#lab1 .btnrow .btn').forEach(function(b){b.onclick=function(){
+    var n=+b.getAttribute('data-n'),t=tr(),A=$('m1a').value,B=$('m1b').value,dom=0,rec=0,kids='';
+    for(var i=0;i<n;i++){var c=mate(randGam(A),randGam(B)),d=isDom(c[0])||isDom(c[1]);if(d)dom++;else rec++;if(i<100)kids+=t.d(d);}
+    $('m1kids').innerHTML=kids;
+    var e=t.exp,pd=dom/n*100,pr=rec/n*100;
+    function bar(lab,ic,p,ex,c){return '<div class="bar"><div class="bl">'+ic+lab+'</div><div class="bt"><div class="bf" style="width:'+p+'%"></div><div class="bx" style="left:'+ex*100+'%"></div></div><div class="bn">'+bn(Math.round(c))+' ('+bn(Math.round(p))+'%)</div></div>';}
+    $('m1bars').innerHTML=bar(t.dom,t.d(true),pd,e.dom,dom)+bar(t.rec,t.d(false),pr,e.rec,rec);
+    $('m1res').innerHTML='ফল: '+t.dom+' '+bn(dom)+'টি, '+t.rec+' '+bn(rec)+'টি। <span style="font-weight:400">(কমলা ডটেড রেখা = তত্ত্ব অনুযায়ী প্রত্যাশিত)</span><br>'+(n<=10?'💡 মাত্র '+bn(n)+'টা সন্তানে অনুপাত তত্ত্ব থেকে অনেক সরে যেতে পারে। কয়েকবার চাপো।':(n>=1000?'💡 অনেক সন্তানে অনুপাত তত্ত্বের খুব কাছে আসে। মেন্ডেল এজন্যই হাজার হাজার গাছ নিয়েছিলেন।':'💡 সংখ্যা বাড়ালে তত্ত্বের কাছাকাছি আসে।'));
+  };});
+  draw();
+})();
+
+/* ============ ল্যাব ২ ============ */
+(function(){
+  var gs=[];['RR','Rr','rr'].forEach(function(a){['YY','Yy','yy'].forEach(function(b){gs.push(a+b);});});
+  ['m2a','m2b'].forEach(function(id){gs.forEach(function(g){$(id).innerHTML+='<option value="'+g+'">'+g+'</option>';});});
+  function pseed(g){var r=isDom(g[0])||isDom(g[1]),y=isDom(g[2])||isDom(g[3]);return seed(y?'#f2d43b':'#7cb342',!r);}
+  function plab(g){var r=isDom(g[0])||isDom(g[1]),y=isDom(g[2])||isDom(g[3]);return (y?'হলুদ':'সবুজ')+', '+(r?'গোল':'কুঁচকানো');}
+  function draw(){
+    var A=$('m2a').value,B=$('m2b').value;
+    function box(g){return '<div class="parbox">'+pseed(g)+'<br><b>'+g+'</b><br>'+plab(g)+'<div class="gam">'+uniqG(g).map(function(x){return '<span>'+x+'</span>';}).join('')+'</div></div>';}
+    $('m2par').innerHTML=box(A)+'<div style="font-size:30px">×</div>'+box(B);
+    $('m2pq').innerHTML=pqTable(A,B,function(c){return '<div class="ph">'+pseed(c)+'</div>'+normG(c);});
+    var cnt={},total=0;
+    gamList(A).forEach(function(x){gamList(B).forEach(function(y){var c=mate(x,y),k=plab(c);cnt[k]=(cnt[k]||0)+1;total++;});});
+    var order=['হলুদ, গোল','হলুদ, কুঁচকানো','সবুজ, গোল','সবুজ, কুঁচকানো'],h='',arr=[];
+    order.forEach(function(k){var n=cnt[k]||0;arr.push(n);var ex=n/total;
+      var ic=k==='হলুদ, গোল'?seed('#f2d43b',false):k==='হলুদ, কুঁচকানো'?seed('#f2d43b',true):k==='সবুজ, গোল'?seed('#7cb342',false):seed('#7cb342',true);
+      h+='<div class="bar"><div class="bl">'+ic+k+'</div><div class="bt"><div class="bf" style="width:'+(ex*100)+'%"></div></div><div class="bn">'+bn(n)+' / '+bn(total)+'</div></div>';});
+    $('m2bars').innerHTML=h;
+    var g=0;arr.forEach(function(x){g=gcd(g,x);});var nz=arr.filter(function(x){return x>0;});
+    var rt=arr.map(function(x){return g?x/g:0;}).join(' : ');
+    $('m2say').innerHTML='ফিনোটাইপ অনুপাত (হলুদ-গোল : হলুদ-কুঁচকানো : সবুজ-গোল : সবুজ-কুঁচকানো) = <b>'+bn(rt)+'</b>'+(rt==='9 : 3 : 3 : 1'?'। এটাই মেন্ডেলের দ্বিতীয় সূত্রের বিখ্যাত ৯ : ৩ : ৩ : ১!':'।')+' <br>লক্ষ করো: বাবা-মায়ের কোনো বীজ সবুজ-কুঁচকানো না হলেও সন্তানে সেটা আসতে পারে, কারণ অ্যালিলগুলো নতুনভাবে মিশেছে।';
+  }
+  ['m2a','m2b'].forEach(function(id){$(id).addEventListener('change',draw);});
+  $('m2a').value='RrYy';$('m2b').value='RrYy';
+  $('m2std').onclick=function(){$('m2a').value='RrYy';$('m2b').value='RrYy';draw();};
+  draw();
+})();
+
+/* ============ ল্যাব ৩ ============ */
+(function(){
+  $('m3pq').innerHTML='<table class="pq"><tr><th></th><th>X</th><th>Y</th></tr><tr><th>X</th><td>XX মেয়ে</td><td>XY ছেলে</td></tr><tr><th>X</th><td>XX মেয়ে</td><td>XY ছেলে</td></tr></table>';
+  document.querySelectorAll('#lab3 [data-sn]').forEach(function(b){b.onclick=function(){
+    var n=+b.getAttribute('data-sn'),g=0;for(var i=0;i<n;i++){if(rnd(2)===0)g++;}var bo=n-g;
+    function bar(lab,p,c){return '<div class="bar"><div class="bl">'+lab+'</div><div class="bt"><div class="bf" style="width:'+p+'%"></div><div class="bx" style="left:50%"></div></div><div class="bn">'+bn(c)+' ('+bn(Math.round(p))+'%)</div></div>';}
+    $('m3bars').innerHTML=bar('👧 মেয়ে',g/n*100,g)+bar('👦 ছেলে',bo/n*100,bo);
+    $('m3say').textContent='মেয়ে '+bn(g)+', ছেলে '+bn(bo)+'। '+(n<=20?'অল্প সংখ্যায় ৫০ : ৫০ থেকে সরে যাওয়া স্বাভাবিক।':'সংখ্যা বাড়ার সাথে ফল ৫০ : ৫০-এর কাছে আসছে।')+' মনে রাখো: সন্তানের লিঙ্গ ঠিক করে বাবার শুক্রাণু (X না Y)।';
+  };});
+  var gl=['IAIA','IAi','IBIB','IBi','IAIB','ii'],gn={'IAIA':'A (I<sup>A</sup>I<sup>A</sup>)','IAi':'A (I<sup>A</sup>i)','IBIB':'B (I<sup>B</sup>I<sup>B</sup>)','IBi':'B (I<sup>B</sup>i)','IAIB':'AB (I<sup>A</sup>I<sup>B</sup>)','ii':'O (ii)'};
+  ['m4a','m4b'].forEach(function(id){gl.forEach(function(g){$(id).innerHTML+='<option value="'+g+'">'+gn[g].replace(/<sup>|<\/sup>/g,'')+'</option>';});});
+  $('m4a').value='IAi';$('m4b').value='IBi';
+  function al(g){return g==='ii'?['i','i']:(g==='IAIB'?['IA','IB']:(g==='IAIA'?['IA','IA']:(g==='IBIB'?['IB','IB']:[g.slice(0,2),'i'])));}
+  function grp(x,y){var s=[x,y];var a=s.indexOf('IA')>=0,b=s.indexOf('IB')>=0;return a&&b?'AB':(a?'A':(b?'B':'O'));}
+  function lab(x){return x==='IA'?'I<sup>A</sup>':(x==='IB'?'I<sup>B</sup>':'i');}
+  function d4(){
+    var A=al($('m4a').value),B=al($('m4b').value),h='<table class="pq"><tr><th></th><th>'+lab(B[0])+'</th><th>'+lab(B[1])+'</th></tr>',cnt={A:0,B:0,AB:0,O:0},k=0;
+    A.forEach(function(x){h+='<tr><th>'+lab(x)+'</th>';B.forEach(function(y){var g=grp(x,y);cnt[g]++;h+='<td style="animation-delay:'+(k++*70)+'ms">'+lab(x)+lab(y)+'<br>গ্রুপ '+g+'</td>';});h+='</tr>';});
+    $('m4pq').innerHTML=h+'</table>';
+    var hh='',poss=[];['A','B','AB','O'].forEach(function(g){var p=cnt[g]/4*100;if(p>0)poss.push(g);hh+='<div class="bar"><div class="bl">গ্রুপ '+g+'</div><div class="bt"><div class="bf" style="width:'+p+'%;background:'+({A:'#ef5350',B:'#42a5f5',AB:'#ab47bc',O:'#66bb6a'}[g])+'"></div></div><div class="bn">'+bn(p)+'%</div></div>';});
+    $('m4bars').innerHTML=hh;
+    $('m4say').textContent='সম্ভাব্য গ্রুপ: '+poss.join(', ')+'। '+(poss.indexOf('O')>=0&&A[0]!=='i'?'দেখো, বাবা-মা কেউই O না হয়েও O গ্রুপের সন্তান হতে পারে, যদি দুজনেই i অ্যালিল বহন করেন।':'বাবা-মায়ের জিনোটাইপ বদলিয়ে দেখো কোন গ্রুপ আসা অসম্ভব।');
+  }
+  ['m4a','m4b'].forEach(function(id){$(id).addEventListener('change',d4);});d4();
+})();
+
+/* ============ ল্যাব ৪ ============ */
+(function(){
+  var S={g:null,n:0,pur:0,wh:0,tot:0,ok:0,done:false};
+  $('m5wh').innerHTML=flower('#ffffff','#999');
+  function reset(){S.g=rnd(2)?'PP':'Pp';S.n=0;S.pur=0;S.wh=0;S.done=false;$('m5mys').innerHTML=flower('#9c27b0');$('m5kids').innerHTML='';$('m5cnt').textContent='এখনও ক্রস করোনি। রহস্যময় গাছ বেগুনি ফুলের, কিন্তু PP না Pp জানা নেই।';$('m5fb').textContent='';}
+  reset();
+  $('m5go').onclick=function(){
+    if(S.done) return; if(S.n>=40){$('m5cnt').textContent='যথেষ্ট ক্রস হয়েছে, এবার সিদ্ধান্ত নাও।';return;}
+    var h='';for(var i=0;i<4;i++){var c=S.g[rnd(2)]==='P';if(c)S.pur++;else S.wh++;S.n++;h+=flower(c?'#9c27b0':'#ffffff','#999');}
+    $('m5kids').innerHTML+=h;
+    $('m5cnt').textContent='এ পর্যন্ত '+bn(S.n)+'টা সন্তান: বেগুনি '+bn(S.pur)+', সাদা '+bn(S.wh)+'। '+(S.wh>0?'সাদা সন্তান এসেছে! তাহলে গাছটি নিশ্চয়ই...':'সবই বেগুনি। আরও ক্রস করে নিশ্চিত হও।');
+  };
+  function ans(g){
+    if(S.done) return; if(S.n===0){$('m5fb').textContent='আগে অন্তত একবার ক্রস করো।';return;}
+    S.done=true;S.tot++;var ok=g===S.g;if(ok)S.ok++;
+    $('m5fb').innerHTML=(ok?'✅ সঠিক! ':'❌ ভুল। ')+'গাছটি ছিল <b>'+S.g+'</b>। '+(S.g==='PP'?'PP × pp → সব সন্তান Pp, তাই সবাই বেগুনি।':'Pp × pp → অর্ধেক Pp (বেগুনি), অর্ধেক pp (সাদা)। একটা সাদা সন্তানই প্রমাণ যে মায়ের গ্যামেটে p ছিল।');
+    $('m5fb').style.color=ok?'#1d7a6f':'#c0392b';
+    $('m5sc').textContent='স্কোর: '+bn(S.ok)+' / '+bn(S.tot);
+  }
+  $('m5pp').onclick=function(){ans('PP');};$('m5pq').onclick=function(){ans('Pp');};
+  $('m5new').onclick=reset;
+})();
+
+/* ===================== কুইজ ===================== */
+var QUIZ=[
+ {q:'বংশগতির একককে কী বলে?',o:['কোষ','জিন','প্রোটিন','টিস্যু'],a:1,e:'জিন বংশগতির একক। একটি বৈশিষ্ট্যের নির্দেশ জিনে থাকে, আর জিন থাকে ক্রোমোসোমে।'},
+ {q:'Pp জিনোটাইপের গাছ বেগুনি ফুল দেয় (P প্রকট)। এটি কী ধরনের জিনোটাইপ?',o:['সমযুগ্ম প্রকট','বিষমযুগ্ম','সমযুগ্ম প্রচ্ছন্ন','অ্যালিলবিহীন'],a:1,e:'দুটি ভিন্ন অ্যালিল (P ও p) আছে, তাই বিষমযুগ্ম। প্রকট অ্যালিল থাকায় ফিনোটাইপ বেগুনি।'},
+ {q:'Pp × Pp ক্রসে সন্তানের ফিনোটাইপ অনুপাত কত?',o:['১ : ১','৩ : ১','১ : ২ : ১','৯ : ৩ : ৩ : ১'],a:1,e:'প্রকট : প্রচ্ছন্ন = ৩ : ১। (জিনোটাইপ অনুপাত ১ : ২ : ১)।'},
+ {q:'Pp × Pp ক্রসে জিনোটাইপ অনুপাত PP : Pp : pp কত?',o:['১ : ১ : ১','১ : ২ : ১','৩ : ১ : ০','২ : ১ : ১'],a:1,e:'পানেট বর্গে ৪ ঘরে PP ১টি, Pp ২টি, pp ১টি।'},
+ {q:'RrYy × RrYy ক্রসে ফিনোটাইপ অনুপাত কত?',o:['৩ : ১','৯ : ৩ : ৩ : ১','১ : ১ : ১ : ১','১ : ২ : ১'],a:1,e:'দুটি বৈশিষ্ট্য স্বাধীনভাবে বণ্টিত হলে ৯ : ৩ : ৩ : ১।'},
+ {q:'মেন্ডেলের প্রথম সূত্র কোনটি?',o:['স্বাধীন বণ্টন','পৃথকীকরণ (জোড়া অ্যালিল গ্যামেটে আলাদা হয়ে যায়)','সহ-প্রকটতা','অ্যালিলের মিশ্রণ'],a:1,e:'গ্যামেট তৈরির সময় একজোড়া অ্যালিল আলাদা হয়, প্রতি গ্যামেটে একটি যায়।'},
+ {q:'টেস্ট ক্রস কাকে কাকে ক্রস করে করা হয়?',o:['প্রকট জীবকে প্রচ্ছন্ন (সমযুগ্ম) জীবের সাথে','দুটি প্রকট জীবকে','দুটি বিষমযুগ্ম জীবকে','দুটি প্রচ্ছন্ন জীবকে'],a:0,e:'অজানা জিনোটাইপের প্রকট জীবকে pp জীবের সাথে ক্রস করে সন্তান দেখে জিনোটাইপ বোঝা যায়।'},
+ {q:'মানুষের সন্তানের লিঙ্গ নির্ধারণ করে কে?',o:['মায়ের X ক্রোমোসোম','বাবার শুক্রাণুর X বা Y ক্রোমোসোম','খাবার','মায়ের বয়স'],a:1,e:'মা সবসময় X দেন। বাবা X দিলে মেয়ে, Y দিলে ছেলে।'},
+ {q:'ছেলের ক্রোমোসোম কোনটি?',o:['XX','XY','YY','XXY'],a:1,e:'পুরুষের XY, নারীর XX।'},
+ {q:'I<sup>A</sup>I<sup>B</sup> জিনোটাইপের রক্তের গ্রুপ কী?',o:['A','B','AB','O'],a:2,e:'দুটি অ্যালিল সহ-প্রকট, তাই দুটোই প্রকাশ পায় এবং গ্রুপ AB।'},
+ {q:'বাবা-মা দুজনেই A গ্রুপ (I<sup>A</sup>i) হলে O গ্রুপের সন্তান কি হতে পারে?',o:['না, কখনো না','হ্যাঁ, সম্ভাবনা ২৫%','হ্যাঁ, সম্ভাবনা ৫০%','হ্যাঁ, সম্ভাবনা ১০০%'],a:1,e:'I<sup>A</sup>i × I<sup>A</sup>i-তে ii হওয়ার সম্ভাবনা ১/৪ = ২৫%।'},
+ {q:'কেন মেন্ডেল বহু সংখ্যক মটরশুঁটি গাছ নিয়ে পরীক্ষা করেছিলেন?',o:['অনেক গাছ সুন্দর বলে','অল্প সংখ্যায় ফল সম্ভাব্যতার কারণে তত্ত্ব থেকে সরে যেতে পারে','গাছ কম পড়লে মরে যায় বলে','অনুপাত বদলে যায় বলে'],a:1,e:'সম্ভাবনার ফল বেশি সংখ্যায় তত্ত্বের কাছে আসে। অল্প সংখ্যায় ৩ : ১ নাও পাওয়া যেতে পারে।'}
+];
+var answered=0,correct=0;
+(function(){
+  var box=$('quizbox');
+  QUIZ.forEach(function(item,qi){
+    var div=document.createElement('div');div.className='q';
+    var html='<p>'+bn(qi+1)+'. '+item.q+'</p>';
+    item.o.forEach(function(opt,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'">'+opt+'</button>';});
+    html+='<div class="exp" id="exp'+qi+'">💡 '+item.e+'</div>';
+    div.innerHTML=html;box.appendChild(div);
+  });
+  box.addEventListener('click',function(ev){
+    var b=ev.target.closest('.opt');if(!b||b.parentNode.getAttribute('data-done'))return;
+    var qi=+b.getAttribute('data-q'),oi=+b.getAttribute('data-o');
+    b.parentNode.setAttribute('data-done','1');
+    var btns=b.parentNode.querySelectorAll('.opt');btns[QUIZ[qi].a].classList.add('ok');
+    if(oi===QUIZ[qi].a)correct++;else b.classList.add('no');
+    $('exp'+qi).style.display='block';answered++;
+    if(answered===QUIZ.length)$('score').textContent='🎉 তোমার স্কোর: '+bn(correct)+' / '+bn(QUIZ.length);
+  });
+})();
+</script>
+</body>
+</html>

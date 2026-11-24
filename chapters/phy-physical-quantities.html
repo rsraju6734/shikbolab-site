@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ভৌত রাশি এবং তাদের পরিমাপ (পদার্থবিজ্ঞান অধ্যায় ১) - ShikboLab</title>
+<meta name="description" content="ভৌত রাশি এবং তাদের পরিমাপ (অধ্যায় ১) — ShikboLab এ বাংলায় ইন্টারঅ্যাকটিভ ব্যাখ্যা, ভার্চুয়াল ল্যাব ও কুইজ।">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.tabs{flex-wrap:wrap}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.row>.grow{flex:1;min-width:260px}
+.say{background:#fff4dc;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600}
+.warn{background:#fdeceb;border-left:5px solid #e76f51;border-radius:8px;padding:10px 14px;margin:12px 0}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ctl label{font-weight:700;color:var(--navy)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fb{font-weight:700;margin-top:6px;min-height:26px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.pills button{font-family:inherit}
+/* timeline */
+.tl{display:flex;gap:6px;overflow-x:auto;padding:10px 2px 14px;margin:8px 0}
+.tl button{flex:0 0 auto;min-width:112px;font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:12px;padding:8px 10px;cursor:pointer;text-align:center;position:relative;transition:transform .2s,border-color .2s,background .2s}
+.tl button b{display:block;color:var(--navy);font-size:15px}
+.tl button small{color:var(--muted);font-size:13px}
+.tl button .em{font-size:26px;display:block}
+.tl button.on{border-color:var(--teal);background:#eaf7f5;transform:translateY(-4px)}
+.tlinfo{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:96px;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.flow span{background:#fff;border:2px solid var(--teal);border-radius:10px;padding:6px 12px;font-weight:700;color:var(--navy);opacity:.25;transition:opacity .5s,transform .5s;transform:scale(.9)}
+.flow span.show{opacity:1;transform:none}
+.flow i{font-style:normal;color:var(--teal);font-weight:800}
+/* bars */
+.bar{display:flex;align-items:center;gap:8px;margin:6px 0}
+.bar .bl{width:150px;font-weight:700;color:var(--navy);font-size:15px}
+.bar .bt{flex:1;background:#e8eef3;border-radius:8px;height:22px;overflow:hidden}
+.bar .bf{height:100%;border-radius:8px;transition:width .3s}
+/* stepper */
+.stepper{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.stepper span{background:#e8eef3;color:#5b6770;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+.stepper span.on{background:#2a9d8f;color:#fff}
+.stepper span.done{background:#d9f2ee;color:#1d7a6f}
+table.dt{border-collapse:collapse;width:100%;max-width:380px;margin:8px 0}
+table.dt th{background:var(--navy);color:#fff;padding:6px 8px}
+table.dt td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:center;font-weight:700}
+table.dt tr.new td{background:#fff4dc}
+canvas.w{max-width:380px}
+/* hazards */
+.hz{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin:10px 0}
+.hz button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:12px;padding:6px;cursor:pointer;font-size:13px;font-weight:700;color:var(--navy)}
+.hz button svg{width:64px;height:64px;display:block;margin:0 auto 2px}
+.hz button.on{border-color:var(--orange);background:#fff4ee}
+.hinfo{background:#f6f9fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:100px}
+.hinfo .big{float:left;width:84px;height:84px;margin-right:12px}
+.hinfo .big svg{width:84px;height:84px}
+.ppe{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.ppe button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700}
+.ppe button.on{border-color:var(--teal);background:#d9f2ee}
+.cls{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.cls button{font-family:inherit;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;padding:6px 14px;cursor:pointer}
+.cls button.ok{background:#d9f2ee;border-color:#2a9d8f}
+.cls button.no{background:#fde0da;border-color:#e76f51}
+.ans{display:none;background:#f0f6fa;border-radius:8px;padding:10px 14px;margin-top:6px}
+.ans.open{display:block;animation:fade .3s}
+.flame{display:inline-block;font-size:54px;animation:flick .25s infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.12,1.2) rotate(3deg)}}
+@media(max-width:600px){.bar .bl{width:110px}}
+
+.elgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px;margin:8px 0 12px}
+.elgrid button{font-family:inherit;border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:4px 2px;cursor:pointer;color:var(--navy);line-height:1.1}
+.elgrid button b{display:block;font-size:17px}.elgrid button small{font-size:11px;color:var(--muted)}
+.elgrid button.on{border-color:var(--teal);background:#eaf7f5}
+.formula{font-size:30px;font-weight:700;color:var(--navy);min-height:42px;text-align:center}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.legend{margin:8px 0;font-size:14px}
+.lg{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:middle}
+.chip{display:inline-block;background:#d9f2ee;color:#1d7a6f;border-radius:999px;padding:3px 12px;font-weight:700;font-size:14px;margin:2px 4px 2px 0}
+.tlinfo p{margin:6px 0}
+canvas{max-width:100%;height:auto}
+.jars{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.jars span{width:34px;height:44px;border:3px solid #6b7c8a;border-top:none;border-radius:0 0 10px 10px;position:relative;background:#fff;overflow:hidden}
+.jars span i{position:absolute;left:0;right:0;bottom:0;background:#2a9d8f;transition:height .4s}
+.beq{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0;font-size:22px;font-weight:700;color:var(--navy)}
+.beq .cf{display:inline-flex;align-items:center;gap:4px;background:#f6f9fb;border:2px solid #cfd9e1;border-radius:12px;padding:4px 8px}
+.beq .cf button{width:28px;height:28px;border-radius:50%;border:2px solid var(--teal);background:#fff;font-size:18px;font-weight:800;cursor:pointer;line-height:1;padding:0}
+.beq .cf b{min-width:22px;text-align:center}
+.beq .op{color:var(--teal)}
+table.at{border-collapse:collapse;margin:8px 0}
+table.at th{background:var(--navy);color:#fff;padding:5px 12px}
+table.at td{padding:5px 12px;border-bottom:1px solid var(--line);text-align:center;font-weight:700}
+table.at tr.okr td{background:#d9f2ee}
+table.at tr.bad td{background:#fde0da}
+.pills button{border:2px solid #cfd9e1;background:#fff;border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700;color:var(--navy)}
+.pills button.on{border-color:var(--teal);background:#d9f2ee}
+table.t{display:block;overflow-x:auto;max-width:100%}
+.kv{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.kv span{background:#eef5f9;border-radius:8px;padding:3px 10px;font-weight:700;color:var(--navy);font-size:14px}
+.big2{font-size:22px;font-weight:700;color:var(--navy)}
+.sw{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.sw label{display:inline-flex;align-items:center;gap:4px;background:#f6f9fb;border:2px solid #cfd9e1;border-radius:10px;padding:4px 10px;font-weight:700;cursor:pointer}
+canvas.w2{max-width:380px}
+p.eq{font-size:17px;margin:8px 0;line-height:1.7}
+p.eq{font-size:17px;margin:8px 0;line-height:1.7}
+h4{margin:14px 0 4px;color:var(--navy);font-size:17px}
+</style>
+<link rel="stylesheet" href="../css/theme.css">
+<script src="../js/theme.js" defer></script>
+<script src="../js/prices.js"></script>
+<script src="../js/demo-saas.js?v=5"></script>
+<script src="../js/lab-boost.js?v=1"></script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="../index.html">Shikbo<span>Lab</span></a>
+  <a class="back" href="../index.html#physics">&larr; সব অধ্যায়</a>
+</header>
+<div class="wrap">
+  <div class="crumb">⚛️ পদার্থবিজ্ঞান &rsaquo; প্রথম অধ্যায় (নবম-দশম শ্রেণি)</div>
+  <h1 class="title">📏 ভৌত রাশি এবং তাদের পরিমাপ (Physical Quantities and Their Measurement)</h1>
+  <nav class="tabs"><a href="#note">📝 নোট</a><a href="#lab1">🕰️ ল্যাব ১</a><a href="#lab2">🎡 ল্যাব ২</a><a href="#lab3">🌌 ল্যাব ৩</a><a href="#lab4">🔢 ল্যাব ৪</a><a href="#lab5">🧱 ল্যাব ৫</a><a href="#lab6">📐 ল্যাব ৬</a><a href="#lab7">🔩 ল্যাব ৭</a><a href="#lab8">🎯 ল্যাব ৮</a><a href="#lab9">✍️ ল্যাব ৯</a><a href="#quiz">❓ কুইজ</a><a href="#qa">✍️ প্রশ্ন-উত্তর</a></nav>
+
+  <section class="panel" id="note">
+    <h2>📝 সহজ নোট</h2>
+    <div class="key">🎯 <b>এই অধ্যায় শেষে তুমি পারবে:</b> পদার্থবিজ্ঞানের পরিসর, ক্রমবিকাশ ও উদ্দেশ্য বলতে; মৌলিক ও লব্ধ রাশির পার্থক্য করতে; SI একক, উপসর্গ ও মাত্রা হিসাব করতে; স্লাইড ক্যালিপার্স ও স্ক্রু-গেজ পড়তে; পরিমাপের চূড়ান্ত ও আপেক্ষিক ত্রুটি বের করতে।</div>
+    <div class="warn">ℹ️ নোটটি বইয়ের ক্রম মেনে সহজ ভাষায় লেখা। সাল ও তথ্য বইয়ে যেমন আছে তেমনই রাখা হয়েছে। বইয়ে "পদার্থবিজ্ঞানের উদ্দেশ্য" অংশের নম্বর "১.8" ছাপা আছে, আসলে এটি ১.৪।</div>
+
+    <h3>১.১ পদার্থবিজ্ঞান ⭐⭐</h3>
+    <ul>
+      <li>পদার্থবিজ্ঞান বিজ্ঞানের <b>প্রাচীনতম</b> এবং <b>সবচেয়ে মৌলিক</b> শাখা। এর ওপর ভিত্তি করে রসায়ন, রসায়নের ওপর জীববিজ্ঞান দাঁড়িয়েছে।</li>
+      <li><b>সংজ্ঞা:</b> বিজ্ঞানের যে শাখা <b>পদার্থ আর শক্তি</b> এবং এ দুইয়ের মাঝের <b>মিথস্ক্রিয়া</b> (Interaction) বোঝার চেষ্টা করে, সেটাই পদার্থবিজ্ঞান।</li>
+      <li>পদার্থ বলতে অণু-পরমাণু থেকে ইলেকট্রন, প্রোটন, নিউট্রন, কোয়ার্ক বা স্ট্রিং পর্যন্ত বোঝায়। শক্তি বলতে স্থিতিশক্তি, গতিশক্তি, মাধ্যাকর্ষণ, বিদ্যুৎ চৌম্বকীয় শক্তি, সবল ও দুর্বল নিউক্লিয়ার শক্তিও বোঝায়।</li>
+    </ul>
+
+    <h3>১.২ পদার্থবিজ্ঞানের পরিসর ⭐⭐</h3>
+    <ul>
+      <li>বর্তমান সভ্যতার পেছনে সবচেয়ে বড় অবদান <b>ইলেকট্রনিকসের</b>, আর তার পেছনে পদার্থবিজ্ঞানের।</li>
+      <li>নতুন শাখা: Astrophysics (জ্যোতির্বিদ্যা + পদার্থবিজ্ঞান), Biophysics, Chemical Physics, Geophysics, Medical Physics।</li>
+    </ul>
+    <table class="t"><tr><th>চিরায়ত পদার্থবিজ্ঞান</th><th>আধুনিক পদার্থবিজ্ঞান</th></tr>
+      <tr><td>বলবিজ্ঞান, শব্দবিজ্ঞান, তাপ ও তাপগতি বিজ্ঞান, বিদ্যুৎ ও চৌম্বক বিজ্ঞান, আলোক বিজ্ঞান</td><td>কোয়ান্টাম বলবিজ্ঞান ও আপেক্ষিক তত্ত্ব দিয়ে গড়া: আণবিক ও পারমাণবিক, নিউক্লীয়, কঠিন অবস্থার এবং কণা পদার্থবিজ্ঞান</td></tr></table>
+    <div class="key">💡 প্রযুক্তি ভালো বা খারাপ দুই রকমই হতে পারে। কোনটি ভালো আর কোনটি খারাপ তা নিজের বিচারবুদ্ধি দিয়ে বুঝতে হবে।</div>
+
+    <h3>১.৩ পদার্থবিজ্ঞানের ক্রমবিকাশ ⭐⭐⭐</h3>
+    <h4>১.৩.১ আদি পর্ব (গ্রিক, ভারতবর্ষ, চীন ও মুসলিম সভ্যতা)</h4>
+    <ul>
+      <li><b>থেলিস (624 BC):</b> প্রথম কার্যকারণ ও যুক্তি ছাড়া পৌরাণিক ব্যাখ্যা নিতে অস্বীকার করেন। সূর্যগ্রহণের ভবিষ্যদ্বাণী করেন, লোডস্টোনের চৌম্বক ধর্ম জানতেন।</li>
+      <li><b>পিথাগোরাস (527 BC):</b> জ্যামিতি ও কম্পমান তারের ওপর মৌলিক কাজ।</li>
+      <li><b>ডেমোক্রিটাস (460 BC):</b> পদার্থের অবিভাজ্য একক "অ্যাটম"-এর ধারণা দেন।</li>
+      <li><b>অ্যারিস্টটল:</b> মাটি, পানি, বাতাস ও আগুন দিয়ে সব কিছু তৈরি, এই মতবাদ তখন বেশি গ্রহণযোগ্য ছিল।</li>
+      <li><b>আরিস্তারাকস (310 BC):</b> প্রথম সূর্যকেন্দ্রিক সৌরজগতের ধারণা দেন। অনুসারী সেলেউকাস যুক্তি দিয়ে তা প্রমাণ করেন।</li>
+      <li><b>আর্কিমিডিস (287 BC):</b> তরলে ঊর্ধ্বমুখী বল; গোলীয় আয়নায় সূর্যরশ্মি কেন্দ্রীভূত করে শত্রুর জাহাজে আগুন ধরান।</li>
+      <li><b>ইরাতোস্থিনিস (276 BC):</b> সঠিকভাবে পৃথিবীর ব্যাসার্ধ বের করেন।</li>
+      <li>এরপর প্রায় <b>দেড় হাজার বছর</b> জ্ঞানচর্চা প্রায় বন্ধ ছিল। ভারতীয়, মুসলিম ও চীনা সভ্যতা তা বাঁচিয়ে রাখে।</li>
+      <li><b>আর্যভট্ট (476), ব্রহ্মগুপ্ত, ভাস্কর:</b> গণিত ও জ্যোতির্বিদ্যা। শূন্যের সত্যিকার ব্যবহার ভারতবর্ষে (আর্যভট্ট)।</li>
+      <li><b>আল খোয়ারিজমি (783):</b> তাঁর "আল জাবির" বই থেকে অ্যালজেবরা নামটি এসেছে।</li>
+      <li><b>ইবনে আল হাইয়াম (965):</b> আলোকবিজ্ঞানের স্থপতি। <b>আল মাসুদি (896):</b> প্রকৃতির ইতিহাস নিয়ে ৩০ খণ্ডের এনসাইক্লোপিডিয়া। <b>ওমর খৈয়াম:</b> কবি, কিন্তু উঁচুমাপের গণিতবিদ, জ্যোতির্বিদ ও দার্শনিক।</li>
+      <li><b>শেন কুয়ো (1031, চীন):</b> চুম্বক নিয়ে কাজ; কম্পাস দিয়ে দিক নির্ধারণের কথা উল্লেখ করেন।</li>
+    </ul>
+    <h4>১.৩.২ বিজ্ঞানের উত্থানপর্ব</h4>
+    <ul>
+      <li><b>কপার্নিকাস (1543):</b> সূর্যকেন্দ্রিক সৌরজগতের ব্যাখ্যা।</li>
+      <li><b>গ্যালিলিও (1564–1642):</b> গাণিতিক সূত্র দিয়ে পরীক্ষা করে প্রমাণের বৈজ্ঞানিক ধারার সূচনা। তাঁকে <b>আধুনিক বিজ্ঞানের জনক</b> বলা হয়।</li>
+      <li><b>নিউটন (1687):</b> বলবিদ্যার তিনটি সূত্র ও মহাকর্ষ সূত্র। লিবনিজের সাথে ক্যালকুলাস আবিষ্কার।</li>
+      <li><b>কাউন্ট রামফোর্ড (1798):</b> তাপ এক ধরনের শক্তি। <b>লর্ড কেলভিন (1850):</b> তাপ গতিবিজ্ঞানের দুটি সূত্র।</li>
+      <li><b>কুলম্ব (1778):</b> চার্জের মধ্যকার বলের সূত্র। <b>ভোল্টা (1800):</b> বৈদ্যুতিক ব্যাটারি। <b>অরস্টেড (1820):</b> বিদ্যুৎপ্রবাহ দিয়ে চুম্বক। <b>ফ্যারাডে ও হেনরি (1831):</b> চৌম্বক ক্ষেত্রের পরিবর্তনে বিদ্যুৎ।</li>
+      <li><b>ইয়ং (1801):</b> আলোর তরঙ্গ ধর্মের প্রমাণ। <b>ম্যাক্সওয়েল (1864):</b> আলো একটি বিদ্যুৎ চৌম্বকীয় তরঙ্গ।</li>
+    </ul>
+    <h4>১.৩.৩ আধুনিক পদার্থবিজ্ঞানের সূচনা</h4>
+    <ul>
+      <li><b>ডাল্টন (1803):</b> পারমাণবিক তত্ত্ব। <b>থমসন (1897):</b> ইলেকট্রন। <b>রাদারফোর্ড (1911):</b> পরমাণুর কেন্দ্রে নিউক্লিয়াস।</li>
+      <li><b>ম্যাক্স প্ল্যাংক (1900):</b> কোয়ান্টাম তত্ত্ব (কৃষ্ণবস্তুর বিকিরণ ব্যাখ্যা)। <b>বোর:</b> পরমাণুর স্থিতিশীলতা ব্যাখ্যায় কোয়ান্টাম তত্ত্ব ব্যবহার।</li>
+      <li><b>সত্যেন্দ্রনাথ বসু (1924):</b> কোয়ান্টাম সংখ্যায়নতত্ত্বের জনক। তাঁর নামে মৌলিক কণার এক শ্রেণির নাম <b>বোজন</b>।</li>
+      <li><b>মাইকেলসন ও মোরলি (1887):</b> ইথার বলে কিছু নেই, আলোর বেগ সব মাধ্যমে সমান। <b>আইনস্টাইন (1905):</b> থিওরি অব রিলেটিভিটি, E = mc²।</li>
+      <li><b>ডিরাক (1931):</b> প্রতি কণার অস্তিত্ব ঘোষণা। <b>রন্টজেন (1895):</b> এক্স-রে। <b>বেকেরেল (1896):</b> তেজস্ক্রিয়তা। <b>পিয়ারে ও মেরি কুরি (1899):</b> রেডিয়াম।</li>
+    </ul>
+    <h4>১.৩.৪ সাম্প্রতিক পদার্থবিজ্ঞান</h4>
+    <ul>
+      <li>Standard Model দিয়ে মৌলিক কণাগুলো সাজানো হয়। ভর ব্যাখ্যার জন্য <b>হিগস বোজন</b>, যা বইয়ের মতে 2013 সালে পরীক্ষাগারে শনাক্ত হয়।</li>
+      <li><b>হাবল (1924):</b> গ্যালাক্সিগুলো দূরে সরে যাচ্ছে, অর্থাৎ বিশ্বব্রহ্মাণ্ড প্রসারিত হচ্ছে। প্রায় <b>১৪ বিলিয়ন বছর</b> আগে বিগ ব্যাং।</li>
+      <li>দৃশ্যমান গ্রহ-নক্ষত্র-গ্যালাক্সি মাত্র <b>৪ শতাংশ</b>, বাকিটা ডার্ক ম্যাটার ও ডার্ক এনার্জি।</li>
+      <li>কঠিন পদার্থের বিজ্ঞান থেকে অর্ধপরিবাহী, তা থেকে বর্তমান ইলেকট্রনিকস।</li>
+    </ul>
+    <h4>১.৩.৫ জগদীশচন্দ্র বসুর অবদান ⭐⭐⭐</h4>
+    <ul>
+      <li>জন্ম <b>1858 সালের 30 নভেম্বর, ময়মনসিংহে</b>। পূর্বপুরুষের বাড়ি ঢাকার বিক্রমপুরের রাঢ়িখাল গ্রামে। মৃত্যু <b>1937 সালের 23 নভেম্বর</b>।</li>
+      <li>1885 সালে প্রেসিডেন্সি কলেজে পদার্থবিজ্ঞানের অধ্যাপনা শুরু করেন।</li>
+      <li><b>1895 সালে</b> প্রথম বেতারে দূরবর্তী স্থানে রেডিও সংকেত পাঠান। তরঙ্গদৈর্ঘ্য মিলিমিটার পর্যায়ে (প্রায় 5 মিলিমিটার) নামিয়ে আনেন। সংকেত শনাক্তে অর্ধপরিবাহী জংশন ব্যবহার করেন। পেটেন্ট না করে সবার জন্য উন্মুক্ত করে দেন।</li>
+      <li><b>IEEE</b> তাঁকে রেডিও বিজ্ঞানের একজন জনক বলেছে।</li>
+      <li>উদ্ভিদের বৃদ্ধি রেকর্ড করার যন্ত্র <b>ক্রেস্কোগ্রাফ</b> আবিষ্কার করেন। দেখান উদ্ভিদের উদ্দীপকে সাড়া দেওয়ার প্রকৃতি বৈদ্যুতিক।</li>
+      <li>1917 সালে কলকাতায় <b>বসু বিজ্ঞান মন্দির</b> প্রতিষ্ঠা করেন। বাংলা রচনাবলি: <b>অব্যক্ত</b>। গ্রন্থ: Response in the living and nonliving।</li>
+    </ul>
+
+    <h3>১.৪ পদার্থবিজ্ঞানের উদ্দেশ্য ⭐⭐</h3>
+    <ul>
+      <li><b>১. প্রকৃতির রহস্য উদঘাটন:</b> চৌম্বকত্ব ও বিদ্যুৎ একই বলের দুই রূপ: <b>বিদ্যুৎ চৌম্বকীয় বল</b>। এটি ও দুর্বল নিউক্লিয় বল মিলে <b>ইলেকট্রো উইক ফোর্স</b>। অণু → পরমাণু → নিউক্লিয়াস (প্রোটন, নিউট্রন) → কোয়ার্ক।</li>
+      <li><b>২. প্রকৃতির নিয়মগুলো জানা:</b> যেমন নিউটনের মহাকর্ষ সূত্র দিয়ে পড়ন্ত বস্তু ও সূর্যের চারদিকে পৃথিবীর ঘোরা দুটোই ব্যাখ্যা করা যায়। তাত্ত্বিক গবেষণা ও পরীক্ষা-নিরীক্ষা দুই ধারাতেই কাজ হয়।</li>
+      <li><b>৩. প্রাকৃতিক নিয়ম ব্যবহার করে প্রযুক্তির বিকাশ:</b> E = mc² থেকে নিউক্লিয়ার বোমা ও নিউক্লিয়ার বিদ্যুৎ কেন্দ্র (রূপপুর)। 1938 সালে অটোহান ও স্ট্রেসম্যান নিউক্লিয়াস ভাঙেন। অর্ধপরিবাহী থেকে ট্রানজিস্টর ও ইলেকট্রনিকস।</li>
+    </ul>
+    <h3>১.৫ ভৌত রাশি এবং তাদের পরিমাপ ⭐⭐⭐</h3>
+    <ul>
+      <li><b>রাশি:</b> এই জগতে যা কিছু পরিমাপ করা যায় তাকে রাশি বলে।</li>
+      <li><b>মৌলিক রাশি:</b> যে সাতটি রাশির একক দিয়ে অন্য সব একক বের করা যায়।</li>
+      <li><b>লব্ধ রাশি:</b> মৌলিক রাশি ব্যবহার করে যে রাশি প্রকাশ করা হয় (যেমন বেগ, বল, আয়তন)।</li>
+      <li><b>SI একক:</b> সাতটি মৌলিক রাশির আন্তর্জাতিকভাবে স্বীকৃত সাতটি একক। SI এসেছে ফরাসি Systeme International d'Unites থেকে।</li>
+    </ul>
+    <table class="t"><tr><th>মৌলিক রাশি</th><th>একক</th><th>প্রতীক</th></tr>
+      <tr><td>দৈর্ঘ্য</td><td>মিটার</td><td>m</td></tr><tr><td>ভর</td><td>কিলোগ্রাম</td><td>kg</td></tr><tr><td>সময়</td><td>সেকেন্ড</td><td>s</td></tr>
+      <tr><td>বৈদ্যুতিক প্রবাহ</td><td>অ্যাম্পিয়ার</td><td>A</td></tr><tr><td>তাপমাত্রা</td><td>কেলভিন</td><td>K</td></tr><tr><td>পদার্থের পরিমাণ</td><td>মোল</td><td>mol</td></tr><tr><td>দীপন তীব্রতা</td><td>ক্যান্ডেলা</td><td>cd</td></tr></table>
+
+    <h4>১.৫.১ পরিমাপের একক ⭐⭐</h4>
+    <p>সেকেন্ড, মিটার ও ক্যান্ডেলা আগেই ধ্রুব দিয়ে সংজ্ঞায়িত ছিল। <b>2019 সালের মে মাস</b> থেকে কিলোগ্রাম, কেলভিন, মোল ও অ্যাম্পিয়ারকেও মৌলিক ধ্রুব দিয়ে নতুনভাবে সংজ্ঞায়িত করা হয়েছে।</p>
+    <table class="t"><tr><th>ধ্রুব</th><th>নির্দিষ্ট মান</th></tr>
+      <tr><td>আলোর বেগ (c)</td><td>299,792,458 m/s</td></tr><tr><td>প্ল্যাঙ্কের ধ্রুব (h)</td><td>6.62607015 × 10⁻³⁴ J s</td></tr><tr><td>ইলেকট্রনের চার্জ (e)</td><td>1.602176634 × 10⁻¹⁹ C</td></tr>
+      <tr><td>Cs¹³³ পরমাণুর স্পন্দন (Δν)</td><td>9,192,631,770 Hz</td></tr><tr><td>বোল্টজম্যান ধ্রুব (k)</td><td>1.380649 × 10⁻²³ J/K</td></tr><tr><td>এভোগাড্রোর ধ্রুব (N<sub>A</sub>)</td><td>6.02214076 × 10²³ কণা/mol</td></tr><tr><td>বিকিরণ তীব্রতা (K<sub>cd</sub>)</td><td>683 lm/W</td></tr></table>
+    <ul>
+      <li><b>সেকেন্ড:</b> সিজিয়াম 133 পরমাণুর 9,192,631,770টি স্পন্দনে যে সময় লাগে।</li>
+      <li><b>মিটার:</b> শূন্য মাধ্যমে এক সেকেন্ডের 299,792,458 ভাগের এক ভাগ সময়ে আলো যে দূরত্ব যায়।</li>
+      <li><b>কিলোগ্রাম:</b> প্ল্যাঙ্কের ধ্রুবকে 6.62607015 × 10⁻³⁴ m²/s দিয়ে ভাগ দিলে যে ভর পাওয়া যায়।</li>
+      <li><b>অ্যাম্পিয়ার:</b> প্রতি সেকেন্ডে 1/(1.602176634 × 10⁻¹⁹) সংখ্যক ইলেকট্রনের সমপরিমাণ চার্জ প্রবাহিত হলে।</li>
+      <li><b>মোল:</b> যে পরিমাণ বস্তুতে 6.02214076 × 10²³ সংখ্যক কণা থাকে।</li>
+      <li><b>কেলভিন:</b> যে পরিমাণ তাপমাত্রার পরিবর্তনে তাপশক্তির 1.380649 × 10⁻²³ joule পরিবর্তন হয়।</li>
+      <li><b>ক্যান্ডেলা:</b> সেকেন্ডে 540 × 10¹² বার কম্পনরত আলোর উৎস থেকে এক স্টেরেডিয়ান ঘনকোণে এক ওয়াটের 683 ভাগের এক ভাগ বিকিরণ তীব্রতা পৌঁছালে।</li>
+    </ul>
+    <div class="key">🖐️ <b>অনুভব করো:</b> মাটি থেকে পেট পর্যন্ত প্রায় ১ মিটার | ১ লিটার পানি প্রায় ১ কেজি | "এক হাজার এক" বলতে প্রায় ১ সেকেন্ড | ৩টি মোবাইল চার্জে প্রায় ১ অ্যাম্পিয়ার | জ্বর টের পেলে প্রায় ১ কেলভিন বেশি | বড় এক চামচ পানিতে প্রায় ১ মোল অণু | একটি মোমবাতি প্রায় ১ ক্যান্ডেলা।</div>
+
+    <h4>১.৫.২ উপসর্গ বা গুণিতক (Prefix) ⭐⭐⭐</h4>
+    <table class="t"><tr><th>উপসর্গ</th><th>প্রতীক</th><th>মান</th><th>উপসর্গ</th><th>প্রতীক</th><th>মান</th></tr>
+      <tr><td>ডেকা</td><td>da</td><td>10¹</td><td>ডেসি</td><td>d</td><td>10⁻¹</td></tr><tr><td>হেক্টো</td><td>h</td><td>10²</td><td>সেন্টি</td><td>c</td><td>10⁻²</td></tr>
+      <tr><td>কিলো</td><td>k</td><td>10³</td><td>মিলি</td><td>m</td><td>10⁻³</td></tr><tr><td>মেগা</td><td>M</td><td>10⁶</td><td>মাইক্রো</td><td>μ</td><td>10⁻⁶</td></tr>
+      <tr><td>গিগা</td><td>G</td><td>10⁹</td><td>ন্যানো</td><td>n</td><td>10⁻⁹</td></tr><tr><td>টেরা</td><td>T</td><td>10¹²</td><td>পিকো</td><td>p</td><td>10⁻¹²</td></tr>
+      <tr><td>পেটা</td><td>P</td><td>10¹⁵</td><td>ফেমটো</td><td>f</td><td>10⁻¹⁵</td></tr><tr><td>এক্সা</td><td>E</td><td>10¹⁸</td><td>এটো</td><td>a</td><td>10⁻¹⁸</td></tr></table>
+
+    <h4>১.৫.৩ মাত্রা (Dimension) ⭐⭐⭐</h4>
+    <ul>
+      <li>একটি রাশিতে বিভিন্ন মৌলিক রাশি (দৈর্ঘ্য L, সময় T, ভর M ইত্যাদি) যে সূচকে (পাওয়ারে) আছে, তাকে তার <b>মাত্রা</b> বলে।</li>
+      <li>মাত্রা তৃতীয় বন্ধনী [ ] দিয়ে লেখা হয়।</li>
+    </ul>
+    <p class="eq">[বেগ] = L/T = LT⁻¹<br>[ত্বরণ] = L/T² = LT⁻²<br>[F] = MLT⁻²</p>
+
+    <h4>১.৫.৪ বৈজ্ঞানিক প্রতীক ও সংকেত ⭐⭐</h4>
+    <ul>
+      <li>সংখ্যার পরে একটি ফাঁকা জায়গা রেখে একক: 2.21 kg, 22 K। শতকরা চিহ্নও তাই। কিন্তু ডিগ্রি (°), মিনিট (′), সেকেন্ড (″)-এর আগে ফাঁকা নয়।</li>
+      <li>গুণ করে পাওয়া এককে মাঝে ফাঁকা: 2.35 N m। ভাগ করে পাওয়া এককে ঋণাত্মক সূচক বা Slash: ms⁻¹ বা m/s।</li>
+      <li>প্রতীকের সাথে যতিচিহ্ন (.) বসে না।</li>
+      <li>এককের সংকেত সোজা অক্ষরে (m, s), রাশির সংকেত বাঁকা (italic) অক্ষরে (<i>m</i>, <i>v</i>)।</li>
+      <li>এককের সংকেত ছোট হাতের (cm, s, mol)। বিজ্ঞানীর নাম থেকে নেওয়া হলে বড় হাতের (N)। একাধিক অক্ষর হলে শুধু প্রথমটি বড় (Pa)।</li>
+      <li>উপসর্গ এককের সাথে ফাঁক ছাড়া যুক্ত হয়: km, GW, MHz। কিলো (10³)-এর চেয়ে বড় উপসর্গ বড় হাতের (M, G, T)।</li>
+      <li>এককের সংকেত কখনো বহুবচন হয় না: 25 kgs নয়, 25 kg।</li>
+      <li>সংখ্যা ও একক এক লাইনে লেখার চেষ্টা করতে হয়।</li>
+    </ul>
+    <h3>১.৬ পরিমাপের যন্ত্রপাতি ⭐⭐⭐</h3>
+    <h4>১.৬.১ স্কেল বা রুলার</h4>
+    <ul>
+      <li>100 cm বা 1 m লম্বা বলে <b>মিটার স্কেল</b>। 1 ইঞ্চি = 2.54 cm।</li>
+      <li>মিটার স্কেলে মিলিমিটার পর্যন্ত মাপা যায়। যেমন 0.364 m মাপা যায়, কিন্তু 0.3643 m মাপা যায় না।</li>
+    </ul>
+    <h4>স্লাইড (ভার্নিয়ার) ক্যালিপার্স ⭐⭐⭐</h4>
+    <ul>
+      <li>মূল স্কেলের পাশে সরানো যায় এমন একটি <b>ভার্নিয়ার স্কেল</b> থাকে। উদাহরণে মূল স্কেলের 9 mm-কে ভার্নিয়ারে 10 ভাগ করা হয়েছে, তাই প্রতিটি ভাগ 9/10 mm।</li>
+      <li><b>ভার্নিয়ার ধ্রুবক (VC):</b> মূল স্কেলের এক ভাগ ও ভার্নিয়ার স্কেলের এক ভাগের পার্থক্য।</li>
+      <li><b>মূল স্কেল পাঠ (M):</b> ভার্নিয়ারের শূন্য দাগ মূল স্কেলের যে দাগ <b>সম্পূর্ণ অতিক্রম</b> করেছে।</li>
+      <li><b>ভার্নিয়ার সমপাতন (V):</b> ভার্নিয়ারের যে দাগ মূল স্কেলের কোনো দাগের সাথে হুবহু মিলে গেছে।</li>
+    </ul>
+    <p class="eq">VC = S/n = 1 mm ÷ 10 = 0.1 mm = 0.0001 m<br>পাঠ = M + (V × VC)</p>
+    <h4>স্ক্রু-গেজ ⭐⭐</h4>
+    <ul>
+      <li><b>পিচ:</b> স্ক্রু পুরো একবার ঘোরালে যতটুকু সরে (এখানে 1 mm)।</li>
+      <li>বৃত্তাকার স্কেল 100 ভাগ করা হলে এক ঘর ঘোরালে স্ক্রু পিচের 1/100 ভাগ সরে।</li>
+      <li><b>ন্যূনাঙ্ক</b> = 1/100 mm = 0.01 mm।</li>
+    </ul>
+    <h4>১.৬.২ ব্যালান্স ও ১.৬.৩ থামা ঘড়ি</h4>
+    <ul>
+      <li>ভর সরাসরি মাপা যায় না, ওজন মেপে ভর বের করা হয়। আগে নিক্তি, এখন ইলেকট্রনিক ব্যালেন্স।</li>
+      <li>সময়কাল মাপতে <b>স্টপ ওয়াচ</b>। স্টপ ওয়াচ যত সূক্ষ্ম সময় মাপতে পারে, হাত দিয়ে তত সূক্ষ্মভাবে চালু বা বন্ধ করা যায় না।</li>
+    </ul>
+
+    <h3>১.৭ পরিমাপের ত্রুটি ও নির্ভুলতা ⭐⭐⭐</h3>
+    <ul>
+      <li>যন্ত্রপাতি কখনো নিখুঁত নয়, তাই পরিমাপে ত্রুটি থাকা স্বাভাবিক। ফলাফলের সাথে নির্ভুলতাও জানালে বিশ্বাসযোগ্যতা বাড়ে।</li>
+      <li>স্কেলে প্রতি 1 cm পরপর দাগ থাকলে মাপ লেখা হয় (4.0 ± 0.5) cm, অর্থাৎ 3.5 cm থেকে 4.5 cm।</li>
+      <li><b>চূড়ান্ত ত্রুটি</b> (absolute error): সবচেয়ে বেশি সম্ভাব্য ত্রুটি। যেমন |±0.5 mm| = 0.5 mm।</li>
+      <li><b>আপেক্ষিক ত্রুটি</b> (relative error) = চূড়ান্ত ত্রুটি ÷ পরিমাপ করা মান।</li>
+    </ul>
+    <p class="eq">7 ± 0.5 mm → আপেক্ষিক ত্রুটি = 0.5/7 = 0.071 = 7.1%</p>
+    <div class="key">📘 <b>উদাহরণ ১ (বইয়ের):</b> বর্গাকার বইয়ের দৈর্ঘ্য 10 cm, ত্রুটি 10%। ক্ষেত্রফল 100 cm²। সবচেয়ে কম 9 × 9 = 81, সবচেয়ে বেশি 11 × 11 = 121। চূড়ান্ত ত্রুটি 21 cm² (বড়টি)। আপেক্ষিক ত্রুটি 21%। অর্থাৎ দৈর্ঘ্যে 10% ত্রুটি হলে ক্ষেত্রফলে প্রায় দ্বিগুণ, আয়তনে প্রায় তিন গুণ।</div>
+    <div class="key">📘 <b>উদাহরণ ২ (বইয়ের):</b> বাক্স 10 cm, 5 cm, 4 cm; রুলারে শুধু cm দাগ, তাই ±0.5 cm। আয়তন 200 cm³। সবচেয়ে ছোট 9.5 × 4.5 × 3.5 = 149.625, সবচেয়ে বড় 10.5 × 5.5 × 4.5 = 259.875। চূড়ান্ত ত্রুটি 59.875 cm³। আপেক্ষিক ত্রুটি 29.9375% ≅ 30%।</div>
+  </section>
+
+  <section class="panel" id="lab1">
+    <h2>🕰️ ল্যাব ১: পদার্থবিজ্ঞানের সময়রেখা</h2>
+    <div class="say">👉 একটি পর্ব বেছে নাও, তারপর যেকোনো বিজ্ঞানীর কার্ডে চাপো।</div>
+    <div class="ctl"><label>পর্ব:</label><select id="h1s"><option value="0">আদি পর্ব</option><option value="1">উত্থানপর্ব</option><option value="2">আধুনিক পদার্থবিজ্ঞানের সূচনা</option><option value="3">সাম্প্রতিক ও জগদীশচন্দ্র বসু</option></select></div>
+    <div class="tl" id="h1tl"></div><div class="tlinfo" id="h1t"></div>
+    <h3>🎮 কে কী করেছেন?</h3>
+    <div class="tlinfo" id="h1q"></div><div class="cls" id="h1o"></div><div class="fb" id="h1f"></div><small id="h1sc"></small>
+  </section>
+
+  <section class="panel" id="lab2">
+    <h2>🎡 ল্যাব ২: SI-এর সাত একক</h2>
+    <div class="say">👉 চাকার যেকোনো এককে চাপো। কোন ধ্রুব দিয়ে এককটি ঠিক করা হয়েছে আর বাস্তবে কতটুকু, দেখো।</div>
+    <div class="row">
+      <div><canvas id="u2c" class="w" width="380" height="330" style="cursor:pointer"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="u2t"></div></div>
+    </div>
+    <h3>🎮 মৌলিক না লব্ধ?</h3>
+    <div class="tlinfo" id="u2q"></div><div class="cls" id="u2o"></div><div class="fb" id="u2f"></div><small id="u2sc"></small>
+  </section>
+
+  <section class="panel" id="lab3">
+    <h2>🌌 ল্যাব ৩: অনেক বড়ো থেকে অনেক ছোটো</h2>
+    <div class="say">👉 দূরত্ব, ভর বা সময় বেছে স্লাইডার নাড়ো। ১০-এর ঘাত কীভাবে বদলায় দেখো (বইয়ের টেবিল ১.০২)।</div>
+    <div class="ctl"><label>রাশি:</label><select id="g3s"><option value="0">দূরত্ব (m)</option><option value="1">ভর (kg)</option><option value="2">সময় (s)</option></select><input type="range" id="g3r" min="0" max="7" step="1" value="4" style="flex:1;min-width:150px"></div>
+    <div class="row">
+      <div><canvas id="g3c" class="w" width="380" height="330"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="g3t"></div></div>
+    </div>
+    <h3>🎮 কোনটি বড়?</h3>
+    <div class="tlinfo" id="g3q"></div><div class="cls" id="g3o"></div><div class="fb" id="g3f"></div><small id="g3sc"></small>
+  </section>
+
+  <section class="panel" id="lab4">
+    <h2>🔢 ল্যাব ৪: উপসর্গ রূপান্তর</h2>
+    <div class="say">👉 একটি মান ও দুটি উপসর্গ বেছে নাও। এক উপসর্গ থেকে অন্য উপসর্গে মান কত হয় দেখো।</div>
+    <div class="ctl"><label>মান:</label><select id="x4v"><option>1</option><option>2.5</option><option selected>5</option><option>12</option><option>250</option></select>
+      <label>থেকে:</label><select id="x4a"></select><label>যাবে:</label><select id="x4b"></select><label>একক:</label><select id="x4u"><option>m</option><option>g</option><option>s</option><option>W</option><option>Hz</option></select></div>
+    <div class="row">
+      <div><canvas id="x4c" class="w" width="380" height="340"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="x4t"></div></div>
+    </div>
+    <h3>🎮 রূপান্তরের খেলা</h3>
+    <div class="tlinfo" id="x4q"></div><div class="cls" id="x4o"></div><div class="fb" id="x4f"></div><small id="x4sc"></small>
+  </section>
+
+  <section class="panel" id="lab5">
+    <h2>🧱 ল্যাব ৫: মাত্রা বানাও</h2>
+    <div class="say">👉 একটি রাশি বেছে নাও। M, L, T কোনটি কত ঘাতে আছে ব্লক দিয়ে দেখো।</div>
+    <div class="warn">ℹ️ বইয়ে শুধু বেগ, ত্বরণ ও বলের মাত্রা দেওয়া আছে। বাকিগুলো রাশির সংজ্ঞা থেকে আমার হিসাব করা (পরের অধ্যায়গুলোতে আসবে)।</div>
+    <div class="pills" id="d5p"></div>
+    <div class="row">
+      <div><canvas id="d5c" class="w" width="380" height="260"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="d5t"></div></div>
+    </div>
+    <h3>🎮 মাত্রার খেলা</h3>
+    <div class="tlinfo" id="d5q"></div><div class="cls" id="d5o"></div><div class="fb" id="d5f"></div><small id="d5sc"></small>
+  </section>
+
+  <section class="panel" id="lab6">
+    <h2>📐 ল্যাব ৬: স্লাইড ক্যালিপার্স (ভার্নিয়ার স্কেল)</h2>
+    <div class="say">👉 স্লাইডার নেড়ে বস্তুর দৈর্ঘ্য বদলাও। ভার্নিয়ারের কোন দাগ মূল স্কেলের দাগের সাথে মিলেছে খুঁজে বের করো, তারপর "উত্তর দেখাও" চাপো।</div>
+    <div class="ctl"><label>বস্তুর দৈর্ঘ্য বদলাও:</label><input type="range" id="v6r" min="0" max="180" step="1" value="103" style="flex:1;min-width:160px"><button class="btn" id="v6s">উত্তর দেখাও</button></div>
+    <canvas id="v6c" width="760" height="250" style="width:100%;max-width:760px"></canvas>
+    <div class="tlinfo" id="v6t"></div>
+    <h3>🎮 পাঠ কত?</h3>
+    <canvas id="v6g" width="760" height="210" style="width:100%;max-width:760px"></canvas>
+    <div class="cls" id="v6o"></div><div class="fb" id="v6f"></div><small id="v6sc"></small>
+  </section>
+
+  <section class="panel" id="lab7">
+    <h2>🔩 ল্যাব ৭: স্ক্রু-গেজ</h2>
+    <div class="say">👉 স্লাইডার নাড়লে স্ক্রু ঘুরবে। রৈখিক স্কেলের পাঠ আর বৃত্তাকার স্কেলের পাঠ মিলিয়ে দৈর্ঘ্য বের করো।</div>
+    <div class="ctl"><label>স্ক্রু ঘোরাও:</label><input type="range" id="w7r" min="0" max="800" step="1" value="347" style="flex:1;min-width:160px"></div>
+    <div class="row">
+      <div><canvas id="w7c" class="w" width="380" height="250"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="w7t"></div></div>
+    </div>
+    <h3>🎮 হিসাবের খেলা</h3>
+    <div class="tlinfo" id="w7q"></div><div class="cls" id="w7o"></div><div class="fb" id="w7f"></div><small id="w7sc"></small>
+  </section>
+
+  <section class="panel" id="lab8">
+    <h2>🎯 ল্যাব ৮: পরিমাপের ত্রুটি</h2>
+    <div class="say">👉 প্রথমে স্কেলের দাগ বদলে দেখো ত্রুটি কীভাবে বদলায়। তারপর বাক্সের মাপ বদলে আয়তনের ত্রুটি দেখো।</div>
+    <div class="ctl"><label>স্কেলের ক্ষুদ্রতম দাগ:</label><select id="e8d"><option value="10">1 cm</option><option value="1" selected>1 mm</option></select><label>বস্তু: <span id="e8lv"></span></label><input type="range" id="e8l" min="5" max="95" step="1" value="7" style="flex:1;min-width:130px"></div>
+    <div class="row">
+      <div><canvas id="e8c" class="w" width="380" height="170"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="e8t"></div></div>
+    </div>
+    <h3>📦 বাক্সের আয়তনের ত্রুটি (রুলারে শুধু cm দাগ, তাই ±0.5 cm)</h3>
+    <div class="ctl"><label>দৈর্ঘ্য <span id="b8av"></span></label><input type="range" id="b8a" min="2" max="20" value="10" style="min-width:90px"><label>প্রস্থ <span id="b8bv"></span></label><input type="range" id="b8b" min="2" max="20" value="5" style="min-width:90px"><label>উচ্চতা <span id="b8cv"></span></label><input type="range" id="b8c" min="2" max="20" value="4" style="min-width:90px"></div>
+    <div class="row">
+      <div><canvas id="b8k" class="w" width="380" height="240"></canvas></div>
+      <div class="grow"><div class="tlinfo" id="b8t"></div></div>
+    </div>
+    <h3>🎮 ত্রুটির খেলা</h3>
+    <div class="tlinfo" id="e8q"></div><div class="cls" id="e8o"></div><div class="fb" id="e8f"></div><small id="e8sc"></small>
+  </section>
+
+  <section class="panel" id="lab9">
+    <h2>✍️ ল্যাব ৯: একক লেখার নিয়ম</h2>
+    <div class="say">👉 কোনটি সঠিকভাবে লেখা? বইয়ের ১০টি নিয়ম মনে করে উত্তর দাও।</div>
+    <div class="tlinfo" id="r9q"></div><div class="cls" id="r9o"></div><div class="fb" id="r9f"></div><small id="r9sc"></small>
+  </section>
+
+  <section class="panel" id="quiz">
+    <h2>❓ কুইজ (<span id="qn"></span>টি MCQ)</h2>
+    <div id="quizbox"></div>
+    <div class="score" id="score"></div>
+  </section>
+
+  <section class="panel" id="qa">
+    <h2>✍️ সৃজনশীল ও সংক্ষিপ্ত প্রশ্ন (মডেল উত্তরসহ)</h2>
+    <div class="warn">ℹ️ আগে নিজে লিখে চেষ্টা করো, তারপর উত্তর খোলো। সৃজনশীল প্রশ্ন ১, ২ ও প্রথম ৪টি সংক্ষিপ্ত প্রশ্ন বইয়ের নমুনা প্রশ্ন থেকে নেওয়া। বাকিগুলো বইয়ের বিষয় ধরে আমার বানানো অনুশীলন। বইয়ে উত্তরমালা নেই, সব উত্তর আমার লেখা।</div>
+    <div id="qabox"></div>
+  </section>
+</div>
+<footer class="site">&copy; ShikboLab &mdash; ভৌত রাশি এবং তাদের পরিমাপ (পদার্থবিজ্ঞান অধ্যায় ১)</footer>
+<script>
+var BN='০১২৩৪৫৬৭৮৯',SUB='₀₁₂₃₄₅₆₇₈₉',SUP='⁰¹²³⁴⁵⁶⁷⁸⁹';
+function bn(s){return String(s).replace(/[0-9]/g,function(d){return BN[d];});}
+function sub(n){return String(n).replace(/[0-9]/g,function(d){return SUB[d];});}
+function sup(n){return String(n).replace(/[0-9]/g,function(d){return SUP[d];});}
+function $(id){return document.getElementById(id);}
+function lerp(a,b,t){return a+(b-a)*t;}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function ease(t){t=clamp(t,0,1);return t*t*(3-2*t);}
+function rnd(a,b){return a+Math.random()*(b-a);}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function gcd(a,b){return b?gcd(b,a%b):a;}
+var ORG='#e9a23b',BLU='#2b6cb0',RED='#e63946',NAVY='#1f3a5f';
+function ctxOf(id){return $(id).getContext('2d');}
+function circ(x,c,px,py,r,fill,stroke,lw){x.beginPath();x.arc(px,py,r,0,7);if(fill){x.fillStyle=fill;x.fill();}if(stroke){x.strokeStyle=stroke;x.lineWidth=lw||1;x.stroke();}}
+function txt(x,s,px,py,font,col,al){x.font=font;x.fillStyle=col;x.textAlign=al||'center';x.textBaseline='middle';x.fillText(s,px,py);}
+
+
+function f(x,d){d=d===undefined?3:d;return bn(parseFloat(x.toFixed(d)));}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function mkGame(q,o,fb,sc,gen){
+  var ok=0,t=0,cur;
+  function nxt(){cur=gen();$(q).innerHTML=cur.q;$(o).innerHTML=cur.o.map(function(x,i){return '<button data-i="'+i+'">'+x.t+'</button>';}).join('');$(fb).textContent='';}
+  $(o).addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b||b.disabled)return;
+    var i=+b.getAttribute('data-i'),all=$(o).querySelectorAll('button');t++;
+    for(var k=0;k<all.length;k++){all[k].disabled=true;if(cur.o[k].ok)all[k].classList.add('ok');}
+    if(cur.o[i].ok){ok++;$(fb).textContent='✅ '+cur.good;}else{b.classList.add('no');$(fb).textContent='❌ '+cur.bad;}
+    $(sc).textContent='স্কোর: '+bn(ok)+'/'+bn(t);setTimeout(nxt,2000);
+  });
+  nxt();
+}
+function opts(correct,wrongs){var a=[{t:correct,ok:1}];wrongs.forEach(function(w){a.push({t:w,ok:0});});return shuffle(a);}
+var FR=0;
+function hx(c){return [parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16)];}
+function mixc(a,b,t){var A=hx(a),B=hx(b);return 'rgb('+Math.round(lerp(A[0],B[0],t))+','+Math.round(lerp(A[1],B[1],t))+','+Math.round(lerp(A[2],B[2],t))+')';}
+function stp(id,labs,k){$(id).innerHTML=labs.map(function(l,i){return '<span class="'+(i<=k?'on':'')+'">'+l+'</span>';}).join('');}
+function rp(i,a,b){return a+((i*7919+13)%1000)/1000*(b-a);}
+function wdots(x,pts,ph,col){var L=[],tot=0,i;for(i=0;i<pts.length-1;i++){var d=Math.hypot(pts[i+1][0]-pts[i][0],pts[i+1][1]-pts[i][1]);L.push(d);tot+=d;}
+  for(var k=0;k<8;k++){var s=((ph+k/8)%1)*tot,j=0;while(j<L.length-1&&s>L[j]){s-=L[j];j++;}var u=s/L[j];circ(x,0,lerp(pts[j][0],pts[j+1][0],u),lerp(pts[j][1],pts[j+1][1],u),3,col,null);}}
+function qgame(a,b,c,d,Q){mkGame(a,b,c,d,function(){var g=pick(Q);return {q:g[0],o:opts(g[1],g[2]),good:g[3],bad:g[3]};});}
+
+var DRAWS=[];
+/* ---------- ল্যাব ১: সময়রেখা ---------- */
+var HIS=[[['🌒','থেলিস','624 BC','প্রথম যুক্তি ছাড়া পৌরাণিক ব্যাখ্যা নিতে অস্বীকার করেন। সূর্যগ্রহণের ভবিষ্যদ্বাণী করেন, লোডস্টোনের চৌম্বক ধর্ম জানতেন।'],['📐','পিথাগোরাস','527 BC','জ্যামিতি ও কম্পমান তারের ওপর মৌলিক কাজ।'],['⚛️','ডেমোক্রিটাস','460 BC','পদার্থের অবিভাজ্য একক "অ্যাটম"-এর ধারণা দেন।'],['☀️','আরিস্তারাকস','310 BC','প্রথম সূর্যকেন্দ্রিক সৌরজগতের ধারণা দেন।'],['🛁','আর্কিমিডিস','287 BC','তরলে ঊর্ধ্বমুখী বল। গোলীয় আয়নায় সূর্যরশ্মি কেন্দ্রীভূত করে শত্রুর জাহাজে আগুন ধরান।'],['🌍','ইরাতোস্থিনিস','276 BC','সঠিকভাবে পৃথিবীর ব্যাসার্ধ বের করেন।'],['0️⃣','আর্যভট্ট','476','গণিত ও জ্যোতির্বিদ্যা। শূন্যকে সত্যিকার অর্থে ব্যবহার।'],['➗','আল খোয়ারিজমি','783','তাঁর "আল জাবির" বই থেকে অ্যালজেবরা নামটি এসেছে।'],['📚','আল মাসুদি','896','প্রকৃতির ইতিহাস নিয়ে ৩০ খণ্ডের এনসাইক্লোপিডিয়া।'],['👁️','ইবনে আল হাইয়াম','965','আলোকবিজ্ঞানের স্থপতি।'],['🧭','শেন কুয়ো','1031','চুম্বক নিয়ে কাজ। কম্পাস দিয়ে দিক নির্ধারণের কথা উল্লেখ করেন।']],
+ [['🪐','কপার্নিকাস','1543','বইয়ে সূর্যকেন্দ্রিক সৌরজগতের ব্যাখ্যা দেন।'],['🔭','গ্যালিলিও','1564–1642','সূত্র দিয়ে পরীক্ষা করে প্রমাণের বৈজ্ঞানিক ধারার সূচনা। আধুনিক বিজ্ঞানের জনক।'],['🍎','নিউটন','1687','বলবিদ্যার তিন সূত্র ও মহাকর্ষ সূত্র। লিবনিজের সাথে ক্যালকুলাস।'],['⚡','কুলম্ব','1778','বৈদ্যুতিক চার্জের মধ্যকার বলের সূত্র।'],['🔥','রামফোর্ড','1798','দেখান তাপ এক ধরনের শক্তি, যান্ত্রিক শক্তিকে তাপে রূপান্তর করা যায়।'],['🔋','ভোল্টা','1800','বৈদ্যুতিক ব্যাটারি আবিষ্কার।'],['🌊','ইয়ং','1801','পরীক্ষায় আলোর তরঙ্গ ধর্মের প্রমাণ।'],['🧲','অরস্টেড','1820','বিদ্যুৎপ্রবাহ দিয়ে চুম্বক তৈরি করা যায়।'],['🔁','ফ্যারাডে ও হেনরি','1831','চৌম্বক ক্ষেত্রের পরিবর্তন করে বিদ্যুৎ তৈরি।'],['🌡️','লর্ড কেলভিন','1850','তাপ গতিবিজ্ঞানের দুটি গুরুত্বপূর্ণ সূত্র।'],['💡','ম্যাক্সওয়েল','1864','আলো একটি বিদ্যুৎ চৌম্বকীয় তরঙ্গ।']],
+ [['🔬','ডাল্টন','1803','পারমাণবিক তত্ত্ব।'],['🚫','মাইকেলসন ও মোরলি','1887','দেখান ইথার বলে কিছু নেই, আলোর বেগ সব মাধ্যমে সমান।'],['🩻','রন্টজেন','1895','এক্স-রে আবিষ্কার।'],['☢️','বেকেরেল','1896','পরমাণুর কেন্দ্র থেকে তেজস্ক্রিয় বিকিরণ।'],['➖','থমসন','1897','পরমাণুর ভেতর ইলেকট্রন আবিষ্কার।'],['🧪','পিয়ারে ও মেরি কুরি','1899','রেডিয়াম আবিষ্কার।'],['📦','ম্যাক্স প্ল্যাংক','1900','কোয়ান্টাম তত্ত্ব, কৃষ্ণবস্তুর বিকিরণ ব্যাখ্যা।'],['🚀','আইনস্টাইন','1905','থিওরি অব রিলেটিভিটি, E = mc²।'],['🎯','রাদারফোর্ড','1911','পরমাণুর কেন্দ্রে খুব ক্ষুদ্র নিউক্লিয়াস।'],['🇧🇩','সত্যেন্দ্রনাথ বসু','1924','কোয়ান্টাম সংখ্যায়নতত্ত্বের জনক। তাঁর নামে "বোজন"।'],['🔄','ডিরাক','1931','প্রতি কণার (Anti Particle) অস্তিত্ব ঘোষণা।']],
+ [['🌌','হাবল','1924','গ্যালাক্সিগুলো দূরে সরে যাচ্ছে, বিশ্বব্রহ্মাণ্ড প্রসারিত হচ্ছে।'],['💥','অটোহান ও স্ট্রেসম্যান','1938','নিউক্লিয়াস ভেঙে দেখান কমে যাওয়া ভর শক্তি হিসেবে বের হয়।'],['✨','হিগস বোজন','2013','বইয়ের মতে এ বছর পরীক্ষাগারে শনাক্ত হয়।'],['👶','জগদীশচন্দ্র বসু: জন্ম','1858','30 নভেম্বর, ময়মনসিংহে জন্ম।'],['🎓','অধ্যাপনা শুরু','1885','প্রেসিডেন্সি কলেজে পদার্থবিজ্ঞানের অধ্যাপনা।'],['📡','বেতার সংকেত','1895','প্রথম বেতারে দূরবর্তী স্থানে রেডিও সংকেত পাঠান।'],['🌱','বসু বিজ্ঞান মন্দির','1917','উদ্ভিদ শারীরতত্ত্ব গবেষণার জন্য কলকাতায় প্রতিষ্ঠা। ক্রেস্কোগ্রাফ তাঁর আবিষ্কার।'],['🕯️','মৃত্যু','1937','23 নভেম্বর মৃত্যুবরণ করেন।']]];
+var H1={e:0,k:0};
+function h1draw(){$('h1tl').innerHTML=HIS[H1.e].map(function(h,i){return '<button data-i="'+i+'" class="'+(i===H1.k?'on':'')+'"><span class="em">'+h[0]+'</span><b>'+h[1]+'</b><small>'+bn(h[2])+'</small></button>';}).join('');var h=HIS[H1.e][H1.k];$('h1t').innerHTML='<b>'+h[0]+' '+h[1]+' ('+bn(h[2])+')</b><br>'+h[3];}
+$('h1s').onchange=function(){H1.e=+this.value;H1.k=0;h1draw();};$('h1tl').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;H1.k=+b.getAttribute('data-i');h1draw();};h1draw();
+qgame('h1q','h1o','h1f','h1sc',[['কোয়ান্টাম তত্ত্ব প্রথম কে দেন?','ম্যাক্স প্ল্যাংক',['আইনস্টাইন','রাদারফোর্ড','হাইজেনবার্গ'],'1900 সালে ম্যাক্স প্ল্যাংক কোয়ান্টাম তত্ত্ব আবিষ্কার করেন।'],
+ ['"বোজন" কণার নাম কার নাম থেকে এসেছে?','সত্যেন্দ্রনাথ বসু',['জগদীশচন্দ্র বসু','সুভাষচন্দ্র বসু','শরৎচন্দ্র বসু'],'সত্যেন্দ্রনাথ বসু কোয়ান্টাম সংখ্যায়নতত্ত্বের জনক।'],
+ ['কাকে আধুনিক বিজ্ঞানের জনক বলা হয়?','গ্যালিলিও',['নিউটন','কপার্নিকাস','আর্কিমিডিস'],'তিনি পরীক্ষা করে সূত্র প্রমাণের ধারা শুরু করেন।'],
+ ['আলোকবিজ্ঞানের স্থপতি কাকে বলা হয়?','ইবনে আল হাইয়াম',['আল খোয়ারিজমি','আল মাসুদি','ওমর খৈয়াম'],'ইবনে আল হাইয়াম (965)।'],
+ ['প্রথম সূর্যকেন্দ্রিক সৌরজগতের ধারণা কে দেন?','আরিস্তারাকস',['কপার্নিকাস','গ্যালিলিও','থেলিস'],'আরিস্তারাকস (310 BC) প্রথম ধারণা দেন। কপার্নিকাস 1543 সালে বইয়ে ব্যাখ্যা দেন।'],
+ ['আলো একটি বিদ্যুৎ চৌম্বকীয় তরঙ্গ, কে দেখান?','ম্যাক্সওয়েল',['ইয়ং','ফ্যারাডে','অরস্টেড'],'1864 সালে ম্যাক্সওয়েল সমীকরণ দিয়ে।'],
+ ['পরমাণুর কেন্দ্রে নিউক্লিয়াস আছে, কে দেখান?','রাদারফোর্ড',['থমসন','ডাল্টন','বোর'],'1911 সালে রাদারফোর্ড।'],
+ ['ক্রেস্কোগ্রাফ কে আবিষ্কার করেন?','জগদীশচন্দ্র বসু',['সত্যেন্দ্রনাথ বসু','মেরি কুরি','ভোল্টা'],'উদ্ভিদের বৃদ্ধি রেকর্ড করার যন্ত্র।'],
+ ['অ্যালজেবরা নামটি কার বই থেকে এসেছে?','আল খোয়ারিজমি',['আর্যভট্ট','পিথাগোরাস','ইবনে আল হাইয়াম'],'"আল জাবির" বই থেকে।'],
+ ['এক্স-রে কে আবিষ্কার করেন?','রন্টজেন',['বেকেরেল','মেরি কুরি','থমসন'],'1895 সালে রন্টজেন।']]);
+
+function pw(e){return (e<0?'⁻':'')+sup(Math.abs(e));}
+function sci(m,e){return e===0?bn(m):bn(m)+' × ১০'+pw(e);}
+/* ---------- ল্যাব ২: SI চাকা ---------- */
+var SIU=[['kg','কিলোগ্রাম','ভর','h','প্ল্যাঙ্কের ধ্রুবকে 6.62607015 × 10⁻³⁴ m²/s দিয়ে ভাগ দিলে যে ভর পাওয়া যায়।','এক লিটার পানির বোতলে বা চার গ্লাসে যেটুকু পানি থাকে তার ভর প্রায় ১ কেজি।','#d62839'],
+ ['m','মিটার','দৈর্ঘ্য','c','শূন্য মাধ্যমে এক সেকেন্ডের 299,792,458 ভাগের এক ভাগ সময়ে আলো যে দূরত্ব অতিক্রম করে।','স্বাভাবিক উচ্চতার মানুষের মাটি থেকে পেট পর্যন্ত দূরত্ব মোটামুটি ১ মিটার।','#f3722c'],
+ ['s','সেকেন্ড','সময়','Δν','সিজিয়াম 133 পরমাণুর 9,192,631,770টি স্পন্দন সম্পন্ন করতে যে সময় লাগে।','"এক হাজার এক" এই তিনটি শব্দ বলতে মোটামুটি ১ সেকেন্ড লাগে।','#f9a620'],
+ ['A','অ্যাম্পিয়ার','বৈদ্যুতিক প্রবাহ','e','প্রতি সেকেন্ডে 1/(1.602176634 × 10⁻¹⁹) সংখ্যক ইলেকট্রনের সমপরিমাণ চার্জ প্রবাহিত হলে।','তিনটা মোবাইল ফোন একসাথে চার্জ করলে প্রায় ১ অ্যাম্পিয়ার বিদ্যুৎ ব্যবহার হয়।','#43aa5c'],
+ ['K','কেলভিন','তাপমাত্রা','k','যে পরিমাণ তাপমাত্রার পরিবর্তনে তাপশক্তির 1.380649 × 10⁻²³ joule পরিবর্তন হয়।','হাত দিয়ে কারো জ্বর টের পেলে তার তাপমাত্রা স্বাভাবিকের চেয়ে প্রায় ১ কেলভিন বেড়েছে।','#277da1'],
+ ['mol','মোল','পদার্থের পরিমাণ','Nᴀ','যে পরিমাণ বস্তুতে এভোগাড্রোর ধ্রুব 6.02214076 × 10²³ সংখ্যক কণা থাকে।','বড় চামচের এক চামচ পানিতে মোটামুটি ১ মোল পানির অণু থাকে। এক কাপ পানিতে প্রায় ১০ মোল।','#b5179e'],
+ ['cd','ক্যান্ডেলা','দীপন তীব্রতা','Kcd','সেকেন্ডে 540 × 10¹² বার কম্পনরত আলোর উৎস থেকে এক স্টেরেডিয়ান ঘনকোণে এক ওয়াটের 683 ভাগের এক ভাগ বিকিরণ তীব্রতা পৌঁছালে।','একটা মোমবাতির আলো মোটামুটি ১ ক্যান্ডেলা।','#7b5ea7']];
+var U2={k:1};
+function u2show(){var u=SIU[U2.k];$('u2t').innerHTML='<b>'+u[1]+' ('+u[0]+')</b><br>রাশি: <b>'+u[2]+'</b><br>যে ধ্রুব দিয়ে ঠিক করা: <b>'+u[3]+'</b><br><b>সংজ্ঞা:</b> '+u[4]+'<br><b>🖐️ অনুভব:</b> '+u[5];}
+$('u2c').onclick=function(ev){var r=this.getBoundingClientRect(),px=(ev.clientX-r.left)*380/r.width-190,py=(ev.clientY-r.top)*330/r.height-165,d=Math.hypot(px,py);if(d<50||d>155)return;
+  var a=Math.atan2(py,px)+Math.PI/2;if(a<0)a+=2*Math.PI;U2.k=Math.floor(a/(2*Math.PI/7))%7;u2show();};u2show();
+DRAWS.push(function(){var x=ctxOf('u2c'),i,st=2*Math.PI/7;x.clearRect(0,0,380,330);
+  for(i=0;i<7;i++){var a0=-Math.PI/2+i*st,a1=a0+st,on=i===U2.k,R=on?152:140,am=(a0+a1)/2;
+    x.beginPath();x.arc(190,165,R,a0+.02,a1-.02);x.arc(190,165,88,a1-.02,a0+.02,true);x.closePath();x.fillStyle=SIU[i][6];x.globalAlpha=on?1:.75;x.fill();
+    x.beginPath();x.arc(190,165,86,a0+.02,a1-.02);x.arc(190,165,52,a1-.02,a0+.02,true);x.closePath();x.globalAlpha=on?.55:.35;x.fill();x.globalAlpha=1;
+    txt(x,SIU[i][0],190+Math.cos(am)*114,165+Math.sin(am)*114,'bold 22px Hind Siliguri','#fff');txt(x,SIU[i][3],190+Math.cos(am)*69,165+Math.sin(am)*69,'bold 13px Hind Siliguri','#222');}
+  circ(x,0,190,165,48,'#fff','#ccd',1);txt(x,'SI',190,165,'bold 34px Hind Siliguri',NAVY);txt(x,'চাপ দাও 👆',190,322,'bold 11px Hind Siliguri','#567');
+});
+mkGame('u2q','u2o','u2f','u2sc',function(){var Q=[['ভর',1],['দৈর্ঘ্য',1],['সময়',1],['তাপমাত্রা',1],['বৈদ্যুতিক প্রবাহ',1],['পদার্থের পরিমাণ',1],['দীপন তীব্রতা',1],['বেগ',0],['ত্বরণ',0],['বল',0],['আয়তন',0],['ক্ষেত্রফল',0],['ঘনত্ব',0],['তাপ',0],['চাপ',0]],g=pick(Q),A='মৌলিক রাশি',B='লব্ধ রাশি';
+  var why=g[0]+(g[1]?' সাতটি মৌলিক রাশির একটি।':' মৌলিক রাশি দিয়ে প্রকাশ করা হয়, তাই লব্ধ রাশি।')+(g[0]==='তাপ'?' (তাপমাত্রা মৌলিক, কিন্তু তাপ এক ধরনের শক্তি।)':'');
+  return {q:'<b>'+g[0]+'</b> কোন ধরনের রাশি?',o:opts(g[1]?A:B,[g[1]?B:A]),good:why,bad:why};});
+/* ---------- ল্যাব ৩: বড়ো থেকে ছোটো ---------- */
+var BIG=[[['নিকটতম গ্যালাক্সি',2,22],['নিকটতম নক্ষত্র',4,16],['সৌরজগতের ব্যাসার্ধ',6,12],['পৃথিবীর ব্যাসার্ধ',6,6],['এভারেস্টের উচ্চতা',9,3],['ভাইরাসের দৈর্ঘ্য',1,-8],['হাইড্রোজেন পরমাণুর ব্যাসার্ধ',5,-11],['প্রোটনের ব্যাসার্ধ',1,-15]],
+ [['আমাদের গ্যালাক্সি',2,41],['সূর্য',2,30],['পৃথিবী',6,24],['জাহাজ',7,7],['হাতি',5,3],['মানুষ',6,1],['ধূলিকণা',7,-7],['ইলেকট্রন',9,-31]],
+ [['বিগ ব্যাংয়ের পর থেকে সময়',4,17],['ডাইনোসরের ধ্বংসের পর থেকে সময়',2,14],['মানুষের অভ্যুদয়ের পর থেকে সময়',8,12],['এক দিন',9,4],['মানুষের হৃৎস্পন্দন',1,0],['মিউওনের আয়ু',2,-6],['স্পন্দনকাল: সবুজ আলো',2,-15],['স্পন্দনকাল: এক MeV গামা রশ্মি',4,-21]]];
+var G3U=['m','kg','s'],G3N=['দূরত্ব','ভর','সময়'];
+function g3show(){var c=+$('g3s').value,k=+$('g3r').value,L=BIG[c],it=L[k],h='<b>'+it[0]+'</b><br>'+G3N[c]+': <b>'+sci(it[1],it[2])+' '+G3U[c]+'</b><br>';
+  if(k<7){var n=L[k+1],r=(it[1]/n[1])*Math.pow(10,it[2]-n[2]),e=Math.floor(Math.log10(r)+1e-9);h+='এটি "'+n[0]+'"-এর চেয়ে প্রায় <b>১০'+pw(e)+' গুণ</b> বড়।<br>';}
+  h+='<small>সবচেয়ে বড় আর সবচেয়ে ছোটটির পার্থক্য ১০'+pw(L[0][2]-L[7][2])+' গুণেরও বেশি। এ জন্যই ১০-এর ঘাত ও উপসর্গ দরকার।</small>';$('g3t').innerHTML=h;}
+$('g3s').onchange=g3show;$('g3r').oninput=g3show;g3show();
+DRAWS.push(function(){var x=ctxOf('g3c'),c=+$('g3s').value,k=+$('g3r').value,L=BIG[c],i,mx=L[0][2]+2,mn=L[7][2]-2;x.clearRect(0,0,380,330);
+  var Y=function(e){return 16+(mx-e)/(mx-mn)*298;};x.strokeStyle='#8a97a4';x.lineWidth=3;x.beginPath();x.moveTo(60,10);x.lineTo(60,322);x.stroke();
+  var py=-99;for(i=0;i<8;i++){var it=L[i],yy=Math.max(Y(it[2]+Math.log10(it[1])),py+22),on=i===k;py=yy;circ(x,0,60,yy,on?9+Math.sin(FR*.1)*1.5:5,on?ORG:BLU,'#fff',1.5);
+    txt(x,'১০'+pw(it[2]),30,yy,(on?'bold ':'')+'11px Hind Siliguri',on?'#b8600b':'#456');txt(x,it[0],78,yy,(on?'bold 12.5px':'11px')+' Hind Siliguri',on?NAVY:'#789','left');}
+  txt(x,'বড়ো ↑',350,16,'bold 11px Hind Siliguri','#456');txt(x,'ছোটো ↓',350,318,'bold 11px Hind Siliguri','#456');
+});
+mkGame('g3q','g3o','g3f','g3sc',function(){var c=Math.floor(Math.random()*3),L=BIG[c],i=Math.floor(Math.random()*8),j;do{j=Math.floor(Math.random()*8);}while(j===i);var a=L[Math.min(i,j)],b=L[Math.max(i,j)];
+  var why=a[0]+': '+sci(a[1],a[2])+' '+G3U[c]+', আর '+b[0]+': '+sci(b[1],b[2])+' '+G3U[c]+'।';
+  return {q:'কোনটির '+G3N[c]+' বেশি?',o:opts(a[0],[b[0]]),good:why,bad:why};});
+
+/* ---------- ল্যাব ৪: উপসর্গ ---------- */
+var PFX=[['এক্সা','E',18],['পেটা','P',15],['টেরা','T',12],['গিগা','G',9],['মেগা','M',6],['কিলো','k',3],['হেক্টো','h',2],['ডেকা','da',1],['(উপসর্গ ছাড়া)','',0],['ডেসি','d',-1],['সেন্টি','c',-2],['মিলি','m',-3],['মাইক্রো','μ',-6],['ন্যানো','n',-9],['পিকো','p',-12],['ফেমটো','f',-15],['এটো','a',-18]];
+['x4a','x4b'].forEach(function(id,j){$(id).innerHTML=PFX.map(function(p,i){return '<option value="'+i+'">'+p[0]+(p[1]?' ('+p[1]+')':'')+'</option>';}).join('');$(id).value=j?'8':'5';});
+function nsci(v,e){while(v>=10){v/=10;e++;}while(v<1){v*=10;e--;}return sci(parseFloat(v.toPrecision(4)),e);}
+function x4show(){var v=+$('x4v').value,a=PFX[+$('x4a').value],b=PFX[+$('x4b').value],u=$('x4u').value,d=a[2]-b[2];
+  $('x4t').innerHTML='<b>'+bn(v)+' '+a[1]+u+' = '+nsci(v,d)+' '+b[1]+u+'</b><br>'+a[0]+' = ১০'+pw(a[2])+', '+b[0]+' = ১০'+pw(b[2])+'<br>ঘাতের পার্থক্য = '+bn(a[2])+' − ('+bn(b[2])+') = <b>'+bn(d)+'</b><br>তাই ১০'+pw(d)+' দিয়ে গুণ করতে হবে।<br><small>'+(d>0?'বড় উপসর্গ থেকে ছোট উপসর্গে গেলে সংখ্যা বড় হয়।':d<0?'ছোট উপসর্গ থেকে বড় উপসর্গে গেলে সংখ্যা ছোট হয়।':'দুটো একই, তাই মান বদলায়নি।')+'</small>';}
+['x4v','x4a','x4b','x4u'].forEach(function(i){$(i).onchange=x4show;});x4show();
+DRAWS.push(function(){var x=ctxOf('x4c'),ia=+$('x4a').value,ib=+$('x4b').value,i;x.clearRect(0,0,380,340);
+  for(i=0;i<17;i++){var p=PFX[i],yy=14+i*19.5,on=i===ia||i===ib;x.fillStyle=i===ia?'#fde3c4':i===ib?'#d9f2ee':i===8?'#eef2f6':'#fff';x.fillRect(110,yy-9,180,18);x.strokeStyle=on?NAVY:'#d5dde4';x.lineWidth=on?2:1;x.strokeRect(110,yy-9,180,18);
+    txt(x,p[0],160,yy,(on?'bold ':'')+'11px Hind Siliguri',NAVY);txt(x,p[1]||'–',228,yy,'bold 12px Hind Siliguri','#345');txt(x,'১০'+pw(p[2]),262,yy,'11px Hind Siliguri','#345');}
+  var ya=14+ia*19.5,yb=14+ib*19.5;txt(x,'থেকে ▶',72,ya,'bold 11px Hind Siliguri','#b8600b');txt(x,'◀ যাবে',326,yb,'bold 11px Hind Siliguri','#1d7a6f');
+  if(ia!==ib){x.strokeStyle=ORG;x.lineWidth=3;x.beginPath();x.moveTo(100,ya);x.quadraticCurveTo(40,(ya+yb)/2,100,yb);x.stroke();var ph=(FR*.012)%1,t=ph,qx=(1-t)*(1-t)*100+2*(1-t)*t*40+t*t*100,qy=(1-t)*(1-t)*ya+2*(1-t)*t*((ya+yb)/2)+t*t*yb;circ(x,0,qx,qy,5,ORG,'#fff',1.5);}
+});
+mkGame('x4q','x4o','x4f','x4sc',function(){var C=[[5,2],[5,8],[10,8],[11,8],[12,8],[13,8],[4,8],[3,8],[5,11],[8,10],[8,11],[11,12],[4,5]],c=pick(C),a=PFX[c[0]],b=PFX[c[1]],u=pick(['m','g','s','W']),v=pick([1,2,5,3]),d=a[2]-b[2];
+  var ans=nsci(v,d)+' '+b[1]+u,w=[nsci(v,-d)+' '+b[1]+u,nsci(v,d+1)+' '+b[1]+u,nsci(v,d-1)+' '+b[1]+u].filter(function(s,i,A){return s!==ans&&A.indexOf(s)===i;});
+  var why=a[0]+' = ১০'+pw(a[2])+', '+b[0]+' = ১০'+pw(b[2])+'। তাই ১০'+pw(d)+' দিয়ে গুণ: '+ans+'।';
+  return {q:bn(v)+' '+a[1]+u+' = কত '+(b[1]+u)+'?',o:opts(ans,w),good:why,bad:why};});
+/* ---------- ল্যাব ৫: মাত্রা ---------- */
+var DIM=[['বেগ',0,1,-1,'দূরত্ব ÷ সময় = L ÷ T'],['ত্বরণ',0,1,-2,'বেগ ÷ সময় = LT⁻¹ ÷ T'],['বল',1,1,-2,'ভর × ত্বরণ = M × LT⁻²'],['ক্ষেত্রফল',0,2,0,'দৈর্ঘ্য × প্রস্থ = L × L'],['আয়তন',0,3,0,'দৈর্ঘ্য × প্রস্থ × উচ্চতা = L × L × L'],['ঘনত্ব',1,-3,0,'ভর ÷ আয়তন = M ÷ L³'],['ভরবেগ',1,1,-1,'ভর × বেগ = M × LT⁻¹'],['কাজ বা শক্তি',1,2,-2,'বল × দূরত্ব = MLT⁻² × L'],['ক্ষমতা',1,2,-3,'কাজ ÷ সময় = ML²T⁻² ÷ T'],['চাপ',1,-1,-2,'বল ÷ ক্ষেত্রফল = MLT⁻² ÷ L²']];
+function dstr(d){var s='',n=['M','L','T'];for(var i=0;i<3;i++){var e=d[i+1];if(e)s+=n[i]+(e===1?'':pw(e));}return s;}
+var D5={k:0};
+$('d5p').innerHTML=DIM.map(function(d,i){return '<button data-i="'+i+'">'+d[0]+'</button>';}).join('');
+function d5show(){var d=DIM[D5.k];$('d5t').innerHTML='<b>'+d[0]+'</b><br>'+d[4]+'<br>মাত্রা: <b style="font-size:22px">['+d[0]+'] = '+dstr(d)+'</b><br><small>M-এর ঘাত '+bn(d[1])+', L-এর ঘাত '+bn(d[2])+', T-এর ঘাত '+bn(d[3])+'।'+(D5.k<3?' (বইয়ে দেওয়া আছে)':'')+'</small>';}
+$('d5p').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;D5.k=+b.getAttribute('data-i');d5show();};d5show();
+DRAWS.push(function(){var x=ctxOf('d5c'),d=DIM[D5.k],n=['M','L','T'],nm=['ভর','দৈর্ঘ্য','সময়'],col=['#d62839','#277da1','#43aa5c'],i,j;x.clearRect(0,0,380,260);
+  x.strokeStyle='#8a97a4';x.lineWidth=2;x.beginPath();x.moveTo(20,130);x.lineTo(360,130);x.stroke();txt(x,'ঘাত ০',350,120,'10px Hind Siliguri','#678');txt(x,'ধনাত্মক ↑',42,16,'10px Hind Siliguri','#678');txt(x,'ঋণাত্মক ↓',42,250,'10px Hind Siliguri','#678');
+  for(i=0;i<3;i++){var e=d[i+1],cx=95+i*100;for(j=0;j<Math.abs(e);j++){var yy=e>0?130-(j+1)*32:130+j*32;x.fillStyle=col[i];x.globalAlpha=e>0?1:.55;x.fillRect(cx-28,yy+2,56,28);x.globalAlpha=1;txt(x,n[i],cx,yy+16,'bold 16px Hind Siliguri','#fff');}
+    if(!e)txt(x,'নেই',cx,118,'11px Hind Siliguri','#99a');txt(x,n[i]+pw(e)+' ('+nm[i]+')',cx,e<0?112:150,'bold 12px Hind Siliguri',col[i]);}
+});
+mkGame('d5q','d5o','d5f','d5sc',function(){var g=pick(DIM),a=dstr(g),w=shuffle(DIM.map(dstr).filter(function(s,i,A){return s!==a&&A.indexOf(s)===i;})).slice(0,3),why='['+g[0]+']: '+g[4]+' = '+a;
+  return {q:'<b>'+g[0]+'</b>-এর মাত্রা কোনটি?',o:opts(a,w),good:why,bad:why};});
+
+/* ---------- ল্যাব ৬: ভার্নিয়ার ---------- */
+function vdraw(x,L10,show,H){var x0=60,pm=24,i,by=H-100,zx=x0+L10/10*pm,V=L10%10,M=Math.floor(L10/10);x.clearRect(0,0,760,H);
+  // object + jaws
+  x.fillStyle='#f0b35a';x.fillRect(x0,by-74,zx-x0,30);x.strokeStyle='#b8600b';x.lineWidth=1.5;x.strokeRect(x0,by-74,zx-x0,30);if(zx-x0>40)txt(x,'বস্তু',(x0+zx)/2,by-59,'bold 13px Hind Siliguri','#6b3a05');
+  x.fillStyle='#9aa7b4';x.fillRect(x0-14,by-86,14,86);x.fillRect(zx,by-86,14,46);
+  // main scale
+  x.fillStyle='#e9eef3';x.fillRect(30,by,720,64);x.strokeStyle='#5b6b7a';x.lineWidth=2;x.strokeRect(30,by,720,64);
+  for(i=0;i<=28;i++){var tx=x0+i*pm;x.fillStyle='#223';x.fillRect(tx-1,by,2,i%10===0?28:i%5===0?21:14);if(i%10===0)txt(x,bn(i/10),tx,by+42,'bold 17px Hind Siliguri','#223');}
+  txt(x,'cm',x0+5*pm,by+44,'bold 13px Hind Siliguri','#456');txt(x,'মূল স্কেল',700,by+50,'bold 12px Hind Siliguri',NAVY);
+  // vernier
+  x.fillStyle='#fff7e0';x.fillRect(zx-12,by-40,9*pm+24,40);x.strokeStyle='#5b6b7a';x.strokeRect(zx-12,by-40,9*pm+24,40);
+  for(i=0;i<=10;i++){var vx=zx+i*0.9*pm;x.fillStyle='#223';x.fillRect(vx-1,by-(i%5===0?20:13),2,i%5===0?20:13);if(i%5===0)txt(x,bn(i),vx,by-30,'bold 12px Hind Siliguri','#223');}
+  txt(x,'ভার্নিয়ার স্কেল',zx+4.5*pm,by-52,'bold 12px Hind Siliguri',NAVY);
+  if(show){var cx=zx+V*0.9*pm;x.strokeStyle=RED;x.lineWidth=3;x.beginPath();x.moveTo(cx,by-24);x.lineTo(cx,by+30);x.stroke();txt(x,'মিলেছে: V = '+bn(V),cx,by+76,'bold 13px Hind Siliguri',RED);
+    x.strokeStyle=BLU;x.setLineDash([5,4]);x.lineWidth=2;x.beginPath();x.moveTo(x0+M*pm,by+2);x.lineTo(x0+M*pm,by+64);x.stroke();x.setLineDash([]);txt(x,'M = '+bn(M)+' mm',x0+M*pm,by+88,'bold 13px Hind Siliguri',BLU);}
+}
+var V6={show:0};
+function v6info(){var L=+$('v6r').value,M=Math.floor(L/10),V=L%10;$('v6t').innerHTML=V6.show?'<b>মূল স্কেল পাঠ M</b> = '+bn(M)+' mm (ভার্নিয়ারের ০ দাগ যে দাগ সম্পূর্ণ পার হয়েছে)<br><b>ভার্নিয়ার সমপাতন V</b> = '+bn(V)+'<br><b>ভার্নিয়ার ধ্রুবক VC</b> = 1 mm ÷ 10 = 0.1 mm<br><b>পাঠ = M + V × VC</b> = '+bn(M)+' + ('+bn(V)+' × ০.১) = <b>'+f(L/10,1)+' mm = '+f(L/100,2)+' cm</b>':'ভার্নিয়ারের ০ দাগ মূল স্কেলের কোন দাগ পার হয়েছে? আর ভার্নিয়ারের কোন দাগ মূল স্কেলের দাগের সাথে হুবহু মিলেছে? নিজে বের করে তারপর "উত্তর দেখাও" চাপো।';}
+$('v6r').oninput=function(){V6.show=0;v6info();};$('v6s').onclick=function(){V6.show=1;v6info();};v6info();
+DRAWS.push(function(){vdraw(ctxOf('v6c'),+$('v6r').value,V6.show,250);});
+var V6G={L:57,ok:0,n:0,lock:0};
+function v6new(){V6G.L=12+Math.floor(Math.random()*160);V6G.lock=0;var L=V6G.L,M=Math.floor(L/10),V=L%10,c=L/10,w=[M+((V+3)%10)/10,M+1+V/10,M+((V+7)%10)/10].filter(function(v){return Math.abs(v-c)>1e-6;});
+  $('v6o').innerHTML=shuffle([c].concat(w)).map(function(v){return '<button data-v="'+Math.round(v*10)+'">'+f(v,1)+' mm</button>';}).join('');$('v6f').textContent='';}
+$('v6o').onclick=function(ev){var b=ev.target.closest('button');if(!b||V6G.lock)return;V6G.lock=1;V6G.n++;var v=+b.getAttribute('data-v'),L=V6G.L;
+  [].forEach.call($('v6o').children,function(c){if(+c.getAttribute('data-v')===L)c.classList.add('ok');});
+  var why='M = '+bn(Math.floor(L/10))+' mm, V = '+bn(L%10)+', পাঠ = '+f(L/10,1)+' mm।';
+  if(v===L){V6G.ok++;$('v6f').textContent='✅ ঠিক! '+why;}else{b.classList.add('no');$('v6f').textContent='❌ '+why;}
+  $('v6sc').textContent='স্কোর: '+bn(V6G.ok)+'/'+bn(V6G.n);setTimeout(v6new,3000);};
+v6new();
+DRAWS.push(function(){vdraw(ctxOf('v6g'),V6G.L,V6G.lock,210);});
+/* ---------- ল্যাব ৭: স্ক্রু-গেজ ---------- */
+function w7info(){var L=+$('w7r').value,m=Math.floor(L/100),c=L%100;$('w7t').innerHTML='<b>পিচ</b> = 1 mm (এক পাক ঘোরালে স্ক্রু 1 mm সরে)<br><b>বৃত্তাকার স্কেল</b> = 100 ভাগ<br><b>ন্যূনাঙ্ক</b> = 1 mm ÷ 100 = 0.01 mm<br><b>রৈখিক স্কেল পাঠ</b> = '+bn(m)+' mm<br><b>বৃত্তাকার স্কেল পাঠ</b> = '+bn(c)+'<br><b>মোট পাঠ</b> = '+bn(m)+' + ('+bn(c)+' × ০.০১) = <b>'+f(L/100,2)+' mm</b>';}
+$('w7r').oninput=w7info;w7info();
+DRAWS.push(function(){var x=ctxOf('w7c'),L=+$('w7r').value,c=L%100,xs=50,ex=xs+L/100*30,i;x.clearRect(0,0,380,250);
+  x.fillStyle='#b9c3cc';x.fillRect(8,113,xs-8,24);txt(x,'স্পিন্ডল',26,150,'10px Hind Siliguri','#456');
+  x.fillStyle='#e9eef3';x.fillRect(xs,100,ex-xs+4,50);x.strokeStyle='#5b6b7a';x.lineWidth=2;x.strokeRect(xs,100,ex-xs+4,50);
+  x.save();x.beginPath();x.rect(xs,100,ex-xs,50);x.clip();x.strokeStyle='#223';x.lineWidth=1.5;x.beginPath();x.moveTo(xs,125);x.lineTo(340,125);x.stroke();
+  for(i=0;i<=8;i++){x.fillStyle='#223';x.fillRect(xs+i*30-1,110,2,15);txt(x,bn(i),xs+i*30+7,108,'bold 10px Hind Siliguri','#223');}x.restore();
+  txt(x,'রৈখিক স্কেল (mm)',10,60,'bold 11px Hind Siliguri',NAVY,'left');
+  // thimble
+  x.fillStyle='#d9dee4';x.beginPath();x.moveTo(ex,82);x.lineTo(ex+86,70);x.lineTo(ex+86,180);x.lineTo(ex,168);x.closePath();x.fill();x.strokeStyle='#5b6b7a';x.stroke();
+  x.save();x.beginPath();x.rect(ex,84,60,82);x.clip();
+  for(i=-8;i<=8;i++){var d=((c+i)%100+100)%100,yy=125-i*7;x.fillStyle='#223';x.fillRect(ex,yy-1,d%5===0?18:10,2);if(d%5===0)txt(x,bn(d),ex+34,yy,'bold 11px Hind Siliguri','#223');}x.restore();
+  x.strokeStyle=RED;x.lineWidth=1.5;x.setLineDash([4,3]);x.beginPath();x.moveTo(ex-30,125);x.lineTo(ex+60,125);x.stroke();x.setLineDash([]);
+  txt(x,'বৃত্তাকার স্কেল',Math.min(ex+44,320),196,'bold 11px Hind Siliguri',NAVY);txt(x,'পাঠ: '+f(L/100,2)+' mm',190,228,'bold 15px Hind Siliguri',NAVY);txt(x,'লাল রেখা = দাগরেখা',300,60,'10px Hind Siliguri',RED);
+});
+mkGame('w7q','w7o','w7f','w7sc',function(){if(Math.random()<.35){var p=pick([0.5,1]),n=pick([50,100]),lc=p/n,why0='ন্যূনাঙ্ক = পিচ ÷ ভাগ সংখ্যা = '+f(p,1)+' ÷ '+bn(n)+' = '+f(lc,3)+' mm';
+    return {q:'স্ক্রু-গেজের পিচ '+f(p,1)+' mm এবং বৃত্তাকার স্কেলে '+bn(n)+' ভাগ। ন্যূনাঙ্ক কত?',o:opts(f(lc,3)+' mm',[f(lc*10,3)+' mm',f(p*n,1)+' mm',f(lc/10,4)+' mm']),good:why0,bad:why0};}
+  var m=1+Math.floor(Math.random()*7),c=5+Math.floor(Math.random()*90),v=m+c/100,why='পাঠ = '+bn(m)+' + ('+bn(c)+' × ০.০১) = '+f(v,2)+' mm';
+  return {q:'রৈখিক স্কেল পাঠ '+bn(m)+' mm, বৃত্তাকার স্কেল পাঠ '+bn(c)+', ন্যূনাঙ্ক ০.০১ mm। মোট পাঠ কত?',o:opts(f(v,2)+' mm',[f(m+c/10,1)+' mm',f(m+c/1000,3)+' mm',f(m*c/100,2)+' mm'].filter(function(s,i,A){return s!==f(v,2)+' mm'&&A.indexOf(s)===i;})),good:why,bad:why};});
+
+/* ---------- ল্যাব ৮: ত্রুটি ---------- */
+function e8calc(){var d=+$('e8d').value,l=+$('e8l').value,m=d===10?Math.max(1,Math.round(l/10)):l,u=d===10?'cm':'mm';return {d:d,l:l,m:m,u:u,rel:0.5/m*100};}
+function e8info(){var c=e8calc();$('e8lv').textContent=bn(c.l)+' mm';
+  $('e8t').innerHTML='<b>মাপ:</b> ('+bn(c.m)+' ± ০.৫) '+c.u+'<br>অর্থাৎ '+f(c.m-.5,1)+' '+c.u+' থেকে '+f(c.m+.5,1)+' '+c.u+'-এর মধ্যে।<br><b>চূড়ান্ত ত্রুটি</b> = ০.৫ '+c.u+'<br><b>আপেক্ষিক ত্রুটি</b> = ০.৫ ÷ '+bn(c.m)+' = '+f(.5/c.m,3)+' = <b>'+f(c.rel,1)+'%</b><br><small>'+(c.d===10?'স্কেলে শুধু cm দাগ, তাই ত্রুটি ±০.৫ cm। mm দাগের স্কেল নিলে ত্রুটি অনেক কমে।':'বস্তু যত লম্বা, একই ±০.৫ mm ত্রুটিতে আপেক্ষিক ত্রুটি তত কম।')+'</small>';}
+$('e8d').onchange=e8info;$('e8l').oninput=e8info;e8info();
+DRAWS.push(function(){var x=ctxOf('e8c'),c=e8calc(),i,x0=20,pm=3.4;x.clearRect(0,0,380,170);
+  x.fillStyle='#f0b35a';x.fillRect(x0,40,c.l*pm,26);x.strokeStyle='#b8600b';x.lineWidth=1.5;x.strokeRect(x0,40,c.l*pm,26);
+  x.fillStyle='#f7efc9';x.fillRect(10,70,360,60);x.strokeStyle='#5b6b7a';x.lineWidth=2;x.strokeRect(10,70,360,60);
+  for(i=0;i<=100;i++){if(c.d===10&&i%10)continue;x.fillStyle='#223';x.fillRect(x0+i*pm-.75,70,1.5,i%10===0?24:i%5===0?17:11);if(i%10===0)txt(x,bn(i/10),x0+i*pm,106,'bold 12px Hind Siliguri','#223');}
+  txt(x,'cm',355,120,'bold 11px Hind Siliguri','#456');
+  var k=c.d===10?10:1,a=x0+(c.m-.5)*k*pm,b=x0+(c.m+.5)*k*pm;x.fillStyle='rgba(230,57,70,.25)';x.fillRect(a,30,b-a,46);x.strokeStyle=RED;x.lineWidth=1.5;x.beginPath();x.moveTo(a,26);x.lineTo(a,80);x.moveTo(b,26);x.lineTo(b,80);x.stroke();
+  txt(x,'অনিশ্চয়তার সীমা',clamp((a+b)/2,60,320),16,'bold 11px Hind Siliguri',RED);txt(x,'('+bn(c.m)+' ± ০.৫) '+c.u,190,152,'bold 15px Hind Siliguri',NAVY);
+});
+function b8calc(){var a=+$('b8a').value,b=+$('b8b').value,c=+$('b8c').value,V=a*b*c,lo=(a-.5)*(b-.5)*(c-.5),hi=(a+.5)*(b+.5)*(c+.5);return {a:a,b:b,c:c,V:V,lo:lo,hi:hi,ab:Math.max(V-lo,hi-V)};}
+function b8info(){var k=b8calc();$('b8av').textContent=bn(k.a);$('b8bv').textContent=bn(k.b);$('b8cv').textContent=bn(k.c);
+  $('b8t').innerHTML='<b>মাপা আয়তন</b> = '+bn(k.a)+' × '+bn(k.b)+' × '+bn(k.c)+' = <b>'+bn(k.V)+' cm³</b><br><b>সবচেয়ে ছোট</b> = '+f(k.a-.5,1)+' × '+f(k.b-.5,1)+' × '+f(k.c-.5,1)+' = '+f(k.lo,3)+' cm³<br><b>সবচেয়ে বড়</b> = '+f(k.a+.5,1)+' × '+f(k.b+.5,1)+' × '+f(k.c+.5,1)+' = '+f(k.hi,3)+' cm³<br><b>চূড়ান্ত ত্রুটি</b> (বড়টি) = '+f(k.ab,3)+' cm³<br><b>আপেক্ষিক ত্রুটি</b> = '+f(k.ab,3)+' ÷ '+bn(k.V)+' × ১০০% = <b>'+f(k.ab/k.V*100,2)+'%</b><br><small>শুধু দৈর্ঘ্যের আপেক্ষিক ত্রুটি '+f(50/k.a,1)+'%। তিনটি মাপ গুণ হওয়ায় আয়তনে ত্রুটি অনেক বেড়ে যায়।</small>';}
+['b8a','b8b','b8c'].forEach(function(i){$(i).oninput=b8info;});b8info();
+DRAWS.push(function(){var x=ctxOf('b8k'),k=b8calc(),s=Math.min(9,150/Math.max(k.a+k.b*.5,k.c+k.b*.5)),w=k.a*s,h=k.c*s,d=k.b*s*.5,ox=190-(w+d)/2,oy=150+ (h-d)/2;x.clearRect(0,0,380,240);
+  oy=Math.min(oy,165);x.strokeStyle='#345';x.lineWidth=2;
+  x.fillStyle='#9cc7ea';x.fillRect(ox,oy-h,w,h);x.strokeRect(ox,oy-h,w,h);
+  x.fillStyle='#bfdcf3';x.beginPath();x.moveTo(ox,oy-h);x.lineTo(ox+d,oy-h-d);x.lineTo(ox+w+d,oy-h-d);x.lineTo(ox+w,oy-h);x.closePath();x.fill();x.stroke();
+  x.fillStyle='#7fb2dc';x.beginPath();x.moveTo(ox+w,oy-h);x.lineTo(ox+w+d,oy-h-d);x.lineTo(ox+w+d,oy-d);x.lineTo(ox+w,oy);x.closePath();x.fill();x.stroke();
+  txt(x,bn(k.a)+' cm',ox+w/2,oy+11,'bold 11px Hind Siliguri',NAVY);txt(x,bn(k.c)+' cm',ox-22,oy-h/2,'bold 11px Hind Siliguri',NAVY);txt(x,bn(k.b)+' cm',ox+w+d+20,oy-d/2-4,'bold 11px Hind Siliguri',NAVY);
+  var X=function(v){return 30+(v-k.lo)/(k.hi-k.lo)*320;};x.fillStyle='#fde0da';x.fillRect(30,200,320,14);x.strokeStyle=RED;x.strokeRect(30,200,320,14);x.fillStyle=NAVY;x.fillRect(X(k.V)-1.5,194,3,26);
+  txt(x,f(k.lo,1),30,228,'10px Hind Siliguri','#456','left');txt(x,f(k.hi,1),350,228,'10px Hind Siliguri','#456','right');txt(x,bn(k.V)+' cm³',X(k.V),186,'bold 11px Hind Siliguri',NAVY);
+});
+mkGame('e8q','e8o','e8f','e8sc',function(){var r=Math.random();if(r<.25)return {q:'দৈর্ঘ্য মাপায় ১০% আপেক্ষিক ত্রুটি হলে বর্গাকার বস্তুর ক্ষেত্রফলে ত্রুটি প্রায় কত?',o:opts('প্রায় দ্বিগুণ (২১%)',['একই (১০%)','অর্ধেক (৫%)','দশ গুণ (১০০%)']),good:'১১ × ১১ = ১২১, তাই চূড়ান্ত ত্রুটি ২১ cm², আপেক্ষিক ত্রুটি ২১%।',bad:'১১ × ১১ = ১২১, তাই চূড়ান্ত ত্রুটি ২১ cm², আপেক্ষিক ত্রুটি ২১%।'};
+  if(r<.45){var w0='যে স্কেলে শুধু cm দাগ, তাতে মাপের ত্রুটি দাগের অর্ধেক, অর্থাৎ ±০.৫ cm।';return {q:'যে রুলারে শুধু cm দাগ আছে, তা দিয়ে মাপলে ত্রুটি কত ধরা হয়?',o:opts('±০.৫ cm',['±১ cm','±০.১ cm','±০.০৫ cm']),good:w0,bad:w0};}
+  var m=pick([4,5,8,10,15,20,25]),u=pick(['cm','mm']),rel=50/m,why='আপেক্ষিক ত্রুটি = ০.৫ ÷ '+bn(m)+' × ১০০% = '+f(rel,2)+'%';
+  return {q:'একটি বস্তুর দৈর্ঘ্য ('+bn(m)+' ± ০.৫) '+u+'। আপেক্ষিক ত্রুটি কত শতাংশ?',o:opts(f(rel,2)+'%',[f(rel*2,2)+'%',f(100/(m+.5),2)+'%',f(m/2,2)+'%'].filter(function(s,i,A){return s!==f(rel,2)+'%'&&A.indexOf(s)===i;})),good:why,bad:why};});
+/* ---------- ল্যাব ৯: লেখার নিয়ম ---------- */
+qgame('r9q','r9o','r9f','r9sc',[['২৫ কিলোগ্রাম সঠিকভাবে কোনটি?','25 kg',['25 kgs','25kg.','25 Kg'],'সংকেত বহুবচন হয় না, যতিচিহ্ন বসে না, আর kg ছোট হাতের।'],
+ ['বলের একক নিউটনের সংকেত কোনটি?','N',['n','Nt','nt'],'বিজ্ঞানীর নাম থেকে নেওয়া এককের সংকেত বড় হাতের অক্ষরে।'],
+ ['চাপের একক প্যাসকেলের সংকেত কোনটি?','Pa',['PA','pa','pA'],'একাধিক অক্ষর হলে শুধু প্রথমটি বড় হাতের।'],
+ ['কোনটি সঠিকভাবে লেখা?','2.35 N m',['2.35Nm','2.35 N.m.','2.35 n m'],'গুণ করে পাওয়া এককে দুটি এককের মাঝে একটি ফাঁকা জায়গা থাকে।'],
+ ['কিলোমিটার সঠিকভাবে কোনটি?','km',['Km','k m','KM'],'উপসর্গ এককের সাথে ফাঁক ছাড়া যুক্ত হয়, আর কিলো ছোট হাতের k।'],
+ ['মেগাহার্জ সঠিকভাবে কোনটি?','MHz',['mHz','M Hz','mhz'],'কিলোর চেয়ে বড় উপসর্গ বড় হাতের (M, G, T)। m মানে মিলি।'],
+ ['বেগের একক সঠিকভাবে কোনটি?','m/s বা ms⁻¹',['m.s','m-s','mps.'],'ভাগ করে পাওয়া এককে Slash বা ঋণাত্মক সূচক ব্যবহার হয়।'],
+ ['তাপমাত্রা ২২ কেলভিন সঠিকভাবে কোনটি?','22 K',['22K.','22 k','22 Ks'],'সংখ্যার পরে একটি ফাঁকা জায়গা, তারপর সংকেত।'],
+ ['কোন ক্ষেত্রে সংখ্যার পরে ফাঁকা জায়গা রাখতে হয় না?','ডিগ্রি (°), মিনিট (′) ও সেকেন্ড (″) চিহ্নে',['kg লেখার সময়','শতকরা (%) চিহ্নে','K লেখার সময়'],'বইয়ের নিয়ম ১ অনুযায়ী শতকরা চিহ্নেও ফাঁকা থাকে, শুধু ° ′ ″ চিহ্নে থাকে না।'],
+ ['রাশির সংকেত (যেমন ভর m, বেগ v) কেমন অক্ষরে লেখা হয়?','বাঁকা (italic) অক্ষরে',['সোজা অক্ষরে','মোটা অক্ষরে','বড় হাতের অক্ষরে'],'এককের সংকেত সোজা অক্ষরে, রাশির সংকেত বাঁকা অক্ষরে।']]);
+
+/* =================== কুইজ =================== */
+var QUIZ=[
+ {q:'কোয়ান্টাম তত্ত্ব প্রথম কে প্রদান করেন?',o:['প্ল্যাঙ্ক','আইনস্টাইন','রাদারফোর্ড','হাইজেনবার্গ'],a:0,fix:true,e:'1900 সালে ম্যাক্স প্ল্যাংক কোয়ান্টাম তত্ত্ব আবিষ্কার করেন।'},
+ {q:'বোজন কার নাম থেকে এসেছে?',o:['জগদীশচন্দ্র বসু','সুভাষচন্দ্র বসু','সত্যেন্দ্রনাথ বসু','শরৎচন্দ্র বসু'],a:2,fix:true,e:'সত্যেন্দ্রনাথ বসুর অবদানের স্বীকৃতিতে একশ্রেণির মৌলিক কণার নাম বোজন।'},
+ {q:'নিচের কোনটি মৌলিক রাশি নয়?',o:['ভর','তাপ','তড়িৎ প্রবাহ','পদার্থের পরিমাণ'],a:1,fix:true,e:'মৌলিক রাশি হলো তাপমাত্রা, তাপ নয়। তাপ এক ধরনের শক্তি, তাই লব্ধ রাশি।'},
+ {q:'একটি দণ্ডকে স্লাইড ক্যালিপার্সে স্থাপনের পর প্রধান স্কেল পাঠ 4 cm, ভার্নিয়ার সমপাতন 7 এবং ভার্নিয়ার ধ্রুবক 0.1 mm। দণ্ডটির দৈর্ঘ্য কত?',o:['4.07 cm','4.7 cm','40.7 cm','4.7 mm'],a:0,fix:true,e:'পাঠ = M + V × VC = 4 cm + 7 × 0.1 mm = 4 cm + 0.7 mm = 4.07 cm। (বইয়ে ক ও গ দুটো অপশনেই "4.07 cm" ছাপা আছে, তাই আমি গ বদলে দিয়েছি।)'},
+ {q:'রফিক স্কেল দিয়ে একটি পেন্সিলের দৈর্ঘ্য 15 cm পরিমাপ করল (চূড়ান্ত ত্রুটি 0.5 cm)। আপেক্ষিক ত্রুটি কত?',o:['15.5%','14.5%','3.44%','3.33%'],a:3,fix:true,e:'আপেক্ষিক ত্রুটি = 0.5 ÷ 15 × 100% = 3.33%।'},
+ {q:'একটি ব্লকের মাপ 7 cm × 4 cm × 6 cm এবং একটি গোলকের ব্যাসার্ধ 3 cm। ব্লক ও গোলকের আয়তনের অনুপাত কত?',o:['1 : 0.673','1 : 0.0673','1 : 0.763','1 : 0.637'],a:0,fix:true,e:'ব্লক = 7 × 4 × 6 = 168 cm³। গোলক = (4/3)π(3)³ ≈ 113.1 cm³। 113.1 ÷ 168 ≈ 0.673, তাই 1 : 0.673।'},
+ {q:'পদার্থবিজ্ঞান কী নিয়ে আলোচনা করে?',o:['পদার্থ, শক্তি ও এ দুইয়ের মিথস্ক্রিয়া','শুধু জীবদেহ','শুধু রাসায়নিক বিক্রিয়া','শুধু সংখ্যা'],a:0,e:'পদার্থ আর শক্তি এবং এ দুইয়ের মাঝের মিথস্ক্রিয়া বোঝার চেষ্টাই পদার্থবিজ্ঞান।'},
+ {q:'কোনটি চিরায়ত পদার্থবিজ্ঞানের শাখা?',o:['শব্দবিজ্ঞান','কণা পদার্থবিজ্ঞান','নিউক্লীয় পদার্থবিজ্ঞান','কঠিন অবস্থার পদার্থবিজ্ঞান'],a:0,e:'চিরায়ত: বলবিজ্ঞান, শব্দবিজ্ঞান, তাপ ও তাপগতি বিজ্ঞান, বিদ্যুৎ ও চৌম্বক বিজ্ঞান, আলোক বিজ্ঞান।'},
+ {q:'আধুনিক পদার্থবিজ্ঞান কোন দুটি তত্ত্বের ওপর গড়ে উঠেছে?',o:['কোয়ান্টাম বলবিজ্ঞান ও আপেক্ষিক তত্ত্ব','নিউটনের সূত্র ও তাপগতিবিজ্ঞান','জ্যামিতি ও বীজগণিত','শব্দ ও আলোক বিজ্ঞান'],a:0,e:'বইয়ের মতে কোয়ান্টাম বলবিজ্ঞান ও আপেক্ষিক তত্ত্ব ব্যবহার করে আধুনিক পদার্থবিজ্ঞান গড়ে উঠেছে।'},
+ {q:'Astronomy ও পদার্থবিজ্ঞান মিলে কোন শাখা তৈরি হয়েছে?',o:['Astrophysics','Biophysics','Geophysics','Medical Physics'],a:0,e:'জ্যোতির্বিদ্যা ও পদার্থবিজ্ঞান মিলে Astrophysics।'},
+ {q:'সূর্যগ্রহণের ভবিষ্যদ্বাণী কে করেছিলেন?',o:['থেলিস','পিথাগোরাস','ডেমোক্রিটাস','অ্যারিস্টটল'],a:0,e:'থেলিস (624 BC) সূর্যগ্রহণের ভবিষ্যদ্বাণী করেন এবং লোডস্টোনের চৌম্বক ধর্ম জানতেন।'},
+ {q:'সঠিকভাবে পৃথিবীর ব্যাসার্ধ কে বের করেছিলেন?',o:['ইরাতোস্থিনিস','আর্কিমিডিস','আরিস্তারাকস','সেলেউকাস'],a:0,e:'ইরাতোস্থিনিস (276 BC)।'},
+ {q:'শূন্যকে সত্যিকার অর্থে ব্যবহারের কাজটি কোথায় হয়েছিল?',o:['ভারতবর্ষে','গ্রিসে','চীনে','মিশরে'],a:0,e:'বইয়ের মতে ভারতবর্ষে (আর্যভট্ট)।'},
+ {q:'প্রকৃতির ইতিহাস নিয়ে ৩০ খণ্ডের এনসাইক্লোপিডিয়া কে লিখেছিলেন?',o:['আল মাসুদি','আল খোয়ারিজমি','ইবনে আল হাইয়াম','ওমর খৈয়াম'],a:0,e:'আল মাসুদি (896)।'},
+ {q:'কম্পাস ব্যবহার করে দিক নির্ধারণের কথা কে উল্লেখ করেছিলেন?',o:['শেন কুয়ো','আর্যভট্ট','থেলিস','ভাস্কর'],a:0,e:'চীনা বিজ্ঞানী শেন কুয়ো (1031)।'},
+ {q:'নিউটন কত সালে বলবিদ্যার তিনটি ও মহাকর্ষ বলের সূত্র প্রকাশ করেন?',o:['1687','1543','1798','1864'],a:0,e:'1687 খ্রিষ্টাব্দে।'},
+ {q:'তাপ এক ধরনের শক্তি, এটি কে দেখান?',o:['কাউন্ট রামফোর্ড','লর্ড কেলভিন','কুলম্ব','ভোল্টা'],a:0,e:'1798 সালে কাউন্ট রামফোর্ড।'},
+ {q:'বৈদ্যুতিক ব্যাটারি কে আবিষ্কার করেন?',o:['ভোল্টা','অরস্টেড','ফ্যারাডে','কুলম্ব'],a:0,e:'1800 সালে ভোল্টা।'},
+ {q:'পরীক্ষার মাধ্যমে আলোর তরঙ্গ ধর্মের প্রমাণ কে দেন?',o:['ইয়ং','ম্যাক্সওয়েল','নিউটন','হাবল'],a:0,e:'1801 সালে ইয়ং।'},
+ {q:'ইলেকট্রন কে আবিষ্কার করেন?',o:['থমসন','ডাল্টন','রাদারফোর্ড','বোর'],a:0,e:'1897 সালে থমসন।'},
+ {q:'E = mc² সূত্রটি কোন তত্ত্ব থেকে এসেছে?',o:['থিওরি অব রিলেটিভিটি','কোয়ান্টাম তত্ত্ব','পারমাণবিক তত্ত্ব','মহাকর্ষ সূত্র'],a:0,e:'আইনস্টাইনের থিওরি অব রিলেটিভিটি থেকে। এতে দেখানো হয় ভরকে শক্তিতে রূপান্তর করা সম্ভব।'},
+ {q:'ইথার বলে কিছু নেই, এটি কারা দেখান?',o:['মাইকেলসন ও মোরলি','পিয়ারে ও মেরি কুরি','ফ্যারাডে ও হেনরি','অটোহান ও স্ট্রেসম্যান'],a:0,e:'1887 সালে মাইকেলসন ও মোরলি।'},
+ {q:'রেডিয়াম কারা আবিষ্কার করেন?',o:['পিয়ারে ও মেরি কুরি','রন্টজেন ও বেকেরেল','থমসন ও রাদারফোর্ড','ডিরাক ও বোর'],a:0,e:'1899 সালে পিয়ারে ও মেরি কুরি।'},
+ {q:'বিশ্বব্রহ্মাণ্ডের দৃশ্যমান গ্রহ-নক্ষত্র-গ্যালাক্সি মোটের কত শতাংশ?',o:['৪ শতাংশ','১৪ শতাংশ','৪০ শতাংশ','৯৬ শতাংশ'],a:0,e:'মাত্র ৪ শতাংশ। বাকিটা ব্যাখ্যা করতে ডার্ক ম্যাটার ও ডার্ক এনার্জির ধারণা লাগে।'}
+];
+
+QUIZ=QUIZ.concat([
+ {q:'জগদীশচন্দ্র বসু কত সালে প্রথম বেতারে রেডিও সংকেত পাঠান?',o:['1895','1885','1917','1937'],a:0,e:'1895 সালে তিনি প্রথমবারের মতো বেতারে দূরবর্তী স্থানে রেডিও সংকেত পাঠিয়ে দেখান।'},
+ {q:'জগদীশচন্দ্র বসুর বাংলা রচনাবলি কোন গ্রন্থে সংকলিত?',o:['অব্যক্ত','গীতাঞ্জলি','বিজ্ঞান মন্দির','ক্রেস্কোগ্রাফ'],a:0,e:'"অব্যক্ত" গ্রন্থে।'},
+ {q:'কোন প্রতিষ্ঠান জগদীশচন্দ্র বসুকে রেডিও বিজ্ঞানের একজন জনক বলেছে?',o:['IEEE','NASA','WHO','UNESCO'],a:0,e:'Institute of Electrical and Electronics Engineering (IEEE)।'},
+ {q:'বিদ্যুৎ চৌম্বকীয় বল ও দুর্বল নিউক্লিয় বল একত্রে কী নামে পরিচিত?',o:['ইলেকট্রো উইক ফোর্স','মহাকর্ষ বল','সবল নিউক্লিয় বল','ঘর্ষণ বল'],a:0,e:'পদার্থবিজ্ঞানীরা দেখান এ দুটি একই বলের ভিন্ন রূপ।'},
+ {q:'নিউট্রন ও প্রোটন কী দিয়ে তৈরি?',o:['কোয়ার্ক','ইলেকট্রন','ফোটন','অণু'],a:0,e:'নিউট্রন ও প্রোটন কোয়ার্ক নামের মৌলিক কণা দিয়ে তৈরি।'},
+ {q:'SI পদ্ধতিতে মৌলিক রাশি কয়টি?',o:['৭টি','৩টি','৫টি','৯টি'],a:0,e:'দৈর্ঘ্য, ভর, সময়, বৈদ্যুতিক প্রবাহ, তাপমাত্রা, পদার্থের পরিমাণ ও দীপন তীব্রতা।'},
+ {q:'দীপন তীব্রতার একক কোনটি?',o:['ক্যান্ডেলা','কেলভিন','মোল','অ্যাম্পিয়ার'],a:0,e:'দীপন তীব্রতার SI একক ক্যান্ডেলা (cd)।'},
+ {q:'তাপমাত্রার SI একক কোনটি?',o:['কেলভিন','সেলসিয়াস','জুল','ক্যান্ডেলা'],a:0,e:'কেলভিন (K)।'},
+ {q:'কোনটি লব্ধ রাশি?',o:['বল','সময়','ভর','দৈর্ঘ্য'],a:0,e:'বল = ভর × ত্বরণ, মৌলিক রাশি দিয়ে প্রকাশ করা হয়।'},
+ {q:'কত সাল থেকে কিলোগ্রাম, কেলভিন, মোল ও অ্যাম্পিয়ার ধ্রুব দিয়ে নতুনভাবে সংজ্ঞায়িত?',o:['2019','2013','1905','1960'],a:0,e:'2019 সালের মে মাস থেকে।'},
+ {q:'মিটার কোন ধ্রুব দিয়ে সংজ্ঞায়িত?',o:['আলোর বেগ (c)','প্ল্যাঙ্কের ধ্রুব (h)','বোল্টজম্যান ধ্রুব (k)','এভোগাড্রোর ধ্রুব'],a:0,e:'এক সেকেন্ডের 299,792,458 ভাগের এক ভাগ সময়ে আলো যে দূরত্ব যায়।'},
+ {q:'কিলোগ্রাম কোন ধ্রুব দিয়ে সংজ্ঞায়িত?',o:['প্ল্যাঙ্কের ধ্রুব (h)','আলোর বেগ (c)','ইলেকট্রনের চার্জ (e)','বোল্টজম্যান ধ্রুব (k)'],a:0,e:'প্ল্যাঙ্কের ধ্রুব h = 6.62607015 × 10⁻³⁴ J s।'},
+ {q:'সেকেন্ডের সংজ্ঞায় কোন পরমাণু ব্যবহার করা হয়?',o:['সিজিয়াম 133','হাইড্রোজেন 1','কার্বন 12','ইউরেনিয়াম 235'],a:0,e:'সিজিয়াম 133 পরমাণুর 9,192,631,770টি স্পন্দনের সময়।'},
+ {q:'ন্যানো উপসর্গের মান কত?',o:['10⁻⁹','10⁻⁶','10⁻³','10⁹'],a:0,e:'ন্যানো (n) = 10⁻⁹।'},
+ {q:'মেগা উপসর্গের মান কত?',o:['10⁶','10³','10⁹','10⁻⁶'],a:0,e:'মেগা (M) = 10⁶।'},
+ {q:'1 মাইক্রোমিটার = কত মিটার?',o:['10⁻⁶ m','10⁻³ m','10⁻⁹ m','10⁶ m'],a:0,e:'মাইক্রো (μ) = 10⁻⁶।'},
+ {q:'বলের মাত্রা কোনটি?',o:['MLT⁻²','LT⁻¹','LT⁻²','ML²T⁻²'],a:0,e:'বল = ভর × ত্বরণ = M × LT⁻² = MLT⁻²।'},
+ {q:'বেগের মাত্রা কোনটি?',o:['LT⁻¹','LT⁻²','MLT⁻²','L²'],a:0,e:'বেগ = দূরত্ব ÷ সময় = L/T = LT⁻¹।'},
+ {q:'1 ইঞ্চি সমান কত সেন্টিমিটার?',o:['2.54 cm','2.45 cm','1.54 cm','3.54 cm'],a:0,e:'এক ইঞ্চি 2.54 cm-এর সমান।'},
+ {q:'সাধারণ মিটার স্কেলে সর্বনিম্ন কত পর্যন্ত মাপা যায়?',o:['মিলিমিটার','মাইক্রোমিটার','0.1 মিলিমিটার','সেন্টিমিটার'],a:0,e:'মিটার স্কেল সাধারণত মিলিমিটার পর্যন্ত ভাগ করা থাকে।'},
+ {q:'মূল স্কেলের ক্ষুদ্রতম ভাগ 1 mm এবং ভার্নিয়ার স্কেলে 10 ভাগ হলে ভার্নিয়ার ধ্রুবক কত?',o:['0.1 mm','0.01 mm','1 mm','10 mm'],a:0,e:'VC = S/n = 1 mm ÷ 10 = 0.1 mm।'},
+ {q:'স্ক্রু-গেজের পিচ 1 mm ও বৃত্তাকার স্কেলে 100 ভাগ হলে ন্যূনাঙ্ক কত?',o:['0.01 mm','0.1 mm','1 mm','0.001 mm'],a:0,e:'ন্যূনাঙ্ক = 1 mm ÷ 100 = 0.01 mm।'},
+ {q:'স্ক্রু পুরো একবার ঘোরালে যতটুকু সরে তাকে কী বলে?',o:['পিচ','ন্যূনাঙ্ক','ভার্নিয়ার ধ্রুবক','সমপাতন'],a:0,e:'স্ক্রুর এই সরণকে পিচ বলে।'},
+ {q:'একটি বস্তুর দৈর্ঘ্য 7 ± 0.5 mm। আপেক্ষিক ত্রুটি কত?',o:['7.1%','0.5%','3.5%','14%'],a:0,e:'0.5 ÷ 7 = 0.071 = 7.1%।'},
+ {q:'আপেক্ষিক ত্রুটি কীভাবে বের করা হয়?',o:['চূড়ান্ত ত্রুটি ÷ পরিমাপ করা মান','পরিমাপ করা মান ÷ চূড়ান্ত ত্রুটি','চূড়ান্ত ত্রুটি × পরিমাপ করা মান','চূড়ান্ত ত্রুটি + পরিমাপ করা মান'],a:0,e:'আপেক্ষিক ত্রুটি = চূড়ান্ত ত্রুটি / পরিমাপ করা মান।'},
+ {q:'বাক্সের মাপ 10 cm, 5 cm, 4 cm (প্রতিটিতে ±0.5 cm)। আয়তনে আপেক্ষিক ত্রুটি প্রায় কত?',o:['৩০%','১০%','৫%','৫০%'],a:0,e:'চূড়ান্ত ত্রুটি 59.875 cm³, আপেক্ষিক ত্রুটি 59.875/200 × 100% ≅ 30%।'},
+ {q:'ভর মাপার জন্য আজকাল বেশি ব্যবহৃত হয় কোনটি?',o:['ইলেকট্রনিক ব্যালেন্স','স্টপ ওয়াচ','স্ক্রু-গেজ','মিটার স্কেল'],a:0,e:'ইলেকট্রনিক ব্যালেন্সের সেন্সর নিখুঁতভাবে ভর বের করে দেয়।'},
+ {q:'কোনটি সঠিকভাবে লেখা?',o:['25 kg','25 kgs','25 Kg.','25kgs'],a:0,e:'এককের সংকেত কখনো বহুবচন হয় না এবং যতিচিহ্ন বসে না।'}
+]);
+
+var answered=0,correct=0;
+(function(){
+  $('qn').textContent=bn(QUIZ.length);
+  var box=$('quizbox');
+  QUIZ.forEach(function(item,qi){
+    var div=document.createElement('div');div.className='q';
+    var html='<p>'+bn(qi+1)+'. '+item.q+'</p>';
+    var ord=item.o.map(function(_,i){return i;});
+    if(!item.fix)ord=shuffle(ord);
+    item.ord=ord;item.a2=ord.indexOf(item.a);
+    ord.forEach(function(oi,pos){html+='<button class="opt" data-q="'+qi+'" data-o="'+pos+'">'+item.o[oi]+'</button>';});
+    html+='<div class="exp" id="exp'+qi+'">💡 '+item.e+'</div>';
+    div.innerHTML=html;box.appendChild(div);
+  });
+  box.addEventListener('click',function(ev){
+    var b=ev.target.closest('.opt');if(!b||b.parentNode.getAttribute('data-done'))return;
+    var qi=+b.getAttribute('data-q'),oi=+b.getAttribute('data-o');
+    b.parentNode.setAttribute('data-done','1');
+    var btns=b.parentNode.querySelectorAll('.opt');btns[QUIZ[qi].a2].classList.add('ok');
+    if(oi===QUIZ[qi].a2)correct++;else b.classList.add('no');
+    $('exp'+qi).style.display='block';answered++;
+    if(answered===QUIZ.length)$('score').textContent='🎉 তোমার স্কোর: '+bn(correct)+' / '+bn(QUIZ.length);
+  });
+})();
+
+var QA=[
+ {h:'📝 সৃজনশীল প্রশ্ন ১ (রাশেদের পেনসিল)',items:[
+  ['<b>উদ্দীপক:</b> রাশেদ তার সদ্য কেনা স্কেল দিয়ে পেনসিলের দৈর্ঘ্য মেপে বলল, পেনসিলটির দৈর্ঘ্য 11.73 cm। বন্ধু সুজন বলল এই পরিমাপ সঠিক না-ও হতে পারে। রাশেদ বলল এই স্কেল দিয়ে কয়েকবার মেপে একই ফল পেয়েছে। শিক্ষক তাদের 0.005 cm ভার্নিয়ার ধ্রুবকবিশিষ্ট ভার্নিয়ার স্কেল ব্যবহার করতে বললেন। রাশেদ ভার্নিয়ার স্কেলের সাহায্যে সঠিক দৈর্ঘ্য পরিমাপ করল। প্রধান স্কেলের ক্ষুদ্রতম এক ভাগের মান 1 mm ছিল।<br><br><b>(ক)</b> ভার্নিয়ার ধ্রুবক কী?',
+   '<b>উত্তর:</b> মূল স্কেলের ক্ষুদ্রতম এক ভাগ এবং ভার্নিয়ার স্কেলের এক ভাগের মধ্যে যে পার্থক্য, তাকে ভার্নিয়ার ধ্রুবক (VC) বলে। মূল স্কেলের ক্ষুদ্রতম এক ভাগের মান S এবং ভার্নিয়ারের ভাগসংখ্যা n হলে VC = S/n।'],
+  ['<b>(খ)</b> কোনো রাশির পরিমাণ প্রকাশ করতে এককের প্রয়োজন হয় কেন?',
+   '<b>উত্তর:</b> শুধু সংখ্যা দিয়ে কোনো রাশির পরিমাণ বোঝা যায় না। যেমন "দৈর্ঘ্য 5" বললে বোঝা যায় না এটি 5 মিটার, 5 সেন্টিমিটার নাকি 5 ইঞ্চি। একক হলো একই জাতীয় রাশির একটি নির্দিষ্ট আদর্শ পরিমাণ, যার সাথে তুলনা করে রাশিটি মাপা হয়। তাই রাশির পরিমাণ = সংখ্যা × একক। সবাই একই (আন্তর্জাতিক SI) একক ব্যবহার করলে পৃথিবীর যেকোনো জায়গায় পরিমাপের ফল একইভাবে বোঝা যায়।'],
+  ['<b>(গ)</b> ব্যবহৃত ভার্নিয়ার স্কেলের এক ভাগ প্রধান স্কেলের কত ভাগের সমান নির্ণয় করো।',
+   '<b>উত্তর:</b> দেওয়া আছে, VC = 0.005 cm = 0.05 mm এবং প্রধান স্কেলের এক ভাগ S = 1 mm।<br>আমরা জানি, VC = প্রধান স্কেলের এক ভাগ − ভার্নিয়ার স্কেলের এক ভাগ<br>∴ ভার্নিয়ার স্কেলের এক ভাগ = 1 mm − 0.05 mm = <b>0.95 mm</b><br>অর্থাৎ ভার্নিয়ার স্কেলের এক ভাগ প্রধান স্কেলের <b>0.95 ভাগের</b> (19/20 ভাগের) সমান।<br><small>যাচাই: n = S/VC = 1 ÷ 0.05 = 20। অর্থাৎ ভার্নিয়ারের 20 ভাগ = প্রধান স্কেলের 19 ভাগ (19 mm)।</small>'],
+  ['<b>(ঘ)</b> রাশেদের প্রথম দৈর্ঘ্য পরিমাপ সঠিক পরিমাপের সাথে সংগতিপূর্ণ ছিল না, যুক্তি সহকারে লেখো।',
+   '<b>উত্তর:</b> সাধারণ স্কেলের ক্ষুদ্রতম দাগ 1 mm = 0.1 cm। তাই এ স্কেল দিয়ে শুধু মিলিমিটার পর্যন্ত মাপা যায়, যেমন 11.7 cm, এবং তাতেও ±0.5 mm (±0.05 cm) অনিশ্চয়তা থাকে।<br>রাশেদ বলেছে 11.73 cm। এখানে শেষ অঙ্ক 0.03 cm = 0.3 mm, যা ওই স্কেলের ক্ষুদ্রতম দাগের চেয়েও ছোট। এত সূক্ষ্ম মাপ সাধারণ স্কেল দিয়ে নেওয়া সম্ভব নয়, তাই বারবার মেপে "একই ফল" পাওয়ার দাবিও গ্রহণযোগ্য নয়। শেষ অঙ্কটি আসলে অনুমান।<br>অন্যদিকে শিক্ষকের দেওয়া ভার্নিয়ার স্কেলের VC = 0.005 cm, অর্থাৎ এটি দিয়ে 0.005 cm পর্যন্ত সূক্ষ্মভাবে মাপা যায়। যেমন M = 11.7 cm ও সমপাতন V = 6 হলে পাঠ = 11.7 + 6 × 0.005 = 11.73 cm।<br><b>সিদ্ধান্ত:</b> 0.01 cm পর্যায়ের মাপ কেবল ভার্নিয়ার স্কেলেই নির্ভরযোগ্য। তাই রাশেদের প্রথম পরিমাপ (সাধারণ স্কেলে 11.73 cm) যন্ত্রের সূক্ষ্মতার সাথে সংগতিপূর্ণ ছিল না।<br><small>নোট: উদ্দীপকে ভার্নিয়ারে পাওয়া সঠিক দৈর্ঘ্য কত তা বলা নেই, তাই মানটি মিলেছিল কি না বলা যায় না। যুক্তিটি যন্ত্রের সূক্ষ্মতার ওপর দাঁড়ানো।</small>']
+ ]},
+ {h:'📝 সৃজনশীল প্রশ্ন ২ (বাক্সের আয়তন)',items:[
+  ['<b>উদ্দীপক:</b> বিজ্ঞান শিক্ষক রশিদ সাহেব ক্লাসে ছাত্র-ছাত্রীদের একটি বাক্স ও একটি রুলার দিয়ে বাক্সটির আয়তন নির্ণয় করতে বললেন। রুলারে শুধু cm পর্যন্ত মাপা যায়। তারা বাক্সটির দৈর্ঘ্য, প্রস্থ ও উচ্চতা যথাক্রমে 20 cm, 15 cm এবং 10 cm পেল।<br><br><b>(ক)</b> মাত্রা কী?',
+   '<b>উত্তর:</b> কোনো রাশিতে বিভিন্ন মৌলিক রাশি (দৈর্ঘ্য L, ভর M, সময় T ইত্যাদি) যে সূচকে (পাওয়ারে) আছে, তাকে ঐ রাশির মাত্রা বলে। যেমন বলের মাত্রা [F] = MLT⁻²।'],
+  ['<b>(খ)</b> ওজন ও ভর কেন একই ধরনের রাশি নয়?',
+   '<b>উত্তর:</b> ভর হলো বস্তুতে থাকা পদার্থের পরিমাণ। এটি একটি মৌলিক রাশি, একক kg, মাত্রা M।<br>ওজন হলো বস্তুকে পৃথিবী যে বল দিয়ে নিজের দিকে টানে। এটি এক ধরনের বল, তাই লব্ধ রাশি, একক নিউটন (N), মাত্রা MLT⁻²।<br>দুটির একক ও মাত্রা আলাদা, তাই এরা একই ধরনের রাশি নয়। বইয়েও বলা আছে, ভর সরাসরি মাপা যায় না, ওজন মেপে সেখান থেকে ভর বের করা হয়।'],
+  ['<b>(গ)</b> বাক্সটির আয়তন পরিমাপে আপেক্ষিক ত্রুটি কত শতাংশ নির্ণয় করো।',
+   '<b>উত্তর:</b> রুলারে শুধু cm দাগ, তাই প্রতিটি মাপে ত্রুটি ±0.5 cm।<br>মাপা আয়তন = 20 × 15 × 10 = <b>3000 cm³</b><br>সম্ভাব্য সবচেয়ে ছোট আয়তন = 19.5 × 14.5 × 9.5 = 2686.125 cm³<br>সম্ভাব্য সবচেয়ে বড় আয়তন = 20.5 × 15.5 × 10.5 = 3336.375 cm³<br>ত্রুটি: 3000 − 2686.125 = 313.875 cm³ এবং 3336.375 − 3000 = 336.375 cm³<br>বড়টি নিই, চূড়ান্ত ত্রুটি = 336.375 cm³<br>আপেক্ষিক ত্রুটি = 336.375 ÷ 3000 × 100% = 11.2125% ≅ <b>11.2%</b>'],
+  ['<b>(ঘ)</b> এই রুলারটি বইয়ের ক্ষেত্রফল মাপার জন্য ঠিক আছে, কিন্তু ঘরের ক্ষেত্রফল মাপার জন্য ঠিক নেই, উক্তিটি বিশ্লেষণ করো।',
+   '<b>উত্তর:</b> রুলারটিতে প্রতিবার মাপে ±0.5 cm ত্রুটি হয়।<br><b>বইয়ের ক্ষেত্রে:</b> বইয়ের দৈর্ঘ্য ও প্রস্থ রুলারের চেয়ে ছোট, তাই রুলার একবার বসিয়েই প্রতিটি মাপ নেওয়া যায়। ধরি বইটি 20 cm × 15 cm। ক্ষেত্রফল 300 cm², সবচেয়ে বড় 20.5 × 15.5 = 317.75 cm²। চূড়ান্ত ত্রুটি 17.75 cm², যা ছোট এবং সহজে হিসাব করা যায়।<br><b>ঘরের ক্ষেত্রে:</b> ঘরের দৈর্ঘ্য কয়েক মিটার। ধরি ঘরটি 400 cm × 300 cm এবং রুলার 30 cm লম্বা। তাহলে দৈর্ঘ্য মাপতে রুলার প্রায় 14 বার, প্রস্থ মাপতে 10 বার বসাতে হবে। প্রতিবার ±0.5 cm ত্রুটি যোগ হলে দৈর্ঘ্যে ত্রুটি ±7 cm ও প্রস্থে ±5 cm পর্যন্ত হতে পারে। তখন সবচেয়ে বড় ক্ষেত্রফল 407 × 305 = 124135 cm², অর্থাৎ চূড়ান্ত ত্রুটি 4135 cm²। প্রতিবার দাগ দিয়ে রুলার সরানোর বাড়তি ভুলও যোগ হয়।<br><b>সিদ্ধান্ত:</b> ছোট বস্তুতে রুলারটি একবার বসিয়ে মাপা যায় বলে উপযুক্ত। কিন্তু ঘরের মতো বড় মাপে বারবার বসাতে গিয়ে ত্রুটি জমে অনেক বেড়ে যায়, তাই সেখানে লম্বা মাপার ফিতা দরকার। উক্তিটি যথার্থ।<br><small>⚠️ নোট: উদ্দীপকে রুলারের দৈর্ঘ্য, বই বা ঘরের মাপ দেওয়া নেই। 30 cm রুলার, 20 × 15 cm বই ও 400 × 300 cm ঘর আমার ধরে নেওয়া উদাহরণ। বইয়ে এ প্রশ্নের উত্তর নেই, যুক্তিটি আমার নিজের, তাই শিক্ষকের সাথে মিলিয়ে নিও।</small>']
+ ]},
+
+ {h:'✍️ সংক্ষিপ্ত প্রশ্ন ও উত্তর',items:[
+  ['রাশি বলতে কী বোঝায়? (বইয়ের প্রশ্ন ১)','এই ভৌতজগতে যা কিছু পরিমাপ করা যায় তাকে রাশি বলে। যেমন দৈর্ঘ্য, ভর, সময়, তাপমাত্রা, বেগ।'],
+  ['মৌলিক ও লব্ধ রাশির মধ্যে দুইটি পার্থক্য লেখো। (বইয়ের প্রশ্ন ২)','১) মৌলিক রাশি অন্য কোনো রাশির ওপর নির্ভর করে না; লব্ধ রাশি মৌলিক রাশি ব্যবহার করে প্রকাশ করা হয়।<br>২) মৌলিক রাশি মাত্র সাতটি (দৈর্ঘ্য, ভর, সময়, বৈদ্যুতিক প্রবাহ, তাপমাত্রা, পদার্থের পরিমাণ, দীপন তীব্রতা); লব্ধ রাশি অসংখ্য (বেগ, ত্বরণ, বল, আয়তন ইত্যাদি)।'],
+  ['স্লাইড ক্যালিপার্সে প্রধান স্কেলের সাথে ভার্নিয়ার স্কেল সংযুক্ত করা হয় কেন? (বইয়ের প্রশ্ন ৩)','প্রধান স্কেলে শুধু মিলিমিটার পর্যন্ত মাপা যায়। বস্তুর দৈর্ঘ্য দুটি মিলিমিটার দাগের মাঝামাঝি হলে মিলিমিটারের ভগ্নাংশ কত, তা প্রধান স্কেলে বোঝা যায় না। ভার্নিয়ার স্কেল দিয়ে সেই ভগ্নাংশ (যেমন 0.1 mm পর্যন্ত) সূক্ষ্মভাবে মাপা যায়।'],
+  ['ভার্নিয়ার ধ্রুবকের মান 0.1 mm বলতে কী বোঝায়? (বইয়ের প্রশ্ন ৪)','এর অর্থ প্রধান স্কেলের ক্ষুদ্রতম এক ভাগ ভার্নিয়ার স্কেলের এক ভাগের চেয়ে 0.1 mm বড়। তাই ওই স্লাইড ক্যালিপার্স দিয়ে সর্বনিম্ন 0.1 mm পর্যন্ত সূক্ষ্মভাবে দৈর্ঘ্য মাপা যায়।'],
+  ['পদার্থবিজ্ঞান কাকে বলে?','বিজ্ঞানের যে শাখা পদার্থ আর শক্তি এবং এ দুইয়ের মাঝে যে মিথস্ক্রিয়া তাকে বোঝার চেষ্টা করে, সেটাই পদার্থবিজ্ঞান।'],
+  ['পদার্থবিজ্ঞানকে সবচেয়ে মৌলিক শাখা বলা হয় কেন?','কারণ এর ওপর ভিত্তি করে রসায়ন দাঁড়িয়েছে, রসায়নের ওপর জীববিজ্ঞান, আবার জীববিজ্ঞানের ওপর অন্য অনেক বিষয় দাঁড়িয়ে আছে। বিজ্ঞানের অন্য শাখাগুলো কোনো না কোনোভাবে এই শাখাকে ভিত্তি করে গড়ে উঠেছে।'],
+  ['পদার্থবিজ্ঞানের উদ্দেশ্য কী কী?','তিনটি মূল ভাগ: ১) প্রকৃতির রহস্য উদঘাটন, ২) প্রকৃতির নিয়মগুলো জানা, ৩) প্রাকৃতিক নিয়ম ব্যবহার করে প্রযুক্তির বিকাশ।'],
+  ['জগদীশচন্দ্র বসুর তিনটি অবদান লেখো।','১) 1895 সালে প্রথম বেতারে দূরবর্তী স্থানে রেডিও সংকেত পাঠান।<br>২) বিদ্যুৎ চৌম্বকীয় বিকিরণের তরঙ্গদৈর্ঘ্য মিলিমিটার পর্যায়ে (প্রায় 5 মিলিমিটার) নামিয়ে আনেন এবং সংকেত শনাক্তে অর্ধপরিবাহী জংশন ব্যবহার করেন।<br>৩) উদ্ভিদের বৃদ্ধি রেকর্ড করার যন্ত্র ক্রেস্কোগ্রাফ আবিষ্কার করেন এবং দেখান উদ্ভিদের সাড়া দেওয়ার প্রকৃতি বৈদ্যুতিক।'],
+  ['সত্যেন্দ্রনাথ বসু কেন স্মরণীয়?','1924 সালে তিনি কোয়ান্টাম তত্ত্বের ধারণা ব্যবহার করে বিকিরণ সংক্রান্ত কোয়ান্টাম সংখ্যায়নতত্ত্ব দেন। তাঁকে কোয়ান্টাম সংখ্যায়নতত্ত্বের জনক বলা হয় এবং তাঁর নামে একশ্রেণির মৌলিক কণার নাম বোজন (Boson)।'],
+  ['SI একক কী?','সাতটি মৌলিক রাশির আন্তর্জাতিকভাবে স্বীকৃত সাতটি একককে SI একক বলে: মিটার, কিলোগ্রাম, সেকেন্ড, অ্যাম্পিয়ার, কেলভিন, মোল ও ক্যান্ডেলা।'],
+  ['উপসর্গ বা গুণিতক কেন ব্যবহার করা হয়?','অনেক বড় (যেমন গ্যালাক্সির দূরত্ব) বা অনেক ছোট (যেমন নিউক্লিয়াসের ব্যাসার্ধ) সংখ্যা সহজে লেখার জন্য। যেমন এক হাজার মিটার না বলে 1 কিলোমিটার বলা হয়।'],
+  ['বল, বেগ ও ত্বরণের মাত্রা লেখো।','[বেগ] = LT⁻¹, [ত্বরণ] = LT⁻², [বল] = MLT⁻²।'],
+  ['স্লাইড ক্যালিপার্সে মূল স্কেল পাঠ 2.3 cm, ভার্নিয়ার সমপাতন 6 ও ভার্নিয়ার ধ্রুবক 0.01 cm হলে দৈর্ঘ্য কত?','পাঠ = M + V × VC = 2.3 + 6 × 0.01 = <b>2.36 cm</b>।'],
+  ['স্ক্রু-গেজের পিচ ও ন্যূনাঙ্ক কী?','<b>পিচ:</b> স্ক্রু পুরো একবার ঘোরালে যতটুকু সরে। <b>ন্যূনাঙ্ক:</b> বৃত্তাকার স্কেলের এক ঘর ঘোরালে স্ক্রু যতটুকু সরে, অর্থাৎ পিচ ÷ বৃত্তাকার স্কেলের ভাগসংখ্যা। পিচ 1 mm ও ভাগ 100 হলে ন্যূনাঙ্ক 0.01 mm।'],
+  ['চূড়ান্ত ত্রুটি ও আপেক্ষিক ত্রুটি কী?','<b>চূড়ান্ত ত্রুটি:</b> প্রকৃত মানের তুলনায় পরিমাপ করা মানের সবচেয়ে বেশি সম্ভাব্য পার্থক্য (যেমন ±0.5 mm মাপে 0.5 mm)।<br><b>আপেক্ষিক ত্রুটি:</b> চূড়ান্ত ত্রুটি ÷ পরিমাপ করা মান। শতকরায় প্রকাশ করতে 100% দিয়ে গুণ করা হয়।'],
+  ['একই ±0.5 mm ত্রুটি 1 mm দৈর্ঘ্যে গুরুতর, কিন্তু 1 m দৈর্ঘ্যে নয় কেন?','1 mm দৈর্ঘ্যে আপেক্ষিক ত্রুটি 0.5/1 = 50%, যা অনেক বেশি। কিন্তু 1 m = 1000 mm দৈর্ঘ্যে আপেক্ষিক ত্রুটি 0.5/1000 = 0.05%, যা খুব কম। তাই পরিমাপ কতটা নির্ভুল তা বুঝতে আপেক্ষিক ত্রুটি দেখতে হয়।'],
+  ['স্টপ ওয়াচে সময় মাপার একটি সীমাবদ্ধতা লেখো।','স্টপ ওয়াচ যত সূক্ষ্মভাবে সময় মাপতে পারে, আমরা হাত দিয়ে কখনোই তত সূক্ষ্ম সময়ে এটা শুরু করতে বা থামাতে পারি না।']
+ ]}
+];
+
+(function(){
+  var h='',n=0;
+  QA.forEach(function(g){h+='<h3>'+g.h+'</h3>';g.items.forEach(function(it){var id='qa'+(n++);
+    h+='<div class="q"><p>'+it[0]+'</p><button class="btn alt" data-id="'+id+'">উত্তর দেখো</button><div class="ans" id="'+id+'">'+it[1]+'</div></div>';});});
+  $('qabox').innerHTML=h;
+  $('qabox').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;var a=$(b.getAttribute('data-id'));var o=a.classList.toggle('open');b.textContent=o?'উত্তর লুকাও':'উত্তর দেখো';};
+})();
+
+function frame(){FR++;for(var i=0;i<DRAWS.length;i++)DRAWS[i]();requestAnimationFrame(frame);}
+frame();
+</script>
+</body>
+</html>
